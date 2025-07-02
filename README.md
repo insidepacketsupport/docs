@@ -1,32 +1,102 @@
-# Mintlify Starter Kit
+# insidepacket NaaS Portal Guide
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Welcome to the official documentation for the insidepacket Network as a Service (NaaS) Portal. This repository provides comprehensive guides and information to help businesses leverage automated and advanced network, security, and management features.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## About the insidepacket NaaS Portal
 
-### Development
+The insidepacket NaaS Portal empowers businesses with:
+* **Automated Connectivity:** Streamlined processes for setting up network connections.
+* **Advanced Security:** Robust firewall rules, web filtering, and DDoS protection.
+* **Real-time Observability:** Dashboards for monitoring network, application, and DNS performance.
+* **Flexible Integration:** Seamless connectivity with major cloud providers like AWS, GCP, and Azure.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview the documentation changes locally. To install, use the following command
+Our portal simplifies complex network management tasks, offering scalability, dynamic bandwidth management, and cloud-based provisioning. Users can easily manage accounts, add team members with role-based access, and oversee daily network and application activities.
 
-```
-npm i -g mint
-```
+## Key Features Covered in this Documentation
 
-Run the following command at the root of your documentation (where docs.json is)
+* **Getting Started:** Account setup and user management.
+* **Network Provisioning:** Ordering and setting up network ports, DC-to-DC connections, and public IP addresses.
+* **Internet Connectivity:** Creating and managing Dedicated Internet Access (DIA) connections, including BGP DIA.
+* **Cloud Connectivity:** Setting up direct connections with AWS, GCP, and Azure.
+* **Observability:** Detailed insights into network topology, application performance, and network traffic.
+* **Security:** Configuring firewalls, web filtering, and understanding DDoS protection.
+* **Troubleshooting:** Utilizing Looking Glass tools for network diagnostics.
 
-```
-mint dev
-```
+## How to Use This Repository
 
-### Publishing Changes
+This repository is structured to provide easy access to specific topics. You can navigate through the `docs` directory for detailed guides on each feature.
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+### Contributing
 
-#### Troubleshooting
+We welcome contributions to improve this documentation. Please refer to our `CONTRIBUTING.md` (not yet created, but a good future addition!) for guidelines on how to contribute.
 
-- If the dev environment isn't running - Run `mint update` to ensure you have the most recent version of the CLI.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+---
+*Last Updated: June 2025*
+
+2. docs/getting-started.md
+
+# Getting Started with the insidepacket NaaS Portal
+
+This guide will walk you through the initial steps of setting up your account and managing users within the insidepacket NaaS Portal.
+
+## 1. Account Setup
+
+Getting started with the insidepacket portal is simple.
+
+1.  **Sign Up:** Once you have signed up, you will receive an email to verify your email address.
+2.  **Set Password & Details:** Next, set up a password and complete a couple of personal and company details.
+3.  **Account Administrator:** If you registered your company on the portal, you will automatically be assigned the Account Administrator role.
+4.  **Joining an Existing Company:** If you are joining a company already registered on the portal, contact your Account Administrator to assign you appropriate roles and permissions.
+
+## 2. Adding a Team Member
+
+As an Account Administrator, you can easily add new team members and assign them roles.
+
+1.  **Log in to the NaaS Portal:** Use your Tenant’s credentials to sign in.
+2.  **Navigate to the Tenant Tab:** On the left-hand side menu, click on `Tenant`.
+3.  **Access the Users Section:** Under the `Tenant` tab, select `Users`.
+4.  **Add New User:** Click the `+Add` button to create a new user.
+5.  **Complete User Details (Section 1):**
+    * **Username:** Enter a unique username (should not contain capital letters).
+    * **Email:** Provide a valid email address.
+    * **Role:** Choose the user role (Admin or User).
+    * **Tenant:** Select the associated tenant.
+    * **Phone:** Enter a phone number (optional).
+    * **Status:** Set user status as Active or Inactive.
+6.  **Save User:** Click the `Save` button to create the user.
+
+## 3. Ordering and Setting Up Network Ports
+
+This section outlines the process for creating a Port within your customer Portal network. Your organization's Port serves as the physical connection point between your internal network and the insidepacket network. A Port must be deployed wherever you wish to route traffic.
+
+1.  **Log in to the NaaS Portal.**
+2.  **Navigate to Build Your Network:** From the left-hand side menu, select `Build Your Network`.
+3.  **Choose Ports:** On the left side of the `Build Your Network` section, choose `Ports`.
+4.  **Order Ports:** Click on the `+Order Ports` button.
+5.  **Fill Port Details:**
+    * **Connection Type:** Select the type of connection (e.g., Data Center).
+    * **Country:** Choose the country.
+    * **City:** Select the city.
+    * **Building Name/Address:** Enter the building name or address.
+    * **Choose the BW (Bandwidth):** Select the desired bandwidth (e.g., 10 Gbps).
+6.  **Place Order:** Click the `Order` button to place the request.
+
+**Note:** After ordering the port, its status will be marked as `Pending`, awaiting approval from the Administrator.
+
+### Viewing Order Log
+
+You can track the status of your port orders and other actions:
+
+1.  **Navigate to the Order Log tab:** This is located on the left side of the page.
+2.  **Review Records:** Here, you will find a detailed record of all actions performed, including:
+    * Ordering new ports
+    * Deleting ports
+    * Enabling services (e.g., Network Observability, Firewall)
+    * Ordering public IPs
+    * Changing packages
+3.  **Filter Options:** Options are available to filter the Order log by category or view all order actions.
+
+### Port Provisioning and Availability
+
+* **Provisioning:** After placing the order, the port will remain in `Pending` status until the Admin begins provisioning. This process typically takes a few hours.
+* **Availability:** Once provisioning is complete, the port will become `Active` and ready for use. Connections can then be established on these ports.
