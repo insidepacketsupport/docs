@@ -1,0 +1,60 @@
+{
+  "name": "InsidePacket NaaS Knowledge Base",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#007AFF",
+    "light": "#88B0FC",
+    "dark": "#004B8D"
+  },
+  "navigation": [
+    {
+      "group": "NaaS Portal Guide",
+      "pages": [
+        "naas-portal-guide/index",
+        "naas-portal-guide/quickstart",
+        "naas-portal-guide/network-ports",
+        "naas-portal-guide/dc-to-dc-connection",
+        "naas-portal-guide/public-ips",
+        "naas-portal-guide/dia-connection",
+        "naas-portal-guide/dia-speed-change",
+        "naas-portal-guide/bgp-dia-connection",
+        {
+          "group": "Cloud NNI Management",
+          "pages": [
+            "naas-portal-guide/cloud-nni-management/index",
+            "naas-portal-guide/cloud-nni-management/aws-direct-connect",
+            "naas-portal-guide/cloud-nni-management/gcp-direct-connect",
+            "naas-portal-guide/cloud-nni-management/azure-direct-connect"
+          ]
+        },
+        "naas-portal-guide/network-topology",
+        "naas-portal-guide/application-observability",
+        "naas-portal-guide/network-observability",
+        "naas-portal-guide/network-cloud-connection",
+        "naas-portal-guide/services-firewall",
+        "naas-portal-guide/web-filtering",
+        "naas-portal-guide/firewall",
+        "naas-portal-guide/dia-firewall-rule",
+        "naas-portal-guide/looking-glass",
+        "naas-portal-guide/bgp",
+        "naas-portal-guide/mac",
+        "naas-portal-guide/ddos",
+        "naas-portal-guide/routing-table",
+        "naas-portal-guide/cloud-and-connections",
+        "naas-portal-guide/troubleshooting-looking-glass",
+        {
+          "group": "Use Cases",
+          "pages": [
+            "naas-portal-guide/appendix-a/index",
+            "naas-portal-guide/appendix-a/use-case-1-internet-access",
+            "naas-portal-guide/appendix-a/use-case-2-multi-cloud"
+          ]
+        }
+      ]
+    }
+  ]
+}
