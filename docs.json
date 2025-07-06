@@ -88,8 +88,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "NaaS Portal",
+      "href": "https://naas.insidepacket.com/login"
     }
   },
   "footer": {
