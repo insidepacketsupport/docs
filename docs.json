@@ -24,7 +24,7 @@
           {
             "group": "Videos",
             "pages": [
-              "essentials/markdown",
+              "Videos/markdown",
               "essentials/code",
               "essentials/images",
               "essentials/settings",
