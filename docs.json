@@ -62,15 +62,15 @@
           "href": "https://mintlify.com/docs",
           "icon": "book-open-cover"
         },
+      {
+          "anchor": "InsideIQ Guide",
+          "href": "https://www.insidepacket.com/ai-for-network-as-a-service/",
+          "icon": "newspaper"
+        },
         {
           "anchor": "Community1",
           "href": "https://mintlify.com/community",
           "icon": "slack"
-        },
-        {
-          "anchor": "InsideIQ Guide",
-          "href": "https://www.insidepacket.com/ai-for-network-as-a-service/",
-          "icon": "newspaper"
         }
       ]
     }
