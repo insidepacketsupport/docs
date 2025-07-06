@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "NaaS Knowladgebase",
   "colors": {
     "primary": "#e28743",
     "light": "#e28743",
