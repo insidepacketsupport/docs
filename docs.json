@@ -76,7 +76,7 @@
     }
   },
   "logo": {
-    "light": "/Public/insidepacket.svg",
+    "light": "/Public/light.svg",
     "dark": "/Public/dark.png"
   },
   "navbar": {
