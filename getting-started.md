@@ -64,4 +64,4 @@ You can track the status of your port orders and other actions:
 * **Provisioning:** After placing the order, the port will remain in `Pending` status until the Admin begins provisioning. This process typically takes a few hours.
 * **Availability:** Once provisioning is complete, the port will become `Active` and ready for use. Connections can then be established on these ports.
 
-<iframe src="https://veed.io/embed/8775a5f2-6316-4a35-af2d-61cf213ce6eb?watermark=0&color=default&sharing=0&title=1" width="744" height="504" frameborder="0" title="Zayo NaaS Portal - Buying a port " webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
