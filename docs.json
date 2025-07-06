@@ -68,8 +68,8 @@
           "icon": "slack"
         },
         {
-          "anchor": "Blog1",
-          "href": "https://mintlify.com/blog",
+          "anchor": "InsideIQ Guide",
+          "href": "https://www.insidepacket.com/ai-for-network-as-a-service/",
           "icon": "newspaper"
         }
       ]
