@@ -31,6 +31,17 @@
         ]
       },
       {
+        "tab": "Use Cases",
+        "groups": [
+          {
+            "group": "Key Scenarios",
+            "pages": [
+              "use-cases/introduction"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Build Your Network",
         "groups": [
           {
@@ -98,11 +109,6 @@
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "Use Cases",
-          "href": "https://insidepacket.mintlify.app/usecases",
-          "icon": "book-open-cover"
-        },
         {
           "anchor": "InsideIQ Guide",
           "href": "https://www.insidepacket.com/ai-for-network-as-a-service/",
