@@ -11,10 +11,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Guides",
         "groups": [
           {
-            "group": "Guides",
+            "group": "Get Started",
             "pages": [
               "Welcome",
               "quickstart",
@@ -24,61 +24,17 @@
           {
             "group": "Videos",
             "pages": [
-              "docs/video-resources"
+              "Videos/markdown",
+              "essentials/code"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
           {
-            "group": "Use Cases",
-            "pages": [
-              "use-cases/introduction"
-            ]
-          },
-          {
-            "group": "Build Your Network",
-            "pages": [
-              "build-network/introduction",
-              "build-network/ports",
-              "build-network/cloud-links",
-              "build-network/public-ips",
-              "build-network/my-services",
-              "build-network/order-log",
-              "build-network/cloud-router",
-              "build-network/virtual-circuit"
-            ]
-          },
-          {
-            "group": "Insights",
-            "pages": [
-              "insights/introduction",
-              "insights/network-observability",
-              "insights/application-observability",
-              "insights/dns-observability"
-            ]
-          },
-          {
-            "group": "Network",
-            "pages": [
-              "network/introduction",
-              "network/cloud-and-connections",
-              "network/cloud-router",
-              "network/dia",
-              "network/groups",
-              "network/looking-glass"
-            ]
-          },
-          {
-            "group": "Services",
-            "pages": [
-              "services/introduction",
-              "services/firewall",
-              "services/dia-firewall",
-              "services/nat",
-              "services/ddos",
-              "services/my-services"
-            ]
-          },
-          {
-            "group": "API Reference",
+            "group": "API Documentation",
             "pages": [
               "api-reference/introduction"
             ]
@@ -98,6 +54,11 @@
     "global": {
       "anchors": [
         {
+          "anchor": "Use Cases",
+          "href": "https://insidepacket.mintlify.app/usecases",
+          "icon": "book-open-cover"
+        },
+        {
           "anchor": "InsideIQ Guide",
           "href": "https://www.insidepacket.com/ai-for-network-as-a-service/",
           "icon": "newspaper"
@@ -113,7 +74,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@insidepacket.com"
       }
     ],
     "primary": {
