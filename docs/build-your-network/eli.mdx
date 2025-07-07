@@ -1,0 +1,56 @@
+---
+description: "Discover how to order and provision physical connection points for your network."
+title: "Ordering and Setting Up Network Ports"
+---
+
+import { Card, CardGroup } from 'nextra/components'
+import { Steps } from 'nextra/components'
+
+# Create a Layer 2 connection 
+
+This guide outlines creating a Port within the customer Portal network. Your organization's Port serves as the physical connection point between your internal network and the network. A Port must be deployed wherever you wish to route traffic.
+
+<Steps>
+  ### Log in to the NaaS Portal
+
+  Navigate to **Build Your Network** on the left side menu, then choose **Ports**.
+
+  ### Order Ports
+
+  Click on the **\+ Order Ports** button and fill in the required details:
+
+  - **Connection Type**: Select the type of connection (e.g., Data Center).
+  - **Country**: Choose the country where the port will be located.
+  - **City**: Select the city.
+  - **Building Name/Address**: Enter the building name or address.
+  - **Choose the BW**: Select the desired bandwidth.
+
+  ### Place the Request
+
+  Click the **Order** button to place the request.
+
+  :::info Note
+  After ordering the port, the status will be marked as **Pending**, awaiting approval from the Administrator.
+  :::
+</Steps>
+
+## View Order Log
+
+To view the status and history of your port orders:
+
+- Navigate to the **Order Log** tab on the left side of the page.
+- Here, you will find a detailed record of all actions performed, including those associated with your candidate profile.
+- You can filter the Order log by category or view all order actions, such as ordering new ports, deleting ports, enabling services (like Network Observability and Firewall), ordering public IPs, and changing Packages.
+
+## Port Provisioning
+
+- After placing the order, the port will remain in **Pending** status until the Administrator begins provisioning.
+- This process typically takes a few hours for the admin team to complete.
+
+## Port Availability
+
+- Once the provisioning is complete, the port will be active and ready for use.
+
+:::info Note
+Connections can now be established on these ports.
+:::
