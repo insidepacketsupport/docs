@@ -31,6 +31,50 @@
         ]
       },
       {
+        "tab": "Build Your Network",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "build-network/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Insights",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "insights/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Network",
+        "groups": [
+          {
+            "group": "Network Management",
+            "pages": [
+              "network/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Services",
+        "groups": [
+          {
+            "group": "Service Catalog",
+            "pages": [
+              "services/introduction"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "API Reference",
         "groups": [
           {
@@ -38,7 +82,8 @@
             "pages": [
               "api-reference/introduction"
             ]
-          },
+          }
+          ,
           {
             "group": "Endpoint Examples",
             "pages": [
