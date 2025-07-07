@@ -11,10 +11,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Guides",
             "pages": [
               "Welcome",
               "quickstart",
@@ -27,74 +27,43 @@
               "Videos/markdown",
               "essentials/code"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Use Cases",
-        "groups": [
+          },
           {
-            "group": "Key Scenarios",
+            "group": "Use Cases",
             "pages": [
               "use-cases/introduction"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Build Your Network",
-        "groups": [
+          },
           {
-            "group": "Getting Started",
+            "group": "Build Your Network",
             "pages": [
               "build-network/introduction"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Insights",
-        "groups": [
+          },
           {
-            "group": "Overview",
+            "group": "Insights",
             "pages": [
               "insights/introduction"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Network",
-        "groups": [
+          },
           {
-            "group": "Network Management",
+            "group": "Network",
             "pages": [
               "network/introduction"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Services",
-        "groups": [
+          },
           {
-            "group": "Service Catalog",
+            "group": "Services",
             "pages": [
               "services/introduction"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
+          },
           {
-            "group": "API Documentation",
+            "group": "API Reference",
             "pages": [
               "api-reference/introduction"
             ]
-          }
-          ,
+          },
           {
             "group": "Endpoint Examples",
             "pages": [
