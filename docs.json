@@ -24,8 +24,7 @@
           {
             "group": "Videos",
             "pages": [
-              "Videos/markdown",
-              "essentials/code"
+              "docs/video-resources"
             ]
           },
           {
@@ -37,25 +36,45 @@
           {
             "group": "Build Your Network",
             "pages": [
-              "build-network/introduction"
+              "build-network/introduction",
+              "build-network/ports",
+              "build-network/cloud-links",
+              "build-network/public-ips",
+              "build-network/my-services",
+              "build-network/order-log",
+              "build-network/cloud-router",
+              "build-network/virtual-circuit"
             ]
           },
           {
             "group": "Insights",
             "pages": [
-              "insights/introduction"
+              "insights/introduction",
+              "insights/network-observability",
+              "insights/application-observability",
+              "insights/dns-observability"
             ]
           },
           {
             "group": "Network",
             "pages": [
-              "network/introduction"
+              "network/introduction",
+              "network/cloud-and-connections",
+              "network/cloud-router",
+              "network/dia",
+              "network/groups",
+              "network/looking-glass"
             ]
           },
           {
             "group": "Services",
             "pages": [
-              "services/introduction"
+              "services/introduction",
+              "services/firewall",
+              "services/dia-firewall",
+              "services/nat",
+              "services/ddos",
+              "services/my-services"
             ]
           },
           {
