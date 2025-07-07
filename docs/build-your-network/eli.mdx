@@ -1,56 +1,45 @@
 ---
-description: "Discover how to order and provision physical connection points for your network."
-title: "Ordering and Setting Up Network Ports"
+title: "Creating a Layer 2 DC-to-DC Connection"
+description: "A step-by-step guide to establishing a Layer 2 data center-to-data center connection on the DynamicLink platform."
 ---
 
-import { Card, CardGroup } from 'nextra/components'
-import { Steps } from 'nextra/components'
+<Info>
+  **What You'll Accomplish**
 
-# Create a Layer 2 connection 
+  This guide will walk you through the process of provisioning a private, point-to-point Layer 2 circuit between two data center ports on the DynamicLink NaaS platform.
+</Info>
 
-This guide outlines creating a Port within the customer Portal network. Your organization's Port serves as the physical connection point between your internal network and the network. A Port must be deployed wherever you wish to route traffic.
+To create a Layer 2 data center-to-data center (DC-to-DC) connection in DynamicLink, follow these steps:
 
 <Steps>
-  ### Log in to the NaaS Portal
+  <Step title="Navigate to Ports">
+    Start by logging into the DynamicLink portal. From the main dashboard, click on the **Build Your Network** tab, and then select **Ports** from the sub-menu.
 
-  Navigate to **Build Your Network** on the left side menu, then choose **Ports**.
+    ![Navigate to Ports](/l2.png)
+  </Step>
+  <Step title="Check Port Availability">
+    Before creating the connection, it's crucial to verify that both the A-side and Z-side ports have enough capacity. Review the `Available Bandwidth` for each port to ensure there is sufficient bandwidth for your new circuit.
+  </Step>
+  <Step title="Configure the A-Side Port">
+    1. Locate the first port for your connection and click the **Add a Connection** button next to it.
+    2. The port name will be automatically populated.
+    3. Choose an available VLAN from the dropdown menu.
+    4. Specify the desired bandwidth for the connection (e.g., `1 Gbps`).
 
-  ### Order Ports
+    <Frame>
+      ![Configure A-Side Port](https://placehold.co/600x300/e2e8f0/4a5568?text=A-Side+Port+Configuration)
+    </Frame>
+  </Step>
+  <Step title="Configure the Z-Side Port">
+    1. In the Z-port section, select the second data center port you wish to connect to.
+    2. Choose an available VLAN from the dropdown menu. Ensure this VLAN has not been used previously on this port.
+    3. The bandwidth will automatically match the value you selected for the A-side port.
+  </Step>
+  <Step title="Name and Finalize the Connection">
+    1. Provide a meaningful and easily identifiable name for your new connection in the `Connection Name` field.
+    2. Review all the details to ensure they are correct.
+    3. Click the **Add** button at the bottom of the page to finalize the setup and create the connection.
 
-  Click on the **\+ Order Ports** button and fill in the required details:
-
-  - **Connection Type**: Select the type of connection (e.g., Data Center).
-  - **Country**: Choose the country where the port will be located.
-  - **City**: Select the city.
-  - **Building Name/Address**: Enter the building name or address.
-  - **Choose the BW**: Select the desired bandwidth.
-
-  ### Place the Request
-
-  Click the **Order** button to place the request.
-
-  :::info Note
-  After ordering the port, the status will be marked as **Pending**, awaiting approval from the Administrator.
-  :::
+    Your new Layer 2 connection will now be provisioned and will appear in your list of active connections.
+  </Step>
 </Steps>
-
-## View Order Log
-
-To view the status and history of your port orders:
-
-- Navigate to the **Order Log** tab on the left side of the page.
-- Here, you will find a detailed record of all actions performed, including those associated with your candidate profile.
-- You can filter the Order log by category or view all order actions, such as ordering new ports, deleting ports, enabling services (like Network Observability and Firewall), ordering public IPs, and changing Packages.
-
-## Port Provisioning
-
-- After placing the order, the port will remain in **Pending** status until the Administrator begins provisioning.
-- This process typically takes a few hours for the admin team to complete.
-
-## Port Availability
-
-- Once the provisioning is complete, the port will be active and ready for use.
-
-:::info Note
-Connections can now be established on these ports.
-:::
