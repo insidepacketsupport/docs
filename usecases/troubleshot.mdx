@@ -1,5 +1,76 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Troubleshooting Poor Application Performance"
+description: "Troubleshooting Poor Application Performance
+
+Diagnose poor application performance—from network and server to DNS issues—using the insidepacket NaaS platform's comprehensive observability tools. This guide walks through a systematic approach to finding the root cause."
 ---
 
+---
+
+## 1. Initial Latency Analysis: Network and Application Latency
+
+The first step is to differentiate between network latency (the time it takes for packets to travel) and application latency (the time it takes for the application to process a request). This distinction, available in the Network Observability dashboard, is key to narrowing down the problem.
+
+### Steps to analyze latency
+
+1. Navigate to the **"Insight"** tab in the NaaS portal.
+2. Select **"Network Observability"** from the menu.
+3. Use the top navigation bar to focus on the **"Latency"** tab for granular data.
+4. Analyze the trends for the affected application target:
+   - **Network & Application latency both increase:** Investigate network bandwidth and packet drops (see Step 2).
+   - **Network latency is stable, Application latency increases:** The server is likely the bottleneck (see Step 3).
+   - **Both are stable, but users report issues:** DNS may be the culprit (see Step 4).
+
+---
+
+## 2. Investigating Network Latency and Bandwidth Issues
+
+If your initial analysis points to a network problem, the next step is to examine bandwidth utilization and packet drops on the relevant links to identify congestion or policy enforcement issues.
+
+### Steps to check bandwidth and drops
+
+1. Remain in the **"Network Observability"** dashboard.
+2. Go to the **"Connection Overview"** to review interface statistics for the relevant application connections.
+3. In the **"Interface Statistics"** section, pay close attention to:
+   - `Incoming (Mbps)`: Data received by the interface.
+   - `Dropped Incoming (Mbps)`: Traffic discarded due to policy (e.g., reserved bandwidth).
+   - `Outgoing (Mbps)`: Data sent from the interface.
+   - `Dropped Outgoing (Mbps)`: Packets dropped due to policy constraints.
+4. Look for significant increases in `Dropped Incoming` or `Dropped Outgoing` packets. Compare the `Incoming` and `Outgoing` values against the connection's **Max Bandwidth** to see if the link is saturated.
+5. If results are mixed, try to isolate the issue by source connection to see if a specific group of users is affected.
+
+---
+
+## 3. Analyzing Application Latency and Server Performance
+
+If network metrics are healthy but application latency is high, the problem likely lies with the application server itself being underpowered or experiencing internal issues.
+
+### Steps to infer server issues
+
+1. Review the application latency data from Step 1.
+2. If network-level metrics (latency, bandwidth, drops) are stable but the application's overall performance remains poor, it strongly suggests a server-side issue.
+3. Navigate to the **Application Observability Dashboard** and review the **"Top Applications Table"** and **"Top Applications Chart"**. This can help confirm if the problem is isolated to one application or part of a broader server problem.
+
+<br />
+
+![Dashboard snapshot showing application and network latency](/path/to/your/dashboard_snapshot.png)
+
+<br />
+
+---
+
+## 4. Checking DNS Resolution Issues
+
+If both network and application performance appear stable but users still can't access services, DNS resolution might be the culprit.
+
+### Steps to check DNS queries
+
+1. From the **"Insight"** tab, select **"Application Observability"**.
+2. Navigate to the **"DNS"** tab within the dashboard.
+3. Examine the DNS activity, focusing on three sections:
+   - **Source IPs:** The clients making DNS queries.
+   - **DNS Servers:** The servers processing the queries.
+   - **Hostname:** The domains being requested.
+4. Look for missing or unusual query patterns for the application's hostname. The **"DNS Location"** section can also help identify if the issue is related to a specific geographic DNS server.
+
+By systematically following these steps, you can effectively diagnose the root cause of poor application performance using the insidepacket NaaS platform.
