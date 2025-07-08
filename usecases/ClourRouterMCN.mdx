@@ -1,0 +1,123 @@
+# Enhancing NaaS Cloud Router with Multi-Cloud Connectivity and Security
+
+Expanding your **NaaS Cloud Router** to encompass multi-cloud environments offers significant advantages. By interconnecting your AWS and Azure VPCs directly via the operator network, you eliminate the need for traffic to hairpin back to a central office. This direct interconnection dramatically improves availability, reduces latency for inter-cloud communication, and can lead to significant savings on egress fees from your Cloud Service Providers (CSPs). Furthermore, the built-in security features of the insidepacket NaaS platform allow you to implement granular access control for your critical cloud resources.
+
+---
+
+## 1. Adding Cloud Connections to the Cloud Router
+
+To establish multi-cloud connectivity, you will add new connections directly to your insidepacket **NaaS Cloud Router**. These new connections will terminate at the Cloud Router, just like your existing branch and data center connections, and will all share the same routing.
+
+### Steps to add an AWS Direct Connect Connection
+
+1.  Log in to the NaaS Portal.
+2.  Navigate to the **"Build Your Network"** tab.
+3.  Select the **"Cloud Router"** tab, then click **"+ Add Connection"** and choose the **“Cloud Connection”** tab.
+4.  Choose **"AWS"** as the cloud provider.
+5.  Select the **Region** of your VPC (e.g., `us-east-1`) and an available **Site name** for that region.
+6.  Choose the desired bandwidth (e.g., 50 Mbps).
+    > **Note:** Bandwidths for CSP links are not elastic in the same way as regular NaaS connections. If you need to increase capacity, you will generally need to create a new connection with higher capacity and delete the old one. However, the ease of connection establishment using the NaaS provides a form of elasticity.
+7.  Provide your **AWS Customer ID**.
+8.  Provide a **Connection Name** (e.g., "VPC1-us-east-1").
+9.  Click **"Add"** to create the connection. It will now be added to the NaaS and provisioned with AWS.
+10. **Approve the Connection in AWS**: The new connection will appear with the status of **"Ordering"**. Navigate to the **Cloud Links** section in your inventory on the right side of the “Build Your Network” screen. Click on the AWS link to open your AWS account.
+11. Locate the new connection under **"Ordering"** status, select it, and approve the connection within AWS.
+12. The connection status will change to **"Pending"** in both portals. AWS typically takes around 5 minutes to establish the connection.
+13. Once AWS completes the setup, the status will change to **"Available"**. Access the **Connection Diagram** to review its health and status.
+
+### Steps to add an Azure Direct Connect Connection
+
+1.  Log in to the Azure portal and navigate to the **ExpressRoute Circuits** section.
+2.  Click **'Create'** and configure the resiliency settings and the following circuit details: **Region**, **Connection Name**, **Provider**, **Required Bandwidth**, **SKU**, and **Azure Billing Method**.
+3.  Review the details and click **"Create"**. You will be notified when the deployment is complete.
+4.  Click **"Go to resource"**, select the resource you just created, and retrieve the **service key**.
+5.  Now, in the NaaS Portal, navigate to **"Build Your Network"** -> **"Cloud Router"** -> **"+ Add Connection"** -> **“Cloud Connection”**.
+6.  Select **"Azure"**.
+7.  Configure the connection: Attach the Azure **Pairing Key (Service Key)**. The **Pairing Location** and **Region** will be auto-fetched.
+8.  Choose the Connection Type **“Azure Private”** and set the **VLAN** to match the one used on the Azure side.
+9.  Click **"Add"**.
+10. After a few minutes, log in to the Azure dashboard to check the status. The port status will change from **"Not Provisioned"** to **"Provisioned"**.
+
+---
+
+## 2. Configuring BGP for Multi-Cloud Connectivity
+
+**Border Gateway Protocol (BGP)** is essential for routing traffic between your NaaS Cloud Router and your cloud environments. Note that the ASNs (Autonomous System Numbers) for CSP links are always private. The ASN you configure on the insidepacket Cloud Router will be used as the customer-side private ASN for all connected CSPs.
+
+### Steps to configure the ASN on the insidepacket Cloud Router
+
+1.  Log in to the NaaS Portal and navigate to **"Network"**.
+2.  Under the "Network" tab, select **"Cloud Router"**.
+3.  Go to the **"BGP"** tab.
+4.  If no ASN is configured, click the pencil icon next to the **"ASN"** field to add the AS number for your Cloud Router.
+5.  Click **"Add"** to apply the ASN. The **"Add Neighbor"** button will then become available.
+
+### Steps to set up BGP with AWS Direct Connect
+
+1.  **Create a Direct Connect Gateway in AWS**: In AWS Direct Connect, select **"Direct Connect gateways"** and click **"Create Direct Connect gateway"**.
+    * **Name**: Enter a descriptive name.
+    * **Amazon-side ASN**: Input a valid private ASN (e.g., from the `64512`-`65534` range). It’s recommended to use the same ASN as on the Cloud Router side.
+2.  **Create a Virtual Interface in AWS**: Go to **"Virtual Interface"** and click **"Create virtual interface"**.
+    * Choose **"Private virtual interface"** for VPC connectivity or **"Transit virtual interface"** for a Transit Gateway.
+    * **Connection**: Select your active Direct Connect link.
+    * **VLAN**: Input a VLAN ID (`1`-`4094`).
+    * **BGP ASN**: Enter your on-premises private ASN.
+    * **BGP Auth Key (Optional)**: Set a password for MD5 authentication.
+    * **IP Addresses**: Specify AWS and on-premises IPs in `/30` format.
+3.  **Associate Virtual Interface**: Return to your **"Direct Connect gateway"**, select it, and click **"Associate virtual interface"**.
+4.  **Configure BGP on Your Router (within NaaS Cloud Router)**: The insidepacket NaaS Cloud Router typically manages its BGP configuration based on the virtual interface details you provided.
+
+### Steps to set up BGP with Azure Direct Connect
+
+1.  On the connection page in Azure, configure your BGP connection for **“Azure Private”**.
+2.  Add the necessary details (**Peer ASN**, **Subnets details**, **VLAN ID**, and **Shared Key**) and save the connection.
+3.  After a few minutes, the connection will become active. You will need to finalize the BGP configuration within the Azure portal to establish peering with the NaaS Cloud Router.
+
+---
+
+## 3. Implementing Firewall Rules and Web Filtering
+
+Interconnecting cloud environments creates potential pathways for malicious actors. A robust firewall policy is essential to prevent unauthorized access and data exfiltration.
+
+### Steps to configure Firewall and Web Filtering rules
+
+1.  Log in to the NaaS Portal and click on **"Service"** in the left-hand menu.
+2.  Under the "Service" tab, select **"Firewall"**.
+3.  Click the **"+ Add"** button to create a new rule.
+4.  Complete the Firewall Rule Form:
+    * **General**:
+        * **Name**: Enter a unique name for the rule.
+        * **Priority**: Assign a priority (lower numbers have higher precedence).
+    * **Rule**:
+        * **Source**: Specify the source IP address or range (or leave empty for "all"). You can create prefix groups for reuse.
+        * **Destination**: Enter the destination IP address or range. You can also create prefix groups.
+        * **Protocol**: Choose the protocol (e.g., TCP, UDP, ICMP).
+        * **Source Port (optional)**: Define the source port.
+        * **Destination Port**: Define the destination port.
+    * **Affected Segments (Cloud Router Firewall specific)**: Define the impacted network segments.
+    * **Action**: Choose one of the following:
+        * **"Block"**: Deny matching traffic.
+        * **"Allow"**: Permit matching traffic.
+        * **"Web Filtering"**: Apply web filtering rules for HTTP/HTTPS traffic.
+5.  **For Web Filtering**: If you select "Web Filtering", you can define specific URLs or patterns to allow or block. This is useful for controlling access to specific hosts, like OS update servers, or blocking malicious sites. Wildcard support is available, and filtering for HTTPS traffic leverages SNI (Server Name Indication).
+6.  Click the **"Add"** button to save and activate the rule.
+
+---
+
+## 4. Verifying Network Status with the ARP Table
+
+The **ARP (Address Resolution Protocol) table** shows which devices are learned on which interfaces and is useful for Layer 2 troubleshooting. If the ARP table shows correct entries but BGP peering is not establishing, it often points to a BGP misconfiguration, such as an incorrect BGP password.
+
+### Steps to view the ARP table
+
+1.  Log in to the NaaS portal.
+2.  Navigate to **"Network"** then **"Cloud Router"**.
+3.  Navigate to **"ARPs"**. The title indicates the number of active ARP entries.
+4.  You can "deep dive" into specific entries to see details like:
+    * An **IP address** (e.g., `192.168.49.5`)
+    * Its corresponding **MAC address** (e.g., `2c:6b:f5:ab:fb:df`)
+    * The **virtual interface**
+    * The **age** of the entry (e.g., 1060 seconds)
+    * Whether the entry is **static** (manual) or **dynamic** (learned).
+
+By following these steps, you will successfully add and manage multi-cloud connectivity and robust security for your network within the insidepacket NaaS platform.

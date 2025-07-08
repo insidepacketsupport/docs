@@ -31,7 +31,8 @@
             "group": "Use Cases",
             "pages": [
               "usecases/intro",
-              "usecases/internet"
+              "usecases/internet", 
+              "usecases/ClourRouterMCN"
             ]
           },
           {
