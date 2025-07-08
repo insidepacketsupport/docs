@@ -37,45 +37,45 @@
           {
             "group": "Build Your Network",
             "pages": [
-              "build-network/introduction",
-              "build-network/ordering-ports",
-              "build-network/cloud-links",
-              "build-network/public-ips",
-              "build-network/my-services",
-              "build-network/order-log",
-              "build-network/cloud-router",
-              "build-network/virtual-circuit"
+              "docs/build-network/introduction",
+              "docs/build-network/ordering-ports",
+              "docs/build-network/cloud-links",
+              "docs/build-network/public-ips",
+              "docs/build-network/my-services",
+              "docs/build-network/order-log",
+              "docs/build-network/cloud-router",
+              "docs/build-network/virtual-circuit"
             ]
           },
           {
             "group": "Insights",
             "pages": [
-              "insights/introduction",
-              "insights/network-observability",
-              "insights/application-observability",
-              "insights/dns-observability"
+              "docs/insights/introduction",
+              "docs/insights/network-observability",
+              "docs/insights/application-observability",
+              "docs/insights/dns-observability"
             ]
           },
           {
             "group": "Network",
             "pages": [
-              "network/introduction",
-              "network/cloud-and-connections",
-              "network/cloud-router",
-              "network/dia",
-              "network/groups",
-              "network/looking-glass"
+              "docs/network/introduction",
+              "docs/network/cloud-and-connections",
+              "docs/network/cloud-router",
+              "docs/network/dia",
+              "docs/network/groups",
+              "docs/network/looking-glass"
             ]
           },
           {
             "group": "Services",
             "pages": [
-              "services/introduction",
-              "services/firewall",
-              "services/dia-firewall",
-              "services/nat",
-              "services/ddos",
-              "services/my-services"
+              "docs/services/introduction",
+              "docs/services/firewall",
+              "docs/services/dia-firewall",
+              "docs/services/nat",
+              "docs/services/ddos",
+              "docs/services/my-services"
             ]
           },
           {
