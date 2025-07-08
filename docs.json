@@ -45,8 +45,7 @@
               "build-network/order-log",
               "build-network/cloud-router",
               "build-network/virtual-circuit"
-            ],
-            "collapsed": true
+            ]
           },
           {
             "group": "Insights",
@@ -55,8 +54,7 @@
               "insights/network-observability",
               "insights/application-observability",
               "insights/dns-observability"
-            ],
-            "collapsed": true
+            ]
           },
           {
             "group": "Network",
@@ -67,8 +65,7 @@
               "network/dia",
               "network/groups",
               "network/looking-glass"
-            ],
-            "collapsed": true
+            ]
           },
           {
             "group": "Services",
@@ -79,8 +76,7 @@
               "services/nat",
               "services/ddos",
               "services/my-services"
-            ],
-            "collapsed": true
+            ]
           },
           {
             "group": "API Reference",
