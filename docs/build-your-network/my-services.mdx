@@ -2,3 +2,104 @@
 title: "My Services"
 description: "Description of your new file."
 ---
+
+title: 'Managing Your Network Services' description: 'Activate, configure, and manage value-added services like Firewall, NAT, and Web Filtering to enhance your network’s security and functionality.'
+import { Card, Cards, Note, Tabs } from 'mintlify/components';
+
+Overview
+The My Services section allows you to enable and manage a suite of powerful, integrated services for your network. These services are available through different packages and can be configured to protect your network, control traffic flow, and filter content according to your organization's policies.
+
+Available Services and Packages
+Our services are offered in tiered packages to meet your specific needs. You can enable features like Network Observability, Stateful Firewall, and Web Filtering to gain deeper insights and stronger security.
+
+<img
+src="https://www.google.com/search?q=https://placehold.co/800x300/f0f0f0/333%3Ftext%3DService%2BPackages%2BOverview"
+alt="Service Packages"
+style={{ borderRadius: '0.5rem', margin: '1rem 0' }}
+/>
+
+Firewall Configuration
+The firewall allows you to control traffic flow between network segments. You can create rules to explicitly allow or drop traffic based on various parameters.
+
+<Tabs>
+<Tabs.Tab title="Stateful Firewall">
+The main firewall secures traffic between your internal network segments (e.g., untrusted to private).
+
+To create a firewall rule:
+
+Navigate to Firewall: Go to Services > Firewall.
+
+Add a Rule: Click the + Add button.
+
+Configure Rule:
+
+Name: Give the rule a descriptive name.
+
+Action: Choose Drop or Allow.
+
+Source/Destination: Specify the source and destination, including IP, Protocol, Port, and Segment. You can use Any for broad rules.
+
+Description: Add details about the rule's purpose.
+
+Priority: Assign a priority (lower numbers are processed first).
+
+Save: Click Add to save and activate the rule.
+
+</Tabs.Tab>
+<Tabs.Tab title="DIA Firewall">
+The DIA Firewall is specifically designed to protect your Dedicated Internet Access connections from external threats.
+
+To create a DIA firewall rule:
+
+Navigate to DIA Firewall: Go to Services > Firewall and select the DIA Firewall tab.
+
+Add a Rule: Click + Add.
+
+Configure Rule:
+
+Direction: Choose Incoming or Outgoing.
+
+Source/Destination: Define the source and destination IPs. For an inbound rule blocking all public IPs, you could set the source to 0.0.0.0/0.
+
+DIA IP Connections: Select the specific DIA connection this rule applies to.
+
+Protocol & Port: Specify the protocol (TCP/UDP) and port number (e.g., 22 for SSH).
+
+Action: Choose Block, Allow, or Web Filtering.
+
+Save: Click the action button to save the rule.
+
+</Tabs.Tab>
+</Tabs>
+
+Web Filtering
+Web Filtering enhances security by allowing you to block access to websites based on categories and specific threats. This feature can be enabled as an action in your firewall rules.
+
+Content Filtering: Block categories like Adult, Social Network, or Entertainment.
+
+Web Threats Filtering: Protect against Phishing URLs, Spam, Malicious Websites, and Hacking/C2C domains.
+
+Custom URL Filtering: Create custom allow/deny lists using specific URLs or wildcard patterns.
+
+To use Web Filtering, simply select it as the Action when creating a firewall rule.
+
+Network Address Translation (NAT)
+NAT allows you to translate private IP addresses to public IPs, enabling devices on your private network to access the internet.
+
+To create a NAT rule:
+
+Navigate to NAT: Go to Services > NAT.
+
+Add a Rule: Click + Add.
+
+Configure Rule:
+
+Name: Assign a name to the rule.
+
+Type: Specify the NAT type (e.g., Source NAT).
+
+Inside & Outside: Define the internal source and the external interface or IP address for the translation.
+
+Description: Briefly describe the rule's function.
+
+Save: Click Add to create the rule.

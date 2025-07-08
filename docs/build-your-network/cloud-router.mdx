@@ -2,3 +2,82 @@
 title: "Cloud Router"
 description: "Description of your new file."
 ---
+
+title: 'Configuring the Cloud Router' description: 'Manage your Cloud Router settings, including static and dynamic routes, BGP, ARPs, and policy-based routing to control traffic flow across your network.'
+import { Card, Cards, Note, Tabs } from 'mintlify/components';
+
+Overview
+The Cloud Router is the virtual routing and switching core of your NaaS platform. It intelligently directs traffic between all your connected resources, including data center ports, cloud links, and internet connections. This section provides a comprehensive guide to viewing and configuring its components.
+
+To access these settings, navigate to Network > Cloud Router from the left-side menu.
+
+Routing
+The Cloud Router supports both static and dynamic routing protocols to give you full control over your network's traffic paths.
+
+<Tabs>
+<Tabs.Tab title="Static and Dynamic Routes">
+The Routers tab provides a breakdown of your routing table.
+
+Static Routes: Displays manually configured routes. You can add a new static route by clicking the + Add button and specifying the destination network, the next-hop gateway, and the interface.
+
+Dynamic Routes: Shows routes learned automatically from routing protocols like BGP. The table provides key details for each route:
+
+Destination: The IP address of the route destination.
+
+Gateway: The assigned gateway for the route.
+
+Distance: The administrative distance or metric used to determine the best path.
+
+Type: The protocol from which the route was learned (e.g., BGP, OSPF).
+
+</Tabs.Tab>
+<Tabs.Tab title="BGP (Border Gateway Protocol)">
+The BGP tab is where you manage peering with other networks.
+
+Initial BGP Setup:
+
+Set Local ASN: Before adding a neighbor, you must set the AS number for your Cloud Router. Click the pencil icon next to the ASN field to configure it. You can also set default keepalive and hold timers here.
+
+Add a Neighbor: Once the ASN is set, click + Add Neighbor.
+
+Configure Neighbor Details:
+
+Neighbor IP & Remote ASN: The IP and AS number of the remote peer.
+
+Authentication: Set an optional BGP password.
+
+Address Family: Choose the address family (e.g., IPv4 Unicast).
+
+Advanced Options: Configure BFD for faster failure detection, adjust timers for the specific neighbor, or set the session to passive mode.
+
+Monitoring BGP:
+The BGP neighbor table shows the status, prefix counts, and uptime for each peer. Click the triangle next to a neighbor to see detailed statistics, including lists of sent, received, and filtered routes.
+
+</Tabs.Tab>
+<Tabs.Tab title="Policy-Based Routing (PBR)">
+The PBR tab allows you to create rules that forward traffic based on policies rather than the main routing table. This is useful for directing specific types of traffic through a particular interface, such as a firewall or a dedicated internet link.
+
+</Tabs.Tab>
+</Tabs>
+
+Layer 2 Information
+<Tabs>
+<Tabs.Tab title="ARPs (Address Resolution Protocol)">
+The ARPs tab displays the ARP table, which maps Layer 3 IP addresses to Layer 2 MAC addresses. This is useful for troubleshooting connectivity issues at the data link layer. The table shows:
+
+The resolved IP address.
+
+The corresponding MAC address.
+
+The interface where the device was learned.
+
+The age of the entry.
+
+Whether the entry is static or dynamic.
+
+</Tabs.Tab>
+<Tabs.Tab title="Groups">
+The Groups tab allows you to create, edit, and delete logical groups of objects, such as IP addresses or interfaces. These groups can then be used to simplify the configuration of firewall rules, routing policies, and other network settings, making your configurations more organized and manageable.
+
+</Tabs.Tab>
+</Tabs>
