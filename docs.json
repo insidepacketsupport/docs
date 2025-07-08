@@ -32,7 +32,8 @@
             "pages": [
               "usecases/intro",
               "usecases/internet", 
-              "usecases/ClourRouterMCN"
+              "usecases/ClourRouterMCN",
+               "usecases/troubleshot"
             ]
           },
           {
