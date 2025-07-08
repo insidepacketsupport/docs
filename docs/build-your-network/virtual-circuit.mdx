@@ -1,5 +1,45 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Creating a Layer 2 DC-to-DC Connection"
+description: "A step-by-step guide to establishing a Layer 2 data center-to-data center connection on the DynamicLink platform."
 ---
 
+<Info>
+  **What You'll Accomplish**
+
+  This guide will walk you through the process of provisioning a private, point-to-point Layer 2 circuit between two data center ports on the DynamicLink NaaS platform.
+</Info>
+
+To create a Layer 2 data center-to-data center (DC-to-DC) connection in DynamicLink, follow these steps:
+
+<Steps>
+  <Step title="Navigate to Ports">
+    Start by logging into the DynamicLink portal. From the main dashboard, click on the **Build Your Network** tab, and then select **Ports** from the sub-menu.
+
+    ![Navigate to Ports](/l2.png)
+  </Step>
+  <Step title="Check Port Availability">
+    Before creating the connection, it's crucial to verify that both the A-side and Z-side ports have enough capacity. Review the `Available Bandwidth` for each port to ensure there is sufficient bandwidth for your new circuit.
+  </Step>
+  <Step title="Configure the A-Side Port">
+    1. Locate the first port for your connection and click the **Add a Connection** button next to it.
+    2. The port name will be automatically populated.
+    3. Choose an available VLAN from the dropdown menu.
+    4. Specify the desired bandwidth for the connection (e.g., `1 Gbps`).
+
+    <Frame>
+      ![Configure A-Side Port](/Screenshot2025-07-07at11.57.00.png)
+    </Frame>
+  </Step>
+  <Step title="Configure the Z-Side Port">
+    1. In the Z-port section, select the second data center port you wish to connect to.
+    2. Choose an available VLAN from the dropdown menu. Ensure this VLAN has not been used previously on this port.
+    3. The bandwidth will automatically match the value you selected for the A-side port.
+  </Step>
+  <Step title="Name and Finalize the Connection">
+    1. Provide a meaningful and easily identifiable name for your new connection in the `Connection Name` field.
+    2. Review all the details to ensure they are correct.
+    3. Click the **Add** button at the bottom of the page to finalize the setup and create the connection.
+
+    Your new Layer 2 connection will now be provisioned and will appear in your list of active connections.
+  </Step>
+</Steps>
