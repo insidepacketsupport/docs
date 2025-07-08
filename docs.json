@@ -30,7 +30,8 @@
           {
             "group": "Use Cases",
             "pages": [
-              "usecases/intro"
+              "usecases/intro",
+              "usecases/internet"
             ]
           },
           {
