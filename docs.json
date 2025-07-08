@@ -38,7 +38,7 @@
             "group": "Build Your Network",
             "pages": [
               "build-network/introduction",
-              "build-network/ports",
+              "build-network/ordering-ports",
               "build-network/cloud-links",
               "build-network/public-ips",
               "build-network/my-services",
