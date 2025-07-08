@@ -1,18 +1,15 @@
 ---
 title: "Public IPs"
-description: "Description of your new file."
+description: "Learn how to request Public IP addresses, which are essential for enabling external connectivity and services like Dedicated Internet Access (DIA)."
 ---
 
-title: 'Ordering and Managing Public IPs' description: 'Learn how to request Public IP addresses, which are essential for enabling external connectivity and services like Dedicated Internet Access (DIA).'
-import { Card, Cards, Note, Tabs } from 'mintlify/components';
-
-Overview
+**Overview**
 Public IP addresses are required to make your services accessible from the internet. The NaaS portal allows you to easily request and manage blocks of IPv4 or IPv6 addresses. Once acquired, these IPs can be used to set up services like Dedicated Internet Access (DIA), including connections that use BGP for routing.
 
 How to Order Public IPs
-Navigate to Public IPs: From the main menu, go to Build Your Network > Public IPs.
+Navigate to Public IPs: From the main menu, go to Build Your Network \> Public IPs.
 
-Request IPs: Click the + Request IP button.
+Request IPs: Click the \+ Request IP button.
 
 Configure Your Request:
 
@@ -25,69 +22,66 @@ Pool Size: Choose the size of the IP block you need (e.g., /29, /28).
 Submit Request: Click Request to submit.
 
 <img
-src="https://www.google.com/search?q=https://placehold.co/600x200/f0f0f0/333%3Ftext%3DRequest%2BIP%2BScreen"
-alt="Request IP Screen"
-style={{ borderRadius: '0.5rem', margin: '1rem 0' }}
+  src="https://www.google.com/search?q=https://placehold.co/600x200/f0f0f0/333%3Ftext%3DRequest%2BIP%2BScreen"
+  alt="Request IP Screen"
+  style={{ borderRadius:"0.5rem",margin:"1rem 0" }}
 />
 
 <Note>
-Your existing IP pool, already assigned to your network, is displayed on this page. New requests will be provisioned and added to this pool.
+  Your existing IP pool, already assigned to your network, is displayed on this page. New requests will be provisioned and added to this pool.
 </Note>
 
 Using Public IPs for Internet Access
 Once you have an available public IP block, you can use it to create a Dedicated Internet Access (DIA) connection.
 
 <Tabs>
-<Tabs.Tab title="Create a Standard DIA Connection">
-A standard DIA connection provides dedicated, reliable internet service with symmetrical bandwidth.
+  <Tab title="Create a Standard DIA Connection">
+    A standard DIA connection provides dedicated, reliable internet service with symmetrical bandwidth.
 
-Verify Prerequisites:
+    Verify Prerequisites:
 
-Public IP: Ensure you have an available Public IP block in the desired location by checking the Public IPs tab.
+    Public IP: Ensure you have an available Public IP block in the desired location by checking the Public IPs tab.
 
-Port Bandwidth: Go to the Ports tab and confirm the port in that location has sufficient bandwidth.
+    Port Bandwidth: Go to the Ports tab and confirm the port in that location has sufficient bandwidth.
 
-Start Connection: On the desired port, click Add a Connection. The A-side will be auto-populated.
+    Start Connection: On the desired port, click Add a Connection. The A-side will be auto-populated.
 
-Configure A-Side: Set up the VLAN and select the bandwidth speed.
+    Configure A-Side: Set up the VLAN and select the bandwidth speed.
 
-Configure Z-Side (Internet):
+    Configure Z-Side (Internet):
 
-Select the Internet link.
+    Select the Internet link.
 
-Under DIA Name, pick the Public IP block you want to use.
+    Under DIA Name, pick the Public IP block you want to use.
 
-Finalize: Confirm the bandwidth and click Add to activate the DIA connection.
+    Finalize: Confirm the bandwidth and click Add to activate the DIA connection.
+  </Tab>
+  <Tab title="Create a BGP DIA Connection">
+    A BGP DIA connection offers advanced routing capabilities, allowing you to bring your own IP addresses (BYOIP) or set up multi-homed connections for enhanced resilience.
 
-</Tabs.Tab>
-<Tabs.Tab title="Create a BGP DIA Connection">
-A BGP DIA connection offers advanced routing capabilities, allowing you to bring your own IP addresses (BYOIP) or set up multi-homed connections for enhanced resilience.
+    Set Up ASN:
 
-Set Up ASN:
+    Navigate to Build Your Network \> Public IPs.
 
-Navigate to Build Your Network > Public IPs.
+    If you are bringing your own IP space, click \+ Set up new under the ASN section and enter your Autonomous System Number.
 
-If you are bringing your own IP space, click + Set up new under the ASN section and enter your Autonomous System Number.
+    Request IP (if needed): If you are not using your own IPs, request a new block as described above.
 
-Request IP (if needed): If you are not using your own IPs, request a new block as described above.
+    Create the Connection: Follow the same steps as a standard DIA connection.
 
-Create the Connection: Follow the same steps as a standard DIA connection.
+    Configure BGP: In the Z-side (Internet) configuration, you will see an option to Use BGP. Select this and choose the ASN you configured.
 
-Configure BGP: In the Z-side (Internet) configuration, you will see an option to Use BGP. Select this and choose the ASN you configured.
+    Finalize: Complete the connection setup. You will then need to configure your BGP peering details.
+  </Tab>
+  <Tab title="Changing DIA Speed">
+    You can easily adjust the speed of an existing DIA connection.
 
-Finalize: Complete the connection setup. You will then need to configure your BGP peering details.
+    Access Connection Settings: Locate your DIA connection in the list and click the Edit icon.
 
-</Tabs.Tab>
-<Tabs.Tab title="Changing DIA Speed">
-You can easily adjust the speed of an existing DIA connection.
+    Verify Port Bandwidth: Ensure the underlying physical port can support the new speed.
 
-Access Connection Settings: Locate your DIA connection in the list and click the Edit icon.
+    Edit Bandwidth: In the connection settings, change the bandwidth to your desired speed (e.g., from 50 Mbps to 100 Mbps).
 
-Verify Port Bandwidth: Ensure the underlying physical port can support the new speed.
-
-Edit Bandwidth: In the connection settings, change the bandwidth to your desired speed (e.g., from 50 Mbps to 100 Mbps).
-
-Save Changes: Click Edit to apply the new speed.
-
-</Tabs.Tab>
+    Save Changes: Click Edit to apply the new speed.
+  </Tab>
 </Tabs>

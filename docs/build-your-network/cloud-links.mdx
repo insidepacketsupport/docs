@@ -1,18 +1,15 @@
 ---
 title: "Cloud Links"
-description: "Description of your new file."
+description: "Learn how to create Data Center-to-Data Center (DC-to-DC) connections and establish direct connectivity to major cloud providers like AWS, GCP, and Azure."
 ---
 
-title: 'Cloud Links and Connections' description: 'Learn how to create Data Center-to-Data Center (DC-to-DC) connections and establish direct connectivity to major cloud providers like AWS, GCP, and Azure.'
-import { Card, Cards, Note, Tabs } from 'mintlify/components';
-
-Overview
+**Overview**
 Cloud Links allow you to create powerful connections between your physical ports. You can establish a direct, private link between two data centers (DC-to-DC) or connect seamlessly to a rich ecosystem of cloud service providers. This enhances performance, improves security, and provides a scalable foundation for your hybrid or multi-cloud strategy.
 
 Creating a DC-to-DC Connection
 Establish a direct, private connection between two of your data center ports.
 
-Navigate to Ports: Go to Build Your Network > Ports.
+Navigate to Ports: Go to Build Your Network \> Ports.
 
 Check Port Availability: Ensure both the A-side and Z-side ports have enough available bandwidth for the new connection.
 
@@ -29,99 +26,93 @@ Name the Connection: Provide a descriptive name for your DC-to-DC link.
 Finalize: Click Add to create the connection.
 
 <img
-src="https://www.google.com/search?q=https://placehold.co/800x300/f0f0f0/333%3Ftext%3DDC-to-DC%2BConnection%2BSetup"
-alt="DC-to-DC Connection"
-style={{ borderRadius: '0.5rem', margin: '1rem 0' }}
+  src="https://www.google.com/search?q=https://placehold.co/800x300/f0f0f0/333%3Ftext%3DDC-to-DC%2BConnection%2BSetup"
+  alt="DC-to-DC Connection"
+  style={{ borderRadius:"0.5rem",margin:"1rem 0" }}
 />
 
 Cloud NNI Management (Cloud Connectivity)
 Connect directly to major cloud providers through a Network-to-Network Interface (NNI). This provides secure, reliable, and low-latency access to your cloud resources.
 
 <Tabs>
-<Tabs.Tab title="AWS Direct Connect">
+  <Tab title="AWS Direct Connect">
+    AWS Direct Connect Setup
+    Start Connection: Navigate to Build Your Network \> Ports and click Add a Connection on your desired port.
 
-AWS Direct Connect Setup
-Start Connection: Navigate to Build Your Network > Ports and click Add a Connection on your desired port.
+    Configure A-Side (Your Port): Select a VLAN and desired bandwidth.
 
-Configure A-Side (Your Port): Select a VLAN and desired bandwidth.
+    Configure Z-Side (AWS):
 
-Configure Z-Side (AWS):
+    Select Cloud Connection.
 
-Select Cloud Connection.
+    Choose AWS as the provider and Direct Connection.
 
-Choose AWS as the provider and Direct Connection.
+    Enter your AWS Customer ID and a Connection Name.
 
-Enter your AWS Customer ID and a Connection Name.
+    Create Connection: Click Add. The connection status will show as Ordering.
 
-Create Connection: Click Add. The connection status will show as Ordering.
+    Approve in AWS Console:
 
-Approve in AWS Console:
+    Log in to your AWS account. The new connection will appear in the Direct Connect section.
 
-Log in to your AWS account. The new connection will appear in the Direct Connect section.
+    Approve the connection. The status will change to Pending.
 
-Approve the connection. The status will change to Pending.
+    Activation: After about 5 minutes, AWS will establish the connection, and the status will change to Available in both the NaaS portal and AWS console.
 
-Activation: After about 5 minutes, AWS will establish the connection, and the status will change to Available in both the NaaS portal and AWS console.
+    Configure BGP: Once available, set up a BGP session on a Virtual Interface (VIF) in AWS to exchange routes.
+  </Tab>
+  <Tab title="GCP Cloud Interconnect">
+    GCP Direct Connect Setup
+    Create VLAN Attachment in GCP:
 
-Configure BGP: Once available, set up a BGP session on a Virtual Interface (VIF) in AWS to exchange routes.
+    In the Google Cloud Console, navigate to Network Connectivity \> Interconnect.
 
-</Tabs.Tab>
-<Tabs.Tab title="GCP Cloud Interconnect">
+    Create a new Partner VLAN Attachment, providing details like network, region, and Cloud Router.
 
-GCP Direct Connect Setup
-Create VLAN Attachment in GCP:
+    Google will provide a Pairing Key. Copy this key.
 
-In the Google Cloud Console, navigate to Network Connectivity > Interconnect.
+    Create Connection in NaaS Portal:
 
-Create a new Partner VLAN Attachment, providing details like network, region, and Cloud Router.
+    Navigate to Build Your Network \> Ports and click Add a Connection.
 
-Google will provide a Pairing Key. Copy this key.
+    For the Z-Port, select Cloud Connection and choose GCP.
 
-Create Connection in NaaS Portal:
+    Paste the Pairing Key from GCP. The region will auto-fill.
 
-Navigate to Build Your Network > Ports and click Add a Connection.
+    Select the bandwidth and provide a connection name.
 
-For the Z-Port, select Cloud Connection and choose GCP.
+    Activate and Configure BGP:
 
-Paste the Pairing Key from GCP. The region will auto-fill.
+    Click Add. The connection status will become Pending and then Active.
 
-Select the bandwidth and provide a connection name.
+    Once active, you must click Configure BGP in the NaaS portal and add your BGP details to complete the setup.
+  </Tab>
+  <Tab title="Azure ExpressRoute">
+    Azure ExpressRoute Setup
+    Create ExpressRoute Circuit in Azure:
 
-Activate and Configure BGP:
+    In the Azure portal, create a new ExpressRoute circuit.
 
-Click Add. The connection status will become Pending and then Active.
+    Configure the resiliency, location, provider (e.g., Zayo), bandwidth, and billing model.
 
-Once active, you must click Configure BGP in the NaaS portal and add your BGP details to complete the setup.
+    Once deployed, Azure will provide a Service Key.
 
-</Tabs.Tab>
-<Tabs.Tab title="Azure ExpressRoute">
+    Create Connection in NaaS Portal:
 
-Azure ExpressRoute Setup
-Create ExpressRoute Circuit in Azure:
+    Navigate to Build Your Network \> Ports and click Add a Connection.
 
-In the Azure portal, create a new ExpressRoute circuit.
+    For the Z-Port, select Cloud Connection and choose Azure.
 
-Configure the resiliency, location, provider (e.g., Zayo), bandwidth, and billing model.
+    Paste the Service Key. The location and region will auto-populate.
 
-Once deployed, Azure will provide a Service Key.
+    Select the connection type (Private, Public, or Microsoft) and set the VLAN.
 
-Create Connection in NaaS Portal:
+    Provisioning and BGP:
 
-Navigate to Build Your Network > Ports and click Add a Connection.
+    Click Add. The provider status in Azure will change from Not Provisioned to Provisioned.
 
-For the Z-Port, select Cloud Connection and choose Azure.
-
-Paste the Service Key. The location and region will auto-populate.
-
-Select the connection type (Private, Public, or Microsoft) and set the VLAN.
-
-Provisioning and BGP:
-
-Click Add. The provider status in Azure will change from Not Provisioned to Provisioned.
-
-Finally, configure BGP peering within the Azure ExpressRoute circuit settings for the connection type you selected.
-</Tabs.Tab>
-
+    Finally, configure BGP peering within the Azure ExpressRoute circuit settings for the connection type you selected.
+  </Tab>
 </Tabs>
 
 Redundancy
