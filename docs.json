@@ -88,8 +88,7 @@
           {
             "group": "Endpoint Examples",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/get"
             ]
           }
         ]
