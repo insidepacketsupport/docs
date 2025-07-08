@@ -37,14 +37,14 @@
           {
             "group": "Build Your Network",
             "pages": [
-              "docs/build-network/introduction",
-              "docs/build-network/ordering-ports",
-              "docs/build-network/cloud-links",
-              "docs/build-network/public-ips",
-              "docs/build-network/my-services",
-              "docs/build-network/order-log",
-              "docs/build-network/cloud-router",
-              "docs/build-network/virtual-circuit"
+              "docs/build-your-network/introduction",
+              "docs/build-your-network/ordering-ports",
+              "docs/build-your-network/cloud-links",
+              "docs/build-your-network/public-ips",
+              "docs/build-your-network/my-services",
+              "docs/build-your-network/order-log",
+              "docs/build-your-network/cloud-router",
+              "docs/build-your-network/virtual-circuit"
             ]
           },
           {
