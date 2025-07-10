@@ -75,7 +75,7 @@
               "docs/services/introduction",
               "docs/services/firewall",
               "docs/services/dia-firewall",
-              "docs/services/nat",
+              "docs/services/NAT",
               "Services/ddos",
               "Services/Web-Filter",
               "docs/services/my-services"
