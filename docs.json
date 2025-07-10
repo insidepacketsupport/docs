@@ -76,7 +76,7 @@
               "docs/services/firewall",
               "docs/services/dia-firewall",
               "docs/services/nat",
-              "/Services/ddos",
+              "/ddos",
               "docs/services/my-services"
             ]
           },
