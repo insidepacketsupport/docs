@@ -1,106 +1,178 @@
----
-title: "DDoS Protection Service"
-description: "How operators configure DDoS policies and how tenants manage their protection."
----
+# DDoS Protection
 
-## Operator-Defined, Tenant-Managed Protection
+This guide provides you with the necessary information to understand, monitor, and manage DDoS protection on their assigned IPs and services using the NaaS Platform. The NaaS Platform offers real-time, automated mitigation to ensure service continuity during DDoS attacks.
 
-Our DDoS (Distributed Denial of Service) protection service operates on a multi-tenant model where tenants do not create their own rules from scratch. Instead, the system operator defines a comprehensive set of rules. This approach ensures a baseline of security for the entire platform while empowering tenants to customize protection within operator-defined boundaries.
+## 1. Introduction
 
-Tenants with a Direct Internet Access (DIA) connection rely on these rules, which are configured for the `internet` VRF on each system.
+The Insidepacket DDoS Protection service continuously monitors your internet-facing connections and automatically blocks large-scale DDoS attacks. As a user, you will interact with a user-friendly interface to view and manage your protection based on pre-defined rules set by the operator.
 
-<CardGroup cols={2}>
-  <Card title="Default DDoS Policies" icon="shield-check" href="#default-ddos-policies">
-    A foundational safety net for all tenant DIAs and the core system itself. These rules are always on.
-  </Card>
-  <Card title="DDoS Templates" icon="file-invoice" href="#ddos-templates">
-    Customizable rules for tenants subscribed to the DDoS service, allowing them to tailor protection.
-  </Card>
-</CardGroup>
+ 
 
----
+![High-level overview of the DDoS Protection System](/Services/image/no_attack.png)
 
-## Operator Configuration
+  Figure 1: A high-level diagram showing how traffic is monitored and mitigated.
 
-The operator is responsible for setting up both the baseline protection and the customizable templates for tenants.
+## 2. Access Requirements
 
-### Default DDoS Policies
+To effectively use the DDoS protection service, ensure you meet the following requirements:
 
-These rules form a mandatory layer of security for all tenants and the core `NSOS System`.
+- **Valid tenant credentials:** Provided by your system administrator.
+- **Network familiarity:** Understanding of IP ranges and hosted services.
+- **Basic knowledge of common DDoS attack types.**
 
-- **Purpose**: Provide a non-optional safety net for all tenant DIA connections.
-- **Activation**: These rules are always active and cannot be disabled by tenants.
-- **Configuration**:
-  1. Navigate to **Network Resources \> DIA DDoS**.
-  2. Select the **DDoS** tab.
-  3. Click the `+` button to create a new rule.
-  4. In the dialog, select all `NSOS Systems` where the rule should apply. It will be enforced on all VRFs of type `internet`.
+## 3. Key Concepts
 
-![Dialog for creating a new default DDoS rule.](https://placehold.co/800x450/334155/E2E8F0?text=Default+DDoS+Rule+Dialog)
+Familiarize yourself with these core concepts:
 
-<Note>
-  Only `NSOS Systems` that support DDoS will appear in the selection list.
-</Note>
+- **Mitigation Status:** Indicates whether an IP is currently under protection.
+- **Thresholds:** Limits set by the system administrator that trigger mitigation.
+- **DUA (Device Under Attack):** Your IP currently being targeted by an attack.
+- **False Positive:** Legitimate traffic mistakenly flagged as an attacker.
+- **Per IP Visibility:** Each IP is tracked individually for accurate mitigation.
 
-### DDoS Templates
+## 4. Enterprise Portal Overview
 
-While default rules are a safety net, templates provide granular, powerful protection that tenants can subscribe to and manage.
+The  Portal is your central hub for monitoring protected services.
 
-- **Purpose**: Allow tenants to enable, disable, and tune protection based on their specific needs without deep policy knowledge.
-- **Activation**: Rules from these templates are copied to a tenant's personal DDoS configuration only when they subscribe to the DDoS Service.
-- **Configuration**:
-  1. Navigate to **Network Resources \> DIA DDoS**.
-  2. Select the **Templates** tab.
-  3. Click the `+` button to create a new template.
-  4. Define the policy, including the `Source Interface` for each system (the uplink to the internet).
-  5. Create **Options** which represent different device types (e.g., "Server," "Workstation") with unique protection thresholds that override defaults.
+  
 
-![UI for configuring a DDoS template with device type options.](https://placehold.co/800x500/334155/E2E8F0?text=DDoS+Template+Configuration)
+![Tenant Portal Dashboard](/Services/image/attack.png)
 
-<Info>
-  The option name `Monitor` is a reserved keyword. Assigning this type to a rule places it in a non-blocking mode where it only detects and reports on attacks without performing mitigation.
-</Info>
+  Figure 2: The Tenant Portal Dashboard displaying real-time activity.
 
----
+- **Dashboard:** Displays real-time and historical DDoS activity, active threats, protected IPs, and mitigation activity.
+- **Traffic View:** Shows traffic trends per IP, both historical and real-time.
+- **Thresholds:** Can be reviewed and, if permitted, adjusted.
+- **Logs:** Available for download and review.
+- **Alerts:** Notify you of detected threats and mitigation actions.
 
-## Tenant Experience
+## 5. Daily Operations
 
-A tenant with the DDoS Service enabled on their DIA connection gains access to a dedicated DDoS management interface.
+Follow these steps for routine monitoring and management:
 
-### Attack Monitoring & Status
+### 5.1. Monitor Traffic
 
-Upon entering the DDoS screen, the tenant sees a clear status overview.
+1. Log in to the NaaS portal.
+2. Open **Dashboard** ⇒ **Live View**.
+3. Observe per IP trends and spikes.
 
-<CardGroup cols={2}>
-  <Card title="Quiet Time" icon="check-circle" color="#28a745">
-    A green tile indicates that there are no active attacks. The dashboard will show data from the most recent attack (if any occurred within the last 30 days).
+### 5.2. Review Alerts
 
-    <img
-      className="mt-4"
-      src="/Services/image/no_attack.png"
-      alt="Dashboard showing no active attacks."
-      title="No Attack"
-    />
-  </Card>
-  <Card title="Under Attack" icon="shield-exclamation" color="#dc3545">
-    A red tile signals an ongoing attack. The screen provides details on attack size, targeted hosts, and traffic graphs comparing clean vs. mitigated traffic. The tile remains red for 5 minutes after the last attack.
+1. Navigate to **Alert** ⇒ **Recent Events**.
+2. Filter by IP or timestamp.
+3. Acknowledge resolved alerts.
 
-    <img
-      className="mt-4"
-      src="/Services/image/attack.png"
-      alt="Dashboard showing an active DDoS attack with details."
-      title="attack"
-    />
-  </Card>
-</CardGroup>
 
-### Rule Management
 
-Tenants can click on the **DDoS Rules** section to control their protection policies. For each rule copied from the operator's templates, the tenant has two primary controls:
+### 5.3. Export Reports
 
-1. **Change Protection Type**: The tenant can select from the list of device types (e.g., `Server`, `Workstation`) that the operator configured in the template options. This adjusts the rule's behavior and thresholds.
-2. **Enable Monitor Mode**: The tenant can switch any rule to `Monitor` only. This is useful for observing potential threats without impacting traffic.
+1. Go to **Logs** ⇒ **Export**.
+2. Select format: CSV, JSON.
+3. Download for compliance use.
 
-This allows tenants to dynamically adjust their security posture based on their needs and current threat landscape.
+## 6. How to Use DDoS Protection
 
-![Tenant view for managing DDoS rules.](https://placehold.co/800x400/334155/E2E8F0?text=Tenant+Rule+Management)
+As a tenant, you have a simplified view of DDoS protection. Most complex logic is handled by your provider, but you can manage basic settings.
+
+### 6.1. Know Which Rules Apply to You
+
+- **Tenant Global Rules:** Always on and cannot be changed.
+- **Tenant Template Rules:** Can be enabled/disabled or switched to monitor mode if the option is provided.
+- **Tenant Specific Rules:** Custom rules unique to your organization.
+
+### 6.2. Manage Your Rules
+
+1. Go to NaaS portal ⇒ **Services** ⇒ **DDoS display screen**.
+2. View the available rules, each with a name and description.
+3. If a rule has options:
+      - You may enable or disable it.
+      - You may switch it to monitor mode to observe attacks without blocking.
+      - You may apply the rule to specific IPs or subnets in your network.
+
+
+## 7. DDoS Statistics
+
+Access detailed DDoS statistics to monitor and analyze attack trends.
+
+### 7.1. Accessing DDoS Statistics
+
+1. Log in to the NaaS portal.
+2. Go to the left navigation panel ⇒ Click on **Service**.
+3. Select **DDoS**.
+4. The statistics dashboard will be displayed.
+
+ 
+
+<img
+  src="/Services/image/stats.png"
+  alt="DDoS Statistics Dashboard"
+  style={{ width:"86%" }}
+/>
+
+  Figure 5: The main DDoS statistics dashboard.
+
+### 7.2. Top Summary Section
+
+- **Status:** Real-time indicator (e.g., "No Attack" - green means no attack detected).
+- **Attack in last 7 days:** Displays total mitigated traffic (in GB) and peak mitigation rate (in Mbps).
+- **Target & Mitigation Rate:** Shows mitigation success rate (%) and unique attack targets over the past 7 days.
+- **DDoS Status Summary:** Breakdown of current system status (Active Mitigation, Monitor Only, Disabled).
+- **Last Attack:** Timestamp of the most recent detected attack.
+
+### 7.3. Dashboard Tabs & Filter
+
+- **Tab (General/Attack Details):**
+    - **General:** Summary view of traffic, attack patterns, and mitigated flows.
+    - **Attack Details:** Detailed session breakdown.
+- **Filter Panel:** Apply filters by fields like Rule Name, DIA Name, Target IP.
+- **CSV:** Export DDoS attack data for offline analysis.
+
+### 7.4. Graph and Charts
+
+
+- **Total Incoming and Mitigation Traffic (Top Graph):**
+    - Green area: Successfully mitigated traffic.
+    - Red Line: Unblocked attack traffic that passed through.
+    - Blue Line: Total incoming traffic.
+    - Use this to compare actual threats and mitigation effectiveness.
+- **Observed Traffic by Traffic Name:** Traffic classification by protocol or service (e.g., DNS, ICMP, UDP Flood). Helps identify the nature of attack or abnormal traffic flow.
+- **Observed Traffic By Rule Name:** Shows what traffic was flagged by which DDoS rule (e.g., ICMP_Flood, TCP_SYN). Useful for reviewing rule effectiveness.
+
+### 7.5. Visualization Panels (Right Side)
+
+- **Attack per IP (Bar Chart):** Horizontal bar showing targeted IP addresses and attack volume per IP.
+- **Observed Traffic By Rule (Pie Chart):** Breakdown of mitigated traffic by DDoS rule type.
+
+   
+
+  ![Attack per IP Bar Chart and Observed Traffic By Rule Pie Chart](/images/visualization-panels.png)
+
+    Figure 7: Visualization panels showing attack distribution by IP and rule type.
+- **Live Update Indicator:** Message like “No attack traffic observed (last 30 seconds)” shows the current state of threat in near real time.
+
+### 7.6. Time Selection (Top Right)
+
+- Use the dropdown to change data granularity (Auto, 30s, 1m, 5m, 1h).
+- Allows switching between BPS (Bits Per Second) and PPS (Packet Per Second).
+- Time range: Last hour/last 7 days.
+
+## 8. Use Case Scenarios
+
+### 8.1. Use Case 1: SYN Flood Attack
+
+1. An alert is triggered on one of your web servers.
+2. Mitigation is automatically applied.
+3. You view affected IP and traffic patterns in real-time.
+4. Download a report for internal analysis.
+
+ 
+
+![SYN Flood Attack Scenario Flow](/images/syn-flood-scenario.png)
+
+  Figure 8: A diagram showing the workflow during a SYN Flood Attack scenario.
+
+### 8.2. Use Case 2: UDP Reflection Attack
+
+1. You observe a sharp rise in UDP traffic from random sources.
+2. Mitigation is visible, and traffic is filtered.
+3. You confirm no DNS/NTP service degradation.
