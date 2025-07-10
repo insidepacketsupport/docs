@@ -1,6 +1,6 @@
 ---
-title: 'DDoS Protection Service'
-description: 'How operators configure DDoS policies and how tenants manage their protection.'
+title: "DDoS Protection Service"
+description: "How operators configure DDoS policies and how tenants manage their protection."
 ---
 
 ## Operator-Defined, Tenant-Managed Protection
@@ -10,18 +10,10 @@ Our DDoS (Distributed Denial of Service) protection service operates on a multi-
 Tenants with a Direct Internet Access (DIA) connection rely on these rules, which are configured for the `internet` VRF on each system.
 
 <CardGroup cols={2}>
-  <Card
-    title="Default DDoS Policies"
-    icon="shield-check"
-    href="#default-ddos-policies"
-  >
+  <Card title="Default DDoS Policies" icon="shield-check" href="#default-ddos-policies">
     A foundational safety net for all tenant DIAs and the core system itself. These rules are always on.
   </Card>
-  <Card
-    title="DDoS Templates"
-    icon="file-invoice"
-    href="#ddos-templates"
-  >
+  <Card title="DDoS Templates" icon="file-invoice" href="#ddos-templates">
     Customizable rules for tenants subscribed to the DDoS service, allowing them to tailor protection.
   </Card>
 </CardGroup>
@@ -39,10 +31,12 @@ These rules form a mandatory layer of security for all tenants and the core `NSO
 - **Purpose**: Provide a non-optional safety net for all tenant DIA connections.
 - **Activation**: These rules are always active and cannot be disabled by tenants.
 - **Configuration**:
-  1. Navigate to **Network Resources > DIA DDoS**.
+  1. Navigate to **Network Resources \> DIA DDoS**.
   2. Select the **DDoS** tab.
   3. Click the `+` button to create a new rule.
   4. In the dialog, select all `NSOS Systems` where the rule should apply. It will be enforced on all VRFs of type `internet`.
+
+![Dialog for creating a new default DDoS rule.](https://placehold.co/800x450/334155/E2E8F0?text=Default+DDoS+Rule+Dialog)
 
 <Note>
   Only `NSOS Systems` that support DDoS will appear in the selection list.
@@ -55,11 +49,13 @@ While default rules are a safety net, templates provide granular, powerful prote
 - **Purpose**: Allow tenants to enable, disable, and tune protection based on their specific needs without deep policy knowledge.
 - **Activation**: Rules from these templates are copied to a tenant's personal DDoS configuration only when they subscribe to the DDoS Service.
 - **Configuration**:
-  1. Navigate to **Network Resources > DIA DDoS**.
+  1. Navigate to **Network Resources \> DIA DDoS**.
   2. Select the **Templates** tab.
   3. Click the `+` button to create a new template.
   4. Define the policy, including the `Source Interface` for each system (the uplink to the internet).
   5. Create **Options** which represent different device types (e.g., "Server," "Workstation") with unique protection thresholds that override defaults.
+
+![UI for configuring a DDoS template with device type options.](https://placehold.co/800x500/334155/E2E8F0?text=DDoS+Template+Configuration)
 
 <Info>
   The option name `Monitor` is a reserved keyword. Assigning this type to a rule places it in a non-blocking mode where it only detects and reports on attacks without performing mitigation.
@@ -78,9 +74,22 @@ Upon entering the DDoS screen, the tenant sees a clear status overview.
 <CardGroup cols={2}>
   <Card title="Quiet Time" icon="check-circle" color="#28a745">
     A green tile indicates that there are no active attacks. The dashboard will show data from the most recent attack (if any occurred within the last 30 days).
+
+    <img
+      className="mt-4"
+      src="https://placehold.co/600x350/28a745/FFFFFF?text=Quiet+Time+Dashboard"
+      alt="Dashboard showing no active attacks."
+    />
   </Card>
   <Card title="Under Attack" icon="shield-exclamation" color="#dc3545">
     A red tile signals an ongoing attack. The screen provides details on attack size, targeted hosts, and traffic graphs comparing clean vs. mitigated traffic. The tile remains red for 5 minutes after the last attack.
+
+    <img
+      className="mt-4"
+      src="/Services/image/attack.png"
+      alt="Dashboard showing an active DDoS attack with details."
+      title="attack"
+    />
   </Card>
 </CardGroup>
 
@@ -88,7 +97,9 @@ Upon entering the DDoS screen, the tenant sees a clear status overview.
 
 Tenants can click on the **DDoS Rules** section to control their protection policies. For each rule copied from the operator's templates, the tenant has two primary controls:
 
-1.  **Change Protection Type**: The tenant can select from the list of device types (e.g., `Server`, `Workstation`) that the operator configured in the template options. This adjusts the rule's behavior and thresholds.
-2.  **Enable Monitor Mode**: The tenant can switch any rule to `Monitor` only. This is useful for observing potential threats without impacting traffic.
+1. **Change Protection Type**: The tenant can select from the list of device types (e.g., `Server`, `Workstation`) that the operator configured in the template options. This adjusts the rule's behavior and thresholds.
+2. **Enable Monitor Mode**: The tenant can switch any rule to `Monitor` only. This is useful for observing potential threats without impacting traffic.
 
 This allows tenants to dynamically adjust their security posture based on their needs and current threat landscape.
+
+![Tenant view for managing DDoS rules.](https://placehold.co/800x400/334155/E2E8F0?text=Tenant+Rule+Management)
