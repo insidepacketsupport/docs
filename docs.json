@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "mint",
   "name": "DynamicLink Knowladgebase",
   "colors": {
     "primary": "#F48120",
