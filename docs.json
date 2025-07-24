@@ -120,12 +120,12 @@
     "primary": {
       "type": "button",
       "label": "NaaS Portal",
-      "href": "https://www.zayo.com/info/dynamiclink/#tab-1"
+      "href": "https://dynamiclink.zayo.com/login"
     }
   },
   "footer": {
     "socials": {
-      "discord": "https://www.insidepacket.com/",
+      "discord": "https://www.aaa.com/",
       "linkedin": "https://www.linkedin.com/"
     }
   }
