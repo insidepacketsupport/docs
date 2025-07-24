@@ -3,11 +3,11 @@
   "theme": "willow",
   "name": "NaaS Knowladgebase",
   "colors": {
-    "primary": "#21130d",
-    "light": "#e28743",
-    "dark": "#e28743"
+    "primary": "#F48120",
+    "light": "#F48120",
+    "dark": "#FFDC96"
   },
-  "favicon": "/IPKT.png",
+  "favicon": "/logo/IPKT.png",
   "navigation": {
     "tabs": [
       {
