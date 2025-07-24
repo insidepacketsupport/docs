@@ -119,7 +119,7 @@
     ],
     "primary": {
       "type": "button",
-      "label": "NaaS Portal",
+      "label": "DynamicLink Portal",
       "href": "https://dynamiclink.zayo.com/login"
     }
   },
