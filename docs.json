@@ -7,7 +7,7 @@
     "light": "#F48120",
     "dark": "#FFDC96"
   },
-  "favicon": "/zayo.png",
+  "favicon": "zayo.png",
   "navigation": {
     "tabs": [
       {
