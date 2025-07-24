@@ -1,10 +1,10 @@
-# Getting Started with the insidepacket NaaS Portal
+# Getting Started with the DynamicLink NaaS Portal
 
-This guide will walk you through the initial steps of setting up your account and managing users within the insidepacket NaaS Portal.
+This guide will walk you through the initial steps of setting up your account and managing users within the DynamicLink NaaS Portal.
 
 ## 1. Account Setup
 
-Getting started with the insidepacket portal is simple.
+Getting started with the DynamicLink portal is simple.
 
 1.  **Sign Up:** Once you have signed up, you will receive an email to verify your email address.
 2.  **Set Password & Details:** Next, set up a password and complete a couple of personal and company details.
@@ -30,7 +30,7 @@ As an Account Administrator, you can easily add new team members and assign them
 
 ## 3. Ordering and Setting Up Network Ports
 
-This section outlines the process for creating a Port within your customer Portal network. Your organization's Port serves as the physical connection point between your internal network and the insidepacket network. A Port must be deployed wherever you wish to route traffic.
+This section outlines the process for creating a Port within your customer Portal network. Your organization's Port serves as the physical connection point between your internal network and the DynamicLink network. A Port must be deployed wherever you wish to route traffic.
 
 1.  **Log in to the NaaS Portal.**
 2.  **Navigate to Build Your Network:** From the left-hand side menu, select `Build Your Network`.
