@@ -34,7 +34,7 @@
               "usecases/internet", 
               "usecases/ClourRouterMCN",
                "usecases/troubleshot",
-              "usecases/connectivity-failures"
+              "usecases/investigating-connectivity-failures"
             ]
           },
           {
