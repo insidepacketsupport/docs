@@ -1,0 +1,26 @@
+---
+title: 'Application & DNS Insights'
+description: 'Learn how to monitor application usage, user activity, and diagnose DNS health using the Application Observability Dashboard.'
+---
+
+The **Application Observability Dashboard** is the primary tool for answering the critical operational questions: "Who is using what application?" and "Is it performing correctly?" It provides a real-time, application-centric view of network traffic, user activity, and the health of the underlying DNS infrastructure that enables it all.
+
+## Analyzing Application Usage
+
+A core function of this dashboard is to provide clarity on application consumption across the enterprise. The "Top Applications Table" and the accompanying "Top Applications Chart" are instrumental in identifying which applications, users, and source IPs are consuming the most bandwidth. This information is vital for capacity planning, cost allocation, and identifying unsanctioned application usage.
+
+To move from general observation to specific investigation, the dashboard includes a powerful **Filters Panel**. An IT Manager can refine the entire dashboard's view based on specific locations, user groups, source IPs, or applications. For instance, to investigate reports of slowness at a specific branch office, you can filter the view to that location, immediately isolating the application usage profile and traffic patterns unique to those users.
+
+### How It Works: SNI Inspection
+This application-level visibility is powered by the platform's ability to inspect Server Name Indication (SNI) information within traffic flows. When a user connects to a secure website (HTTPS), the SNI extension in the initial handshake reveals the hostname the user is trying to reach. The insidepacket platform passively observes these SNIs to identify applications. This method provides deep visibility into encrypted traffic without requiring costly and complex decryption, preserving both performance and user privacy.
+
+## Diagnosing DNS Issues
+
+Application access is fundamentally dependent on the Domain Name System (DNS). The Application Observability dashboard contains a dedicated DNS section that visualizes the complete query path in a clear, three-part flow: **Source IPs -> DNS Servers -> Hostnames**. This intuitive layout makes it straightforward to spot anomalies in the resolution process.
+
+### Use Case: Troubleshooting DNS
+Consider a scenario where a user reports they cannot access `www.example.com`. You can use the dashboard to filter by that user's source IP. The dashboard will then reveal:
+* **If a query for `www.example.com` is being made:** If the query appears, you can see which DNS server is handling the request and whether it is resolving correctly. If multiple DNS servers are in use, it can help identify if one is failing.
+* **If no query is being made:** If there is no corresponding DNS query in the flow, the problem is likely isolated to the client device's configuration, not the network or the DNS infrastructure.
+
+Furthermore, the dashboard provides **DNS Location** data, which shows the geographic location of the DNS servers being used. This can help identify performance issues caused by misconfigurations. For example, if a branch office in Europe is inexplicably sending its DNS queries to a server in North America, it could introduce unnecessary latency into every new connection.

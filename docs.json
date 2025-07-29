@@ -54,7 +54,7 @@
             "pages": [
               "insights/insightsintro",
               "insights/performance",
-              "docs/insights/application-observability",
+              "insights/application-dns-insights",
               "docs/insights/dns-observability"
             ]
           },
