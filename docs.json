@@ -56,6 +56,7 @@
               "insights/performance",
               "insights/application-dns-insights",
               "insights/security-insights",
+              "insights/core-diagnostic-tools",  
               "insights/diagnosing-poor-application"
             ]
           },
