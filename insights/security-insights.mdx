@@ -1,0 +1,28 @@
+---
+title: 'Security Insights & Threat Analysis'
+description: 'Analyze your security posture, monitor for active threats, and verify the effectiveness of your firewall and web filtering policies.'
+---
+
+The insidepacket NaaS platform integrates security directly into its observability framework, providing a single pane of glass for monitoring both network performance and security posture. The Firewall, DDoS, and Cyber Threats dashboards offer the tools needed to monitor policy effectiveness, respond to active attacks, and investigate security incidents.
+
+## Verifying Firewall and Web Filtering Effectiveness
+
+Effective security starts with well-defined policies. The platform allows for the configuration of stateful firewall rules and granular web filtering policies. Beyond configuration, it is crucial to verify that these policies are working as intended.
+
+The platform collects detailed statistics for every firewall rule, including the volume of matched bytes, packets, and connection counts. By accessing these statistics (via the pie-chart icon in the service configuration screen), you can confirm that critical "block" rules are actively dropping traffic and that "allow" rules are processing the expected volume, validating your security posture in real-time.
+
+## Real-Time DDoS Attack Monitoring
+
+The platform provides a dedicated, tenant-facing **DDoS Dashboard** for real-time visibility during a Distributed Denial-of-Service attack. This dashboard provides immediate, actionable intelligence:
+
+* **Attack Status:** A clear, color-coded tile indicates whether the network is currently "Under Attack" or in a "No Attack" state.
+* **Attack Analytics:** During an attack, the dashboard displays critical metrics, including the total attack size, maximum attack rate, number of unique targets, and graphs showing mitigated versus clean traffic.
+* **Tenant Controls:** The dashboard empowers you with a degree of control. For each DDoS policy, you can change the "Protection Type" or switch a rule into a "monitor only" mode.
+
+### How It Works: ASIC Offload
+This robust DDoS protection is built upon the advanced capabilities of the underlying whitebox switch hardware. When a volumetric attack is detected, the task of rate-limiting or dropping the malicious traffic is offloaded directly to the switch's Application-Specific Integrated Circuit (ASIC). This means that DDoS mitigation does not consume the platform's general-purpose CPU resources, ensuring that other essential services are not degraded during an attack.
+
+## Investigating Cyber Threats
+
+Beyond volumetric attacks, the platform provides deeper threat inspection through its **Cyber Threats** service, which integrates with Proofpoint's threat intelligence. When a threat is detected, an alert is generated and displayed in the **Cyber Threats Dashboard**. This dashboard is the starting point for any security investigation, providing detailed information about the type of threat, time of detection, and the source and destination of the malicious traffic.
+
