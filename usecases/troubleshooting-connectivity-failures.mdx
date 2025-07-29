@@ -1,0 +1,31 @@
+---
+title: "Playbook: Troubleshooting Connectivity & Routing Failures"
+description: "A logical flow to address the common "I can't reach this server" ticket and quickly isolate the point of failure."
+---
+
+This playbook addresses the common "I can't reach this server" ticket, providing a logical flow to quickly isolate the point of failure.
+
+### Step 1: Check End-to-End Reachability (Ping)
+
+Use the **Looking Glass (Ping)** tool to test connectivity to the destination IP address.
+
+- **If the ping succeeds,** basic network reachability is confirmed. The problem is likely at a higher layer, such as a host-based firewall on the server or an application that is not running.
+- **If the ping fails,** there is a network path or routing issue. **Proceed to Step 2.**
+
+### Step 2: Check the Route (Route Lookup)
+
+Use the **Looking Glass (Route Lookup)** tool to search for the destination IP prefix in the routing table.
+
+- **If the route is present,** the platform knows how to reach the destination, but something is blocking the path. **Proceed to Step 4.**
+- **If the route is missing,** the platform has no path to the destination. The problem is with the routing protocol (BGP) or a missing static route. **Proceed to Step 3.**
+
+### Step 3: Verify L2/BGP Health (If Route is Missing)
+
+- Navigate to the **ARP table** (Network -\> Cloud Router -\> ARPs).
+- Look for an ARP entry corresponding to the BGP peer or next-hop router's IP address.
+- **If there is no ARP entry,** the issue is at Layer 2. Verify physical connectivity, VLAN tagging, and interface configurations.
+- **If there is a valid ARP entry,** Layer 2 is working correctly. The problem is a Layer 3 BGP misconfiguration (e.g., incorrect ASN, mismatched password, route filtering policy).
+
+### Step 4: Trace the Path (If Route is Present)
+
+- Use the **Looking Glass (Traceroute)** tool to trace the path to the destination. The output will show the last successful hop before the connection fails, which significantly narrows down the location of the problem.
