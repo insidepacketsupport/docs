@@ -1,5 +1,30 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Diagnosing Poor Application Performance"
+description: "A step-by-step workflow for diagnosing application slowdowns, leveraging the platform to distinguish between network, server, and DNS issues."
 ---
 
+This playbook provides a systematic workflow for diagnosing application slowdowns.
+
+### Step 1: Differentiate Latency
+
+The investigation begins in the **Network Observability** dashboard. Analyze the "Latency" tab for the affected application's server IP. Compare the "Network Latency" and "Application Latency" graphs.
+
+- **If Application Latency is high while Network Latency is low,** the network is not the bottleneck. The issue lies with the server. **Proceed to Step 3.**
+- **If both latencies are high,** the issue is network-related. **Proceed to Step 2.**
+- **If both latencies are stable and low, but users report access issues,** the problem may be DNS-related. **Proceed to Step 4.**
+
+### Step 2: Investigate the Network Path (If Network Latency is High)
+
+- Check for saturation and drops in the **Cloud and Connections** dashboard. Are the traffic graphs for the relevant link approaching maximum bandwidth or showing a high number of dropped packets?
+- Use the **Looking Glass (Traceroute)** tool to trace the path to the application server. This will identify the specific hop where latency increases or packet loss begins.
+- Use **Looking Glass (Path MTU Discovery)** to check for an MTU mismatch along the path.
+
+### Step 3: Investigate the Server/Application (If Application Latency is High)
+
+- Pivot to the **Application Observability** dashboard. Use the "Top Applications Table" to confirm if the issue is isolated to a single application or if multiple applications hosted on the same server are also experiencing high latency.
+
+### Step 4: Investigate DNS (If Latency is Fine but Access Fails)
+
+- In the **Application Observability** dashboard, navigate to the **DNS** tab.
+- Filter by the source IP of an affected user. Verify that DNS queries for the application's hostname are being generated.
+- Check which DNS server is responding and if the resolution is successful. The absence of queries or queries to a non-responsive server points directly to a DNS issue.
