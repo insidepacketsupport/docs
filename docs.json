@@ -52,7 +52,7 @@
           {
             "group": "Insights",
             "pages": [
-              "docs/insights/introduction",
+              "insights/insightsintro",
               "docs/insights/network-observability",
               "docs/insights/application-observability",
               "docs/insights/dns-observability"
