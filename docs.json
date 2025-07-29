@@ -8,9 +8,6 @@
     "dark": "#212121"
   },
   "favicon": "/zayo.png",
-   "hero": {
-    "image": "http://googleuserconent.com/image_generation_content/1"
-  },
   "navigation": {
     "tabs": [
       {
