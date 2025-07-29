@@ -55,7 +55,7 @@
               "insights/insightsintro",
               "insights/performance",
               "insights/application-dns-insights",
-              "docs/insights/dns-observability"
+              "insights/security-insights"
             ]
           },
           {
