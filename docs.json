@@ -53,7 +53,7 @@
             "group": "Insights",
             "pages": [
               "insights/insightsintro",
-              "docs/insights/network-observability",
+              "insights/performance",
               "docs/insights/application-observability",
               "docs/insights/dns-observability"
             ]

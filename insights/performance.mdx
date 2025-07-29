@@ -1,0 +1,38 @@
+---
+title: "Network Performance Insights"
+description: "Monitor network latency, connection health, and bandwidth utilization to differentiate between network and application issues."
+---
+
+While application health is critical, it is built upon the foundation of a stable and performant network. The **Network Observability** and **Network, Cloud, and Connection** dashboards provide the tools necessary to monitor this foundation.
+
+## Differentiating Network vs. Application Latency
+
+One of the most powerful diagnostic features of the insidepacket platform is its ability to passively measure and report network latency and application latency as two distinct metrics. This separation is a game-changer for root cause analysis.
+
+- **Network Latency:** Measured as the time between a client's TCP SYN and the server's SYN-ACK. It represents the pure network round-trip time.
+- **Application Latency:** Measured as the time between the client's SYN and the receipt of the first packet of application data. This includes network RTT plus server processing time.
+
+This distinction transforms troubleshooting. When a user reports a slow application, you can immediately consult the latency graphs in the Network Observability dashboard for the application's server IP.
+
+- **High Application Latency, Low Network Latency:** The problem is almost certainly with the application server itself.
+- **High Network and Application Latency:** This indicates a genuine network issue like congestion, a failing link, or a suboptimal routing path.
+
+## Analyzing Connection Health and Bandwidth
+
+The **Cloud and Connections** dashboard provides a real-time inventory and status check of all network links, including direct connections, cloud interconnects, and DIA circuits. For each connection, you can instantly verify its state, IP interface, and maximum allocated bandwidth.
+
+This dashboard also features detailed, time-series graphs for interface traffic, visualizing four key metrics:
+
+- Incoming (Mbps)
+- Dropped Incoming (Mbps)
+- Outgoing (Mbps)
+- Dropped Outgoing (Mbps)
+
+By analyzing these graphs, you can quickly identify:
+
+- **Link Saturation:** If traffic consistently approaches the maximum bandwidth, the link is saturated.
+- **Policy-Based Drops:** A significant number of "Dropped" packets, even when the link is not saturated, often points to a firewall rule, QoS policy, or security filter discarding traffic.
+
+### How It Works: Session Detail Records (SDRs)
+
+The data fueling these dashboards is derived from **Session Detail Records (SDRs)**, an enriched data record that captures metadata about each traffic session. To manage performance, the platform uses sampling to generate these SDRs. The accuracy of the data is tied to a configurable sampling rate. If you are troubleshooting a very specific, low-volume flow that is not appearing in the dashboard, it could be due to the sampling rate.
