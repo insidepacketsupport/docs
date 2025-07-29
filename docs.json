@@ -33,7 +33,8 @@
               "usecases/intro",
               "usecases/internet", 
               "usecases/ClourRouterMCN",
-               "usecases/troubleshot"
+               "usecases/troubleshot",
+              "usecases/connectivity-failures"
             ]
           },
           {
