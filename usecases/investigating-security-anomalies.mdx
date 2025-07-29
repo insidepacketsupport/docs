@@ -1,0 +1,21 @@
+---
+title: 'Playbook: Investigating Security Anomalies'
+description: 'A structured workflow for responding to a security alert, moving from initial detection to containment and proactive hardening.'
+---
+
+This playbook provides a structured workflow for responding to a security alert from the platform.
+
+### Step 1: The Alert
+The investigation begins with an alert. This could be a notification of a volumetric attack in the **DDoS dashboard** or a specific threat signature match in the **Cyber Threats dashboard**.
+
+### Step 2: Initial Triage
+From the alert details, gather the critical initial information: the source IP of the attacker, the destination IP of the target, the type of threat or attack vector, and the exact timestamp of the event.
+
+### Step 3: Forensic Analysis
+Pivot to the **Network Observability** dashboard and select the **Detailed Records** view. This view provides access to the raw Session Detail Record (SDR) data. Filter the records by the source and/or destination IP addresses from the alert and the timeframe of the incident. This analysis will reveal the full context of the attack, including any other connections the attacker made.
+
+### Step 4: Containment
+Based on the analysis, take immediate action. Navigate to the **Services -> Firewall** dashboard. Create a new, high-priority firewall rule to block all traffic from the malicious source IP address, effectively cutting off the attacker's access.
+
+### Step 5: Proactive Hardening
+Review the data from the investigation to identify opportunities for proactive security improvements. For example, in the **Application Observability** dashboard, determine if the attack leveraged an unauthorized or non-standard application. If so, navigate to the **Firewall** configuration and create a **Web Filtering** rule to block the specific URL or the entire category of applications associated with the attack vector, preventing similar incidents.
