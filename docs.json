@@ -75,7 +75,7 @@
           {
             "group": "Services",
             "pages": [
-              "docs/services/introduction",
+              "/Services/servicesintro",
               "docs/services/firewall",
               "docs/services/dia-firewall",
               "docs/services/NAT",
