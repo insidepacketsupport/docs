@@ -86,7 +86,13 @@
           },
           {
             "group": "API Reference",
-            "openapi": "openapi.json"
+            "pages": [
+              "api-reference/introduction",
+              {
+                "group": "Endpoints",
+                "openapi": "openapi.json"
+              }
+            ]
           },
           {
             "group": "Endpoint Examples",
