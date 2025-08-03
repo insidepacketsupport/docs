@@ -93,12 +93,6 @@
                 "openapi": "openapi.json"
               }
             ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get"
-            ]
           }
         ]
       }
