@@ -1,5 +1,5 @@
 ---
-title: "Introduction to NaaS Observability"
+title: "Introduction to DynamicLink Observability"
 description: "An overview of the DynamicLink NaaS observability suite, the Unified Insights Dashboard, and the troubleshooting funnel methodology."
 ---
 
@@ -16,13 +16,27 @@ A key principle behind the platform's design is the concept of a troubleshooting
 This prevents the common pitfall of getting lost in low-level data prematurely and streamlines the path to resolution. The funnel begins with the broadest view and allows for progressively deeper dives:
 
 1. **High-Level Visualization (The "What"):** Your first destination is typically the **Topology** view.
+   
+
    ![insights ](/insights/topo.png)
-This dashboard provides an immediate, graphical representation of all network locations, cloud connections, and their real-time operational status. A color-coded indicator, such as a red link or node, serves as an instant visual alert, directing attention to the precise area of a problem.
-4. **Performance Analysis (The "Where"):** From the topology, you can "funnel down" into the **Network and Application Observability** dashboards.
-  ![insights ](/insights/network.png) ![insights ](/insights/app.png)
- These views provide the performance context, displaying critical metrics such as latency, packet drops, bandwidth utilization, and application-specific data. This step helps to characterize the nature of the problem—is it a connectivity failure, a performance degradation, or an application-specific issue?
-7. **Granular Statistics (The "How Much"):** If more quantitative detail is needed, the next layer of the funnel consists of raw **Interface and Service Statistics**. These detailed counters for traffic, packets, and connections can be accessed throughout the portal by switching to the statistics view (indicated by a pie-chart icon) or by accessing the integrated Grafana dashboards for time-series analysis.
-8. **Deep Forensics (The "Why"):** The deepest level of the funnel is reserved for forensic analysis. This includes reviewing **Events** logs, performing complex queries in **Kibana**, and using the **Looking Glass** tool for active, real-time diagnostics like packet captures.
+
+   
+   This dashboard provides an immediate, graphical representation of all network locations, cloud connections, and their real-time operational status. A color-coded indicator, such as a red link or node, serves as an instant visual alert, directing attention to the precise area of a problem.
+2. **Performance Analysis (The "Where"):** From the topology, you can "funnel down" into the **Network and Application Observability** dashboards.
+   
+
+   ![insights ](/insights/network.png)
+
+    
+
+   ![insights ](/insights/app.png)
+
+   
+   These views provide the performance context, displaying critical metrics such as latency, packet drops, bandwidth utilization, and application-specific data. This step helps to characterize the nature of the problem—is it a connectivity failure, a performance degradation, or an application-specific issue?
+3. **Granular Statistics (The "How Much"):** If more quantitative detail is needed, the next layer of the funnel consists of raw **Interface and Service Statistics**. These detailed counters for traffic, packets, and connections can be accessed throughout the portal by switching to the statistics view (indicated by a pie-chart icon) or by accessing the integrated Grafana dashboards for time-series analysis.
+4. **Deep Forensics (The "Why"):** The deepest level of the funnel is reserved for forensic analysis. This includes reviewing **Events** logs, performing complex queries in **Kibana**, and using the **Looking Glass** tool for active, real-time diagnostics like packet captures.
+   
+
    ![insights ](/insights/lookingglass.png)
 
 ## Core Insights Dashboards
