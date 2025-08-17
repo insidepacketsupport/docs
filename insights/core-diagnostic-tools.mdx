@@ -1,28 +1,28 @@
 ---
-title: 'Core Diagnostic Tools'
-description: 'Master the essential Looking Glass and ARP table tools for active, real-time network troubleshooting.'
+title: "Core Diagnostic Tools"
+description: "Master the essential Looking Glass and ARP table tools for active, real-time network troubleshooting."
 ---
 
 Before tackling complex scenarios, it is essential to master the foundational tools for active troubleshooting. The Looking Glass utility and the ARP table provide definitive, real-time answers to fundamental questions about connectivity and reachability.
 
 ## Looking Glass
 
-The **Looking Glass** tool is a suite of active diagnostic utilities that allow you to test the network path from the perspective of the NaaS platform itself.
+The **Looking Glass** tool is a suite of active diagnostic utilities that allow you to test the network path from the perspective of the platform itself.
 
-| Tool                | Function                                       | Primary Use Case                                                              |
-| ------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------- |
-| **Route Lookup** | Verifies route visibility from a location.     | "Is my new VPC route correctly advertised to my branch office?"               |
-| **Ping** | Tests end-to-end reachability and latency.     | "Can my server reach the public internet?"                                    |
-| **Traceroute** | Traces the hop-by-hop path to a destination.   | "Where is the latency or packet loss occurring on the path to my application?"|
-| **Path MTU Discovery**| Determines the maximum packet size on a path.  | "Is a mismatched MTU causing performance degradation?"                        |
-| **Packet Capture** | Captures raw network traffic for deep analysis.| "I need to analyze the full packet flow to debug a complex protocol issue."   |
+| Tool                   | Function                                        | Primary Use Case                                                               |
+| ---------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------ |
+| **Route Lookup**       | Verifies route visibility from a location.      | "Is my new VPC route correctly advertised to my branch office?"                |
+| **Ping**               | Tests end-to-end reachability and latency.      | "Can my server reach the public internet?"                                     |
+| **Traceroute**         | Traces the hop-by-hop path to a destination.    | "Where is the latency or packet loss occurring on the path to my application?" |
+| **Path MTU Discovery** | Determines the maximum packet size on a path.   | "Is a mismatched MTU causing performance degradation?"                         |
+| **Packet Capture**     | Captures raw network traffic for deep analysis. | "I need to analyze the full packet flow to debug a complex protocol issue."    |
 
 ## ARP Table
 
-The **Address Resolution Protocol (ARP) Table** is another fundamental tool, used to validate Layer 2 connectivity and provide crucial clues for Layer 3 troubleshooting. By navigating to **Network -> Cloud Router -> ARPs**, you can see the mapping of IP addresses to MAC addresses on a given interface.
+The **Address Resolution Protocol (ARP) Table** is another fundamental tool, used to validate Layer 2 connectivity and provide crucial clues for Layer 3 troubleshooting. By navigating to **Network -\> Cloud Router -\> ARPs**, you can see the mapping of IP addresses to MAC addresses on a given interface.
 
 ### Use Case: Troubleshooting BGP
+
 The presence of an ARP entry for a BGP peer's IP address is a definitive confirmation that Layer 2 connectivity (e.g., the correct VLAN, physical link) is established.
 
 If BGP peering is failing, but a valid ARP entry exists for the peer, the problem is almost certainly a Layer 3 BGP configuration error (such as an incorrect AS number or a mismatched authentication key) and not a physical or VLAN issue. This allows you to immediately focus your efforts on the correct configuration domain.
-
