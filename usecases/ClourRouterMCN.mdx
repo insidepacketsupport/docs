@@ -1,31 +1,31 @@
 ---
 title: "Multi-Cloud Connectivity and Security"
-description: "Interconnect your clouds with the NaaS Cloud Router for improved performance, security, and cost savings.  "
+description: "Interconnect your clouds with the Cloud Router for improved performance, security, and cost savings.  "
 ---
 
-# Enhancing NaaS Cloud Router with Multi-Cloud Connectivity and Security
+# Enhancing  Cloud Router with Multi-Cloud Connectivity and Security
 
-Expanding your **NaaS Cloud Router** to encompass multi-cloud environments offers significant advantages. By interconnecting your AWS and Azure VPCs directly via the operator network, you eliminate the need for traffic to hairpin back to a central office. This direct interconnection dramatically improves availability, reduces latency for inter-cloud communication, and can lead to significant savings on egress fees from your Cloud Service Providers (CSPs). Furthermore, the built-in security features of the DynamicLink NaaS platform allow you to implement granular access control for your critical cloud resources.
+Expanding your **Cloud Router**  to encompass multi-cloud environments offers significant advantages. By interconnecting your AWS and Azure VPCs directly via the operator network, you eliminate the need for traffic to hairpin back to a central office. This direct interconnection dramatically improves availability, reduces latency for inter-cloud communication, and can lead to significant savings on egress fees from your Cloud Service Providers (CSPs). Furthermore, the built-in security features of the DynamicLink  platform allow you to implement granular access control for your critical cloud resources.
 
 ---
 
 ## 1. Adding Cloud Connections to the Cloud Router
 
-To establish multi-cloud connectivity, you will add new connections directly to your DynamicLink **NaaS Cloud Router**. These new connections will terminate at the Cloud Router, just like your existing branch and data center connections, and will all share the same routing.
+To establish multi-cloud connectivity, you will add new connections directly to your DynamicLink **Cloud Router** . These new connections will terminate at the Cloud Router, just like your existing branch and data center connections, and will all share the same routing.
 
 ### Steps to add an AWS Direct Connect Connection
 
- 1. Log in to the NaaS Portal.
+ 1. Log in to the Portal.
  2. Navigate to the **"Build Your Network"** tab.
  3. Select the **"Cloud Router"** tab, then click **"\+ Add Connection"** and choose the **“Cloud Connection”** tab.
  4. Choose **"AWS"** as the cloud provider.
  5. Select the **Region** of your VPC (e.g., `us-east-1`) and an available **Site name** for that region.
  6. Choose the desired bandwidth (e.g., 50 Mbps).
 
-    > **Note:** Bandwidths for CSP links are not elastic in the same way as regular NaaS connections. If you need to increase capacity, you will generally need to create a new connection with higher capacity and delete the old one. However, the ease of connection establishment using the NaaS provides a form of elasticity.
+    > **Note:** Bandwidths for CSP links are not elastic in the same way as regular  connections. If you need to increase capacity, you will generally need to create a new connection with higher capacity and delete the old one. However, the ease of connection establishment using the  provides a form of elasticity.
  7. Provide your **AWS Customer ID**.
  8. Provide a **Connection Name** (e.g., "VPC1-us-east-1").
- 9. Click **"Add"** to create the connection. It will now be added to the NaaS and provisioned with AWS.
+ 9. Click **"Add"** to create the connection. It will now be added to the  and provisioned with AWS.
 10. **Approve the Connection in AWS**: The new connection will appear with the status of **"Ordering"**. Navigate to the **Cloud Links** section in your inventory on the right side of the “Build Your Network” screen. Click on the AWS link to open your AWS account.
 11. Locate the new connection under **"Ordering"** status, select it, and approve the connection within AWS.
 12. The connection status will change to **"Pending"** in both portals. AWS typically takes around 5 minutes to establish the connection.
@@ -37,7 +37,7 @@ To establish multi-cloud connectivity, you will add new connections directly to 
  2. Click **'Create'** and configure the resiliency settings and the following circuit details: **Region**, **Connection Name**, **Provider**, **Required Bandwidth**, **SKU**, and **Azure Billing Method**.
  3. Review the details and click **"Create"**. You will be notified when the deployment is complete.
  4. Click **"Go to resource"**, select the resource you just created, and retrieve the **service key**.
- 5. Now, in the NaaS Portal, navigate to **"Build Your Network"** -\> **"Cloud Router"** -\> **"\+ Add Connection"** -\> **“Cloud Connection”**.
+ 5. Now, in the  Portal, navigate to **"Build Your Network"** -\> **"Cloud Router"** -\> **"\+ Add Connection"** -\> **“Cloud Connection”**.
  6. Select **"Azure"**.
  7. Configure the connection: Attach the Azure **Pairing Key (Service Key)**. The **Pairing Location** and **Region** will be auto-fetched.
  8. Choose the Connection Type **“Azure Private”** and set the **VLAN** to match the one used on the Azure side.
@@ -48,11 +48,11 @@ To establish multi-cloud connectivity, you will add new connections directly to 
 
 ## 2. Configuring BGP for Multi-Cloud Connectivity
 
-**Border Gateway Protocol (BGP)** is essential for routing traffic between your NaaS Cloud Router and your cloud environments. Note that the ASNs (Autonomous System Numbers) for CSP links are always private. The ASN you configure on the insidepacket Cloud Router will be used as the customer-side private ASN for all connected CSPs.
+**Border Gateway Protocol (BGP)** is essential for routing traffic between your  Cloud Router and your cloud environments. Note that the ASNs (Autonomous System Numbers) for CSP links are always private. The ASN you configure on the insidepacket Cloud Router will be used as the customer-side private ASN for all connected CSPs.
 
 ### Steps to configure the ASN on the insidepacket Cloud Router
 
-1. Log in to the NaaS Portal and navigate to **"Network"**.
+1. Log in to the Portal and navigate to **"Network"**.
 2. Under the "Network" tab, select **"Cloud Router"**.
 3. Go to the **"BGP"** tab.
 4. If no ASN is configured, click the pencil icon next to the **"ASN"** field to add the AS number for your Cloud Router.
@@ -71,13 +71,13 @@ To establish multi-cloud connectivity, you will add new connections directly to 
    - **BGP Auth Key (Optional)**: Set a password for MD5 authentication.
    - **IP Addresses**: Specify AWS and on-premises IPs in `/30` format.
 3. **Associate Virtual Interface**: Return to your **"Direct Connect gateway"**, select it, and click **"Associate virtual interface"**.
-4. **Configure BGP on Your Router (within NaaS Cloud Router)**: The insidepacket NaaS Cloud Router typically manages its BGP configuration based on the virtual interface details you provided.
+4. **Configure BGP on Your Router (within Cloud Router)**: The insidepacket  Cloud Router typically manages its BGP configuration based on the virtual interface details you provided.
 
 ### Steps to set up BGP with Azure Direct Connect
 
 1. On the connection page in Azure, configure your BGP connection for **“Azure Private”**.
 2. Add the necessary details (**Peer ASN**, **Subnets details**, **VLAN ID**, and **Shared Key**) and save the connection.
-3. After a few minutes, the connection will become active. You will need to finalize the BGP configuration within the Azure portal to establish peering with the NaaS Cloud Router.
+3. After a few minutes, the connection will become active. You will need to finalize the BGP configuration within the Azure portal to establish peering with the  Cloud Router.
 
 ---
 
@@ -87,7 +87,7 @@ Interconnecting cloud environments creates potential pathways for malicious acto
 
 ### Steps to configure Firewall and Web Filtering rules
 
-1. Log in to the NaaS Portal and click on **"Service"** in the left-hand menu.
+1. Log in to the  Portal and click on **"Service"** in the left-hand menu.
 2. Under the "Service" tab, select **"Firewall"**.
 3. Click the **"\+ Add"** button to create a new rule.
 4. Complete the Firewall Rule Form:
@@ -116,7 +116,7 @@ The **ARP (Address Resolution Protocol) table** shows which devices are learned 
 
 ### Steps to view the ARP table
 
-1. Log in to the NaaS portal.
+1. Log in to the  portal.
 2. Navigate to **"Network"** then **"Cloud Router"**.
 3. Navigate to **"ARPs"**. The title indicates the number of active ARP entries.
 4. You can "deep dive" into specific entries to see details like:
@@ -126,4 +126,4 @@ The **ARP (Address Resolution Protocol) table** shows which devices are learned 
    - The **age** of the entry (e.g., 1060 seconds)
    - Whether the entry is **static** (manual) or **dynamic** (learned).
 
-By following these steps, you will successfully add and manage multi-cloud connectivity and robust security for your network within the insidepacket NaaS platform.
+By following these steps, you will successfully add and manage multi-cloud connectivity and robust security for your network within the DynamicLink platform.
