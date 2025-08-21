@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
-  "name": "DynamicLink Knowladgebase",
+  "name": "DynamicLink_Knowladgebase",
   "colors": {
     "primary": "#F48120",
     "light": "#F48120",
