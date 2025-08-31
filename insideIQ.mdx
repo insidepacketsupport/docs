@@ -5,113 +5,110 @@ description: "This chapter will guide you through the two core functionalities o
 
 ![DynamicLink NaaS Portal](/insideIQ.png)
 
-Welcome to InsideIQ, your intelligent, conversational assistant integrated directly into the DynamicLink NaaS portal. InsideIQ is designed to streamline your workflow, provide instant support, and give you unprecedented control over your network resources using simple, natural language.
+## Welcome to InsideIQ
 
-AI-Powered Support Bot: Get instant, reliable answers to your questions.
+Welcome to InsideIQ, your intelligent, conversational assistant integrated directly into the DynamicLink portal. InsideIQ is designed to streamline your workflow, provide instant support, and give you unprecedented control over your network resources using simple, natural language.
 
-Natural Language Resource Control: Manage your network services using conversational commands.
+This chapter will guide you through the two core functionalities of InsideIQ:
 
-The Foundation: Grounded & Reliable AI 🧠
-Before we dive into the features, it's crucial to understand what makes InsideIQ so reliable. Every piece of information, every answer, and every proposed action from InsideIQ is strictly grounded in Zayo's comprehensive and authoritative Knowledge Base.
+* **AI-Powered Support Bot**: Get instant, reliable answers to your questions.
+* **Natural Language Resource Control**: Manage your network services using conversational commands.
+
+## The Foundation: Grounded & Reliable AI 🧠
+
+Before we dive into the features, it's crucial to understand what makes InsideIQ so reliable. Every piece of information, every answer, and every proposed action from InsideIQ is **strictly grounded in Zayo's comprehensive and authoritative Knowledge Base.**
 
 We use a sophisticated approach called Retrieval-Augmented Generation (RAG). Think of it like this: Instead of a general AI that might guess or provide outdated information, InsideIQ is like a master librarian who has read every single page of Zayo's official documentation, operational procedures, and business rules. When you ask a question or issue a command, InsideIQ first finds the exact, relevant passages from this official library and then uses that information to construct its response.
 
 This grounding guarantees that all information and automation are:
 
-Accurate: Consistent with Zayo's official documentation.
-
-Safe: Aligned with established operational procedures.
-
-Compliant: Adheres to current business rules.
+* **Accurate**: Consistent with Zayo's official documentation.
+* **Safe**: Aligned with established operational procedures.
+* **Compliant**: Adheres to current business rules.
 
 This approach minimizes the risk of misinterpretation or erroneous actions, giving you the confidence to trust the answers and actions prompted by InsideIQ.
 
-Part 1: The AI-Powered Support Bot 💬
-The support bot functionality is your first line of defense for troubleshooting, "how-to" questions, and understanding NaaS concepts. Instead of opening a ticket or searching through documentation, you can simply ask InsideIQ.
+## Part 1: The AI-Powered Support Bot 💬
 
-How to Use the Support Bot
+The support bot functionality is your first line of defense for troubleshooting, "how-to" questions, and understanding DynamicLink concepts. Instead of opening a ticket or searching through documentation, you can simply ask InsideIQ.
+
+### How to Use the Support Bot
+
 Simply open the InsideIQ chat window and type your question in plain English. The more specific you are, the better the answer will be.
 
-Example Questions You Can Ask:
-Troubleshooting:
+### Example Questions You Can Ask
 
-"What are the common causes of packet loss on a DIA circuit?"
+#### Troubleshooting:
 
-"My latency to the AWS us-east-1 on-ramp seems high. What are the first steps to investigate?"
+* "What are the common causes of packet loss on a DIA circuit?"
+* "My latency to the AWS us-east-1 on-ramp seems high. What are the first steps to investigate?"
+* "How do I interpret the statistics for my E-Line service?"
 
-"How do I interpret the statistics for my E-Line service?"
+#### How-To & Procedural:
 
-How-To & Procedural:
+* "How do I add a new VLAN to my existing port?"
+* "What is the process for upgrading the bandwidth of my Layer 3 connection?"
+* "Show me the steps to configure BGP for a new Azure ExpressRoute."
 
-"How do I add a new VLAN to my existing port?"
+#### Definitions & Concepts:
 
-"What is the process for upgrading the bandwidth of my Layer 3 connection?"
-
-"Show me the steps to configure BGP for a new Azure ExpressRoute."
-
-Definitions & Concepts:
-
-"What is the difference between an E-Line and an E-LAN service?"
-
-"Explain what Committed Information Rate (CIR) means."
-
-"What are Zayo's standard service level objectives for DIA?"
+* "What is the difference between an E-Line and an E-LAN service?"
+* "Explain what Committed Information Rate (CIR) means."
+* "What are Zayo's standard service level objectives for DIA?"
 
 InsideIQ will analyze your question, retrieve the relevant information from the knowledge base, and provide a synthesized, easy-to-understand answer directly in the chat window.
 
-Part 2: Natural Language Resource Control ⚙️
-This is where InsideIQ transforms from a knowledgeable assistant into a powerful operational tool. You can perform CRUD (Create, Read, Update, Delete) operations on your network resources simply by telling InsideIQ what you want to do.
+## Part 2: Natural Language Resource Control ⚙️
+
+This is where InsideIQ transforms from a knowledgeable assistant into a powerful operational tool. You can perform **CRUD (Create, Read, Update, Delete)** operations on your network resources simply by telling InsideIQ what you want to do.
 
 This feature applies to a wide range of your DynamicLink resources, including:
 
-L2 & L3 Connections (E-Line, E-LAN, etc.)
+* L2 & L3 Connections (E-Line, E-LAN, etc.)
+* Dedicated Internet Access (DIA)
+* Cloud Connections (AWS, Azure, Google Cloud, etc.)
+* Service Events & Alarms
+* Performance Statistics
 
-Dedicated Internet Access (DIA)
+### How It Works
 
-Cloud Connections (AWS, Azure, Google Cloud, etc.)
+You issue a command in the chat window. InsideIQ parses your intent, identifies the resources you're referring to, and formulates an action plan. For any action that modifies or deletes a service, you will **always be presented with a confirmation prompt** before execution.
 
-Service Events & Alarms
+### Command Structure and Best Practices
 
-Performance Statistics
+* **Be Specific**: Include identifiers like circuit IDs, locations, or service names for clarity.
+* **State Your Intent Clearly**: Use action words like "create," "show," "get," "update," "change," "increase," or "delete."
+* **Combine Queries**: You can ask for information and then act on it in a subsequent command.
 
-How It Works
-You issue a command in the chat window. InsideIQ parses your intent, identifies the resources you're referring to, and formulates an action plan. For any action that modifies or deletes a service, you will always be presented with a confirmation prompt before execution.
+### Example CRUD Commands
 
-Command Structure and Best Practices
-Be Specific: Include identifiers like circuit IDs, locations, or service names for clarity.
-
-State Your Intent Clearly: Use action words like "create," "show," "get," "update," "change," "increase," or "delete."
-
-Combine Queries: You can ask for information and then act on it in a subsequent command.
-
-Example CRUD Commands
 The following table provides examples of how you can manage your resources using natural language.
 
-Intent / Action	Resource	Example Command	Expected Outcome
-Create (C)	L2 Connection	"Create a new 1 Gbps E-Line service between our port in Chicago and our port in New York."	InsideIQ initiates the provisioning workflow and prompts you for any additional required details.
-Create (C)	Cloud Connection	"Provision a new 500 Mbps connection to AWS in us-east-1 using my existing port."	InsideIQ begins the cloud on-ramp provisioning process.
-Read (R)	Statistics	"Show me the bandwidth utilization stats for circuit ID ZYO-12345 for the last 24 hours."	InsideIQ displays a chart or summary of the requested statistics directly in the chat.
-Read (R)	Events / Alarms	"Are there any active alarms on my DIA service in London?"	InsideIQ queries the event management system and reports the status of any relevant alarms.
-Read (R)	Service Details	"Get the configuration details for my Azure ExpressRoute connection ER-ASH-01."	InsideIQ returns key configuration data like VLAN IDs, peer IPs, and service keys.
-Update (U)	Bandwidth	"Increase the bandwidth of circuit ZYO-54321 to 2 Gbps."	InsideIQ presents a summary of the change and the associated cost, then asks for confirmation to proceed.
-Update (U)	Configuration	"Update the description of my port in Dallas to 'Primary Data Center Uplink'."	InsideIQ makes the requested text change to the resource's metadata after confirmation.
-Delete (D)	Connection	"Decommission the Layer 2 service with ID ZYO-98765."	InsideIQ presents a critical warning and requires explicit confirmation before initiating the de-provisioning process.
+| Intent / Action | Resource          | Example Command                                                                                         | Expected Outcome                                                                                             |
+| :-------------- | :---------------- | :------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------- |
+| **Create (C)** | L2 Connection     | "Create a new 1 Gbps E-Line service between our port in Chicago and our port in New York."                | InsideIQ initiates the provisioning workflow and prompts you for any additional required details.            |
+| **Create (C)** | Cloud Connection  | "Provision a new 500 Mbps connection to AWS in us-east-1 using my existing port."                         | InsideIQ begins the cloud on-ramp provisioning process.                                                      |
+| **Read (R)** | Statistics        | "Show me the bandwidth utilization stats for circuit ID `ZYO-12345` for the last 24 hours."                 | InsideIQ displays a chart or summary of the requested statistics directly in the chat.                       |
+| **Read (R)** | Events / Alarms   | "Are there any active alarms on my DIA service in London?"                                              | InsideIQ queries the event management system and reports the status of any relevant alarms.                  |
+| **Read (R)** | Service Details   | "Get the configuration details for my Azure ExpressRoute connection `ER-ASH-01`."                           | InsideIQ returns key configuration data like VLAN IDs, peer IPs, and service keys.                           |
+| **Update (U)** | Bandwidth         | "Increase the bandwidth of circuit `ZYO-54321` to 2 Gbps."                                              | InsideIQ presents a summary of the change and the associated cost, then asks for confirmation to proceed.    |
+| **Update (U)** | Configuration     | "Update the description of my port in Dallas to 'Primary Data Center Uplink'."                            | InsideIQ makes the requested text change to the resource's metadata after confirmation.                      |
+| **Delete (D)** | Connection        | "Decommission the Layer 2 service with ID `ZYO-98765`."                                                 | InsideIQ presents a **critical warning** and requires explicit confirmation before initiating the de-provisioning process. |
 
-Export to Sheets
-Safety First: Confirmation and Verification 🛡️
+## Safety First: Confirmation and Verification 🛡️
+
 Your network is critical, and we've built InsideIQ with safety as a top priority.
 
-Important: No service-impacting change (Update, Delete) or new service creation (Create) will ever be executed without your explicit approval.
+> **Important**: No service-impacting change (Update, Delete) or new service creation (Create) will ever be executed without your explicit approval.
 
 After you issue a command to modify a resource, InsideIQ will respond with a summary of the planned action, including the specific resource to be changed and the nature of the change. You will then be prompted to confirm by typing "yes," "confirm," or clicking an "Approve" button before the action is sent to the orchestration engine. This ensures you have a final opportunity to review and prevent any unintended changes. ✅
 
-Understanding the Scope and Limitations
+## Understanding the Scope and Limitations
+
 While incredibly powerful, it's helpful to know the current scope of InsideIQ:
 
-Knowledge-Bound: InsideIQ's knowledge is limited to the Zayo Knowledge Base. It cannot answer questions about third-party services not documented by Zayo or provide general internet search results.
-
-Focus on Resources: The Natural Language Control is focused on network resources managed within the DynamicLink portal. It cannot manage user accounts, billing information, or support tickets at this time.
-
-Complex Workflows: For highly complex, multi-stage provisioning or troubleshooting scenarios, InsideIQ may guide you through the initial steps before recommending you engage with a support engineer.
+* **Knowledge-Bound**: InsideIQ's knowledge is limited to the Zayo Knowledge Base. It cannot answer questions about third-party services not documented by Zayo or provide general internet search results.
+* **Focus on Resources**: The Natural Language Control is focused on network resources managed within the DynamicLink portal. It cannot manage user accounts, billing information, or support tickets at this time.
+* **Complex Workflows**: For highly complex, multi-stage provisioning or troubleshooting scenarios, InsideIQ may guide you through the initial steps before recommending you engage with a support engineer.
 
 InsideIQ is a continuously evolving platform. We are always expanding its knowledge and capabilities to better serve you.
