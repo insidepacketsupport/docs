@@ -1,107 +1,116 @@
 ---
-title: 'Troubleshooting'
-description: 'Preview changes locally to update your docs'
+title: "InsideIQ - Your AI-Powered NaaS Assistant"
 ---
 
-<Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding. <br />
-  Please upgrade to ```docs.json``` before proceeding and delete the legacy ```mint.json``` file.
-</Info>
+Welcome to InsideIQ, your intelligent, conversational assistant integrated directly into the DynamicLink NaaS portal. InsideIQ is designed to streamline your workflow, provide instant support, and give you unprecedented control over your network resources using simple, natural language.
 
-Follow these steps to install and run Mintlify on your operating system:
+This chapter will guide you through the two core functionalities of InsideIQ:
 
-**Step 1**: Install Mintlify:
+AI-Powered Support Bot: Get instant, reliable answers to your questions.
 
-<CodeGroup>
+Natural Language Resource Control: Manage your network services using conversational commands.
 
-  ```bash npm
-  npm i -g mintlify
-  ```
+The Foundation: Grounded & Reliable AI 🧠
+Before we dive into the features, it's crucial to understand what makes InsideIQ so reliable. Every piece of information, every answer, and every proposed action from InsideIQ is strictly grounded in Zayo's comprehensive and authoritative Knowledge Base.
 
-```bash yarn
-yarn global add mintlify
-```
+We use a sophisticated approach called Retrieval-Augmented Generation (RAG). Think of it like this: Instead of a general AI that might guess or provide outdated information, InsideIQ is like a master librarian who has read every single page of Zayo's official documentation, operational procedures, and business rules. When you ask a question or issue a command, InsideIQ first finds the exact, relevant passages from this official library and then uses that information to construct its response.
 
-</CodeGroup>
+This grounding guarantees that all information and automation are:
 
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
+Accurate: Consistent with Zayo's official documentation.
 
-```bash
-mintlify dev
-```
+Safe: Aligned with established operational procedures.
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+Compliant: Adheres to current business rules.
 
-### Custom Ports
+This approach minimizes the risk of misinterpretation or erroneous actions, giving you the confidence to trust the answers and actions prompted by InsideIQ.
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+Part 1: The AI-Powered Support Bot 💬
+The support bot functionality is your first line of defense for troubleshooting, "how-to" questions, and understanding NaaS concepts. Instead of opening a ticket or searching through documentation, you can simply ask InsideIQ.
 
-```bash
-mintlify dev --port 3333
-```
+How to Use the Support Bot
+Simply open the InsideIQ chat window and type your question in plain English. The more specific you are, the better the answer will be.
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+Example Questions You Can Ask:
+Troubleshooting:
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
+"What are the common causes of packet loss on a DIA circuit?"
 
-## Mintlify Versions
+"My latency to the AWS us-east-1 on-ramp seems high. What are the first steps to investigate?"
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
+"How do I interpret the statistics for my E-Line service?"
 
-<CodeGroup>
+How-To & Procedural:
 
-```bash npm
-npm i -g mintlify@latest
-```
+"How do I add a new VLAN to my existing port?"
 
-```bash yarn
-yarn global upgrade mintlify
-```
+"What is the process for upgrading the bandwidth of my Layer 3 connection?"
 
-</CodeGroup>
+"Show me the steps to configure BGP for a new Azure ExpressRoute."
 
-## Validating Links
+Definitions & Concepts:
 
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
+"What is the difference between an E-Line and an E-LAN service?"
 
-```bash
-mintlify broken-links
-```
+"Explain what Committed Information Rate (CIR) means."
 
-## Deployment
+"What are Zayo's standard service level objectives for DIA?"
 
-<Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
-</Tip>
+InsideIQ will analyze your question, retrieve the relevant information from the knowledge base, and provide a synthesized, easy-to-understand answer directly in the chat window.
 
-If the deployment is successful, you should see the following:
+Part 2: Natural Language Resource Control ⚙️
+This is where InsideIQ transforms from a knowledgeable assistant into a powerful operational tool. You can perform CRUD (Create, Read, Update, Delete) operations on your network resources simply by telling InsideIQ what you want to do.
 
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+This feature applies to a wide range of your DynamicLink resources, including:
 
-## Code Formatting
+L2 & L3 Connections (E-Line, E-LAN, etc.)
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+Dedicated Internet Access (DIA)
 
-## Troubleshooting
+Cloud Connections (AWS, Azure, Google Cloud, etc.)
 
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+Service Events & Alarms
 
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-  </Accordion>
+Performance Statistics
 
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
+How It Works
+You issue a command in the chat window. InsideIQ parses your intent, identifies the resources you're referring to, and formulates an action plan. For any action that modifies or deletes a service, you will always be presented with a confirmation prompt before execution.
 
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+Command Structure and Best Practices
+Be Specific: Include identifiers like circuit IDs, locations, or service names for clarity.
+
+State Your Intent Clearly: Use action words like "create," "show," "get," "update," "change," "increase," or "delete."
+
+Combine Queries: You can ask for information and then act on it in a subsequent command.
+
+Example CRUD Commands
+The following table provides examples of how you can manage your resources using natural language.
+
+Intent / Action	Resource	Example Command	Expected Outcome
+Create (C)	L2 Connection	"Create a new 1 Gbps E-Line service between our port in Chicago and our port in New York."	InsideIQ initiates the provisioning workflow and prompts you for any additional required details.
+Create (C)	Cloud Connection	"Provision a new 500 Mbps connection to AWS in us-east-1 using my existing port."	InsideIQ begins the cloud on-ramp provisioning process.
+Read (R)	Statistics	"Show me the bandwidth utilization stats for circuit ID ZYO-12345 for the last 24 hours."	InsideIQ displays a chart or summary of the requested statistics directly in the chat.
+Read (R)	Events / Alarms	"Are there any active alarms on my DIA service in London?"	InsideIQ queries the event management system and reports the status of any relevant alarms.
+Read (R)	Service Details	"Get the configuration details for my Azure ExpressRoute connection ER-ASH-01."	InsideIQ returns key configuration data like VLAN IDs, peer IPs, and service keys.
+Update (U)	Bandwidth	"Increase the bandwidth of circuit ZYO-54321 to 2 Gbps."	InsideIQ presents a summary of the change and the associated cost, then asks for confirmation to proceed.
+Update (U)	Configuration	"Update the description of my port in Dallas to 'Primary Data Center Uplink'."	InsideIQ makes the requested text change to the resource's metadata after confirmation.
+Delete (D)	Connection	"Decommission the Layer 2 service with ID ZYO-98765."	InsideIQ presents a critical warning and requires explicit confirmation before initiating the de-provisioning process.
+
+Export to Sheets
+Safety First: Confirmation and Verification 🛡️
+Your network is critical, and we've built InsideIQ with safety as a top priority.
+
+Important: No service-impacting change (Update, Delete) or new service creation (Create) will ever be executed without your explicit approval.
+
+After you issue a command to modify a resource, InsideIQ will respond with a summary of the planned action, including the specific resource to be changed and the nature of the change. You will then be prompted to confirm by typing "yes," "confirm," or clicking an "Approve" button before the action is sent to the orchestration engine. This ensures you have a final opportunity to review and prevent any unintended changes. ✅
+
+Understanding the Scope and Limitations
+While incredibly powerful, it's helpful to know the current scope of InsideIQ:
+
+Knowledge-Bound: InsideIQ's knowledge is limited to the Zayo Knowledge Base. It cannot answer questions about third-party services not documented by Zayo or provide general internet search results.
+
+Focus on Resources: The Natural Language Control is focused on network resources managed within the DynamicLink portal. It cannot manage user accounts, billing information, or support tickets at this time.
+
+Complex Workflows: For highly complex, multi-stage provisioning or troubleshooting scenarios, InsideIQ may guide you through the initial steps before recommending you engage with a support engineer.
+
+InsideIQ is a continuously evolving platform. We are always expanding its knowledge and capabilities to better serve you.
