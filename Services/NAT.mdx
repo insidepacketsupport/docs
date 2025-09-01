@@ -1,0 +1,54 @@
+---
+title: "How to Configure NAT Rules"
+description: "A step-by-step guide to understanding and configuring Network Address Translation (NAT) in the DynamicLink portal."
+---
+
+
+## What is NAT (Network Address Translation)?
+
+**NAT (Network Address Translation)** is a method used to change the IP address of traffic as it passes through a routing device. Its primary use cases include enhancing security by hiding the original IP address of a packet and enabling translation between private and public IP addresses to conserve public IP address space.
+
+### Key NAT Types
+
+- **SNAT (Source NAT)**: This is commonly used to allow multiple devices within a private network (like an office or home) to share a single public internet connection. It works by masking multiple internal private IP addresses behind one public IP address.
+- **1:1 NAT**: This translates one internal, private IP address to one external, public IP address. It is sometimes described as a DMZ (Demilitarized Zone) because it fully exposes an internal host to the outside network, making it directly reachable from the internet.
+
+---
+
+## How to Use NAT in the DynamicLink Portal
+
+To configure NAT rules in the DynamicLink portal, follow these steps:
+
+### Step 1: Enable Address Translation (NAT) Service for the Tenant
+
+Before you can create NAT rules, the service must be enabled for the tenant.
+
+1. Navigate to **Tenants** from the bottom menu.
+2. Select the desired tenant from the list.
+3. Click the **pencil icon** to edit the tenant settings.
+4. Under "Select services for the tenant", ensure **Address Translation (NAT)** is enabled.
+
+### Step 2: Add a NAT Rule
+
+Once the service is enabled, you can create the specific translation rules.
+
+1. Navigate to the **Services** menu (bottom menu).
+2. Select **My Services**.
+3. Click on **Applications: NAT**.
+4. Click the **\+ Add** button to open the "Add NAT Rule" dialog.
+5. In the dialog that appears, fill out the following fields:
+   - **Type**: Select the NAT type from the drop-down list. DynamicLink supports **Source NAT**, **1:1 NAT**, and **Port Forwarding**.
+   - **Name**: Give the NAT rule a descriptive name (e.g., `WebServer-1-to-1-NAT`).
+   - **Description**: Provide a freeform text description explaining the rule's purpose.
+   - **Inside**:
+     - For **1:1 NAT**, enter the single internal IP address to translate from.
+     - For **Source NAT**, enter the internal subnet to translate from (e.g., `192.168.1.0/24`).
+   - **Outside**: Choose an interface to use. If the NAT rule is for internet access, select the interface provided for that purpose. Entering a single IP here is typically only used for 1:1 NAT applications.
+6. Click **Add** to save the new NAT rule.
+
+### Step 3: Edit or Delete a NAT Rule (Optional)
+
+You can easily manage your existing NAT rules.
+
+- **To Edit**: Hover the mouse over a NAT rule in the list, click the **pencil icon**, make the necessary changes, and then click **Edit** to save.
+- **To Delete**: Hover the mouse over the rule in the list, then click the **trashcan icon** to permanently remove it.
