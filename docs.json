@@ -80,7 +80,7 @@
               "/Services/fwdia",
               "docs/services/NAT",
               "Services/ddos",
-              "Services/Web-Filter",
+              "Services/webfilter",
               "docs/services/my-services"
             ]
           },
