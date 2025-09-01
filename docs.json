@@ -50,6 +50,12 @@
               "docs/build-your-network/virtual-circuit"
             ]
           },
+           {
+            "group": "What is new on Dynamiclink",
+            "pages": [
+              "news",
+            ]
+          },
           {
             "group": "Insights",
             "pages": [
