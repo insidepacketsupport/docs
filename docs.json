@@ -77,7 +77,7 @@
             "pages": [
               "/Services/servicesintro",
               "/Services/fw",
-              "/Services/fw",
+              "/Services/fwdia",
               "docs/services/NAT",
               "Services/ddos",
               "Services/Web-Filter",
