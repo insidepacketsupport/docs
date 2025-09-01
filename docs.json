@@ -62,17 +62,6 @@
             ]
           },
           {
-            "group": "Network",
-            "pages": [
-              "docs/network/introduction",
-              "docs/network/cloud-and-connections",
-              "docs/network/cloud-router",
-              "docs/network/dia",
-              "docs/network/groups",
-              "docs/network/looking-glass"
-            ]
-          },
-          {
             "group": "Services",
             "pages": [
               "/Services/servicesintro",
