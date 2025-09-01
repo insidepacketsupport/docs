@@ -27,6 +27,12 @@
             ]
           },
           {
+            "group": "Videos",
+            "pages": [
+              "docs/video-resources"
+            ]
+          },
+          {
             "group": "Use Cases",
             "pages": [
               "usecases/intro",
