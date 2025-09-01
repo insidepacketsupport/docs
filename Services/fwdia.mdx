@@ -3,7 +3,7 @@ title: "Step-by-Step Guide: Configuring DIA Firewall Rules"
 description: "Learn how to create and manage Dedicated Internet Access (DIA) firewall rules in the DynamicLink portal."
 ---
 
-## Introduction
+## Introduction 
 
 This guide provides a step-by-step process for creating firewall rules specifically for your Dedicated Internet Access (DIA) service. These rules are essential for securing your network by controlling inbound and outbound traffic.
 
@@ -11,34 +11,30 @@ This guide provides a step-by-step process for creating firewall rules specifica
 
 Follow these instructions carefully to configure a new rule.
 
-1.  **Navigate to DIA Firewall**
-    * In the Admin GUI, open the **Services** menu from the main navigation bar.
-    * From the dropdown, select **DIA Firewall**. This will take you to the DIA firewall rule management page.
-
-2.  **Add a New Rule**
-    * Click the **Add** button to launch the "Create DIA Firewall Rule" dialog box.
-
-3.  **Configure Rule Parameters**
-    * Fill in the following fields to define the behavior of your rule:
-
-    * **Name**: Enter a unique and descriptive name that helps you identify the rule's purpose (e.g., `Block-Outbound-FTP`).
-    * **Priority**: Assign a numerical value. **Lower numbers have higher priority** and are processed first.
-    * **Admin State**: Toggle to **Enable** or **Disable** the rule. New rules should be enabled to be active.
-    * **Description**: (Optional) Provide a detailed explanation of what the rule does for future reference.
-    * **IP Protocol**: Select either `IPv4` or `IPv6`. This choice must match the IP version of the Source and Destination prefixes.
-    * **Protocol**: Choose the transport protocol, such as `TCP`, `UDP`, `ICMP`, or select `Any` to have the rule apply to all protocols.
-    * **Action**:
-        * `Permit`: Allows traffic that matches the rule.
-        * `Deny`: Blocks traffic that matches the rule.
-    * **Source**: Define the traffic's origin by entering an IP prefix (e.g., `10.0.0.0/8`) or selecting a pre-configured IP Group.
-    * **Destination**: Define the traffic's destination by entering an IP prefix or selecting a pre-configured IP Group.
-    * **Source Port**: Specify the source port number or a range (e.g., `1024-65535`).
-    * **Destination Port**: Specify the destination port number or a range (e.g., `22` for SSH).
-    * **Source VI**: Select the source Virtual Interface (VI) where the traffic originates.
-    * **Destination VI**: Select the destination Virtual Interface (VI) where the traffic is going.
-
-4.  **Save the Rule**
-    * After reviewing your settings, click the **Add** button at the bottom of the dialog to save and activate the new rule.
+1. **Navigate to DIA Firewall**
+   - In the Admin GUI, open the **Services** menu from the main navigation bar.
+   - From the dropdown, select **DIA Firewall**. This will take you to the DIA firewall rule management page.
+2. **Add a New Rule**
+   - Click the **Add** button to launch the "Create DIA Firewall Rule" dialog box.
+3. **Configure Rule Parameters**
+   - Fill in the following fields to define the behavior of your rule:
+   - **Name**: Enter a unique and descriptive name that helps you identify the rule's purpose (e.g., `Block-Outbound-FTP`).
+   - **Priority**: Assign a numerical value. **Lower numbers have higher priority** and are processed first.
+   - **Admin State**: Toggle to **Enable** or **Disable** the rule. New rules should be enabled to be active.
+   - **Description**: (Optional) Provide a detailed explanation of what the rule does for future reference.
+   - **IP Protocol**: Select either `IPv4` or `IPv6`. This choice must match the IP version of the Source and Destination prefixes.
+   - **Protocol**: Choose the transport protocol, such as `TCP`, `UDP`, `ICMP`, or select `Any` to have the rule apply to all protocols.
+   - **Action**:
+     - `Permit`: Allows traffic that matches the rule.
+     - `Deny`: Blocks traffic that matches the rule.
+   - **Source**: Define the traffic's origin by entering an IP prefix (e.g., `10.0.0.0/8`) or selecting a pre-configured IP Group.
+   - **Destination**: Define the traffic's destination by entering an IP prefix or selecting a pre-configured IP Group.
+   - **Source Port**: Specify the source port number or a range (e.g., `1024-65535`).
+   - **Destination Port**: Specify the destination port number or a range (e.g., `22` for SSH).
+   - **Source VI**: Select the source Virtual Interface (VI) where the traffic originates.
+   - **Destination VI**: Select the destination Virtual Interface (VI) where the traffic is going.
+4. **Save the Rule**
+   - After reviewing your settings, click the **Add** button at the bottom of the dialog to save and activate the new rule.
 
 > **Key Concept: Rule Processing Logic**
 > Firewall rules are processed based on their **Priority**, with lower numbers being evaluated first. For a rule's action (`Permit` or `Deny`) to be applied, all the defined filters (Source, Destination, Port, etc.) within that single rule must match the traffic. This is a logical **AND** condition.
