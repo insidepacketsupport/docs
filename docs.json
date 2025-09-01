@@ -49,13 +49,7 @@
               "docs/build-your-network/cloud-router",
               "docs/build-your-network/virtual-circuit"
             ]
-          },
-           {
-            "group": "What is new on Dynamiclink",
-            "pages": [
-              "news",
-            ]
-          },
+          },   
           {
             "group": "Insights",
             "pages": [
@@ -88,6 +82,12 @@
               "Services/ddos",
               "Services/Web-Filter",
               "docs/services/my-services"
+            ]
+          },
+          {
+            "group": "What's new on Dynamiclink",
+            "pages": [
+              "news",
             ]
           },
           {
