@@ -76,8 +76,8 @@
             "group": "Services",
             "pages": [
               "/Services/servicesintro",
-              "docs/services/fw",
-              "docs/services/fw",
+              "/Services/fw",
+              "/Services/fw",
               "docs/services/NAT",
               "Services/ddos",
               "Services/Web-Filter",
