@@ -78,9 +78,9 @@
               "/Services/servicesintro",
               "/Services/fw",
               "/Services/fwdia",
-              "docs/services/NAT",
-              "Services/ddos",
-              "Services/webfilter",
+              "/Services/NAT",
+              "/Services/ddos",
+              "/Services/webfilter",
               "docs/services/my-services"
             ]
           },
