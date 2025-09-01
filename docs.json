@@ -81,7 +81,7 @@
               "/Services/NAT",
               "/Services/ddos",
               "/Services/webfilter",
-              "docs/services/my-services"
+              "/Services/myservices"
             ]
           },
           {
