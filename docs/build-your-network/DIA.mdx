@@ -1,0 +1,61 @@
+---
+title: "Guide: Public IP Pools and DIA"
+description: "Learn how to manage and allocate Public IP addresses for NaaS and Direct Internet Access (DIA) services."
+---
+
+
+The DynamicLink platform includes a robust Public IP Pools Management (IPAM) system. This guide explains what IPAM is and provides a step-by-step process for configuring and using public IP pools for both Network as a Service (NaaS) and Direct Internet Access (DIA).
+
+## What are Public IP Pools?
+
+**Public IP Pools** are ranges of public IP addresses managed within the DynamicLink platform. They are used to automatically or manually allocate IP addresses to tenant services that require internet connectivity. Properly configuring these pools is the first step in providing internet access to your tenants.
+
+The platform distinguishes between two fundamental types of internet access, each with its own type of IP pool.
+
+- **NaaS Pools**: These pools are reserved for services that connect to the internet through the shared, multi-tenant DynamicLink NaaS platform infrastructure. This is a secure, managed way to provide internet access.
+- **DIA Pools**: These pools are used for services that require **Direct Internet Access**. A DIA connection provides a dedicated, uncontended link to the internet, often used for critical applications that need guaranteed bandwidth and performance.
+
+---
+
+## Step-by-Step Guide to Configuring Public IP Pools
+
+Follow this process to set up and utilize your public IP address pools correctly.
+
+### Step 1: Understand IPAM Routing Types
+
+Before configuring pools, it's important to understand how the platform routes traffic for NaaS and DIA services. While detailed routing configurations are handled by the system, knowing the distinction is key:
+
+- **NaaS Internet Access**: Traffic is routed from the tenant's virtual network through the platform's central internet gateways. IP addresses from the **NaaS Pool** are applied here.
+- **Direct Internet Access (DIA)**: Traffic is routed directly from the tenant's service to the internet via a dedicated circuit. IP addresses from the **DIA Pool** are assigned to this dedicated connection.
+
+### Step 2: Configure Public IP Pools
+
+As an administrator, you must define the IP address ranges that the platform can use.
+
+1. Navigate to the administrator dashboard.
+2. Locate the **IPAM** or **Address Management** section.
+3. You will find options to configure **NaaS Pools** and **DIA Pools**.
+4. **For NaaS Pools**:
+   - Click **Add NaaS Pool**.
+   - Enter a descriptive name for the pool (e.g., `Shared-Tenant-NaaS-Pool-1`).
+   - Enter the public IP range in CIDR notation (e.g., `45.67.89.0/24`).
+   - Save the configuration.
+5. **For DIA Pools**:
+   - Click **Add DIA Pool**.
+   - Enter a name for the pool (e.g., `Customer-A-DIA-Pool`).
+   - Enter the dedicated public IP range in CIDR notation (e.g., `123.45.67.0/28`).
+   - Save the configuration.
+
+### Step 3: Provision Tenant Internet Access
+
+Once your IP pools are configured, you can use them to provide internet access to your tenants.
+
+1. Navigate to the **Tenants** menu and select the tenant you wish to configure.
+2. Go to the tenant's **Services** or **Connectivity** settings.
+3. Click **Add Internet Access**.
+4. In the configuration dialog, you will be prompted to choose the type of internet access:
+   - **For NaaS Internet Access**: Select this option. The platform will automatically assign an available IP address from the pre-configured **NaaS Pools**.
+   - **For Direct Internet Access**: Select this option. You will then be prompted to choose a specific, pre-configured **DIA Pool** to allocate an IP address from for this tenant's dedicated service.
+5. Complete the remaining service configuration details and save.
+
+By following these steps, you can effectively manage your public IP address allocation and provide the appropriate type of internet access for your tenants' needs.

@@ -1,87 +1,77 @@
 ---
-title: "Public IPs"
-description: "Learn how to request Public IP addresses, which are essential for enabling external connectivity and services like Dedicated Internet Access (DIA)."
+title: "Guide: Managing Public IPs & DIA Connections"
+description: "A step-by-step guide on how to order public IPs and use them to create and manage Dedicated Internet Access (DIA) connections."
 ---
 
-**Overview**
-Public IP addresses are required to make your services accessible from the internet. The NaaS portal allows you to easily request and manage blocks of IPv4 or IPv6 addresses. Once acquired, these IPs can be used to set up services like Dedicated Internet Access (DIA), including connections that use BGP for routing.
 
-How to Order Public IPs
-Navigate to Public IPs: From the main menu, go to Build Your Network \> Public IPs.
+## Overview 🌐
 
-Request IPs: Click the \+ Request IP button.
+Public IP addresses are essential for making your services accessible from the internet. The DynamicLink portal provides a streamlined process to request and manage blocks of **IPv4** or **IPv6** addresses. Once a public IP block is assigned to your account, you can use it to provision powerful services like **Dedicated Internet Access (DIA)**, including advanced connections that use **BGP** for routing.
 
-Configure Your Request:
+This guide will walk you through ordering IPs and configuring both standard and BGP-enabled DIA connections.
 
-Name: Give your request a descriptive name.
+---
 
-Location: Select the location where the IPs will be used.
+## How to Order Public IPs
 
-Pool Size: Choose the size of the IP block you need (e.g., /29, /28).
+Your existing IP pool, already assigned to your network, is displayed on the Public IPs page. Follow these steps to request a new block.
 
-Submit Request: Click Request to submit.
+1. **Navigate to Public IPs**: From the main portal menu, go to **Build Your Network \> Public IPs**.
+2. **Request IPs**: Click the **\+ Request IP** button to open the request form.
+3. **Configure Your Request**:
+   - **Name**: Give your request a descriptive name for easy identification (e.g., `WebApp-DIA-IPs-London`).
+   - **Location**: Select the metro location where the IP addresses will be used.
+   - **Pool Size**: Choose the size of the IP block you need from the dropdown menu (e.g., `/29` for 5 usable IPs, `/28` for 13 usable IPs).
+4. **Submit Request**: Click **Request**. Your request will be provisioned and the new IP block will be added to your pool.
 
-<img
-  src="https://www.google.com/search?q=https://placehold.co/600x200/f0f0f0/333%3Ftext%3DRequest%2BIP%2BScreen"
-  alt="Request IP Screen"
-  style={{ borderRadius:"0.5rem",margin:"1rem 0" }}
-/>
+---
 
-<Note>
-  Your existing IP pool, already assigned to your network, is displayed on this page. New requests will be provisioned and added to this pool.
-</Note>
+## How to Create a Standard DIA Connection
 
-Using Public IPs for Internet Access
-Once you have an available public IP block, you can use it to create a Dedicated Internet Access (DIA) connection.
+A standard DIA connection provides dedicated, reliable internet service with symmetrical (equal upload/download) bandwidth.
 
-<Tabs>
-  <Tab title="Create a Standard DIA Connection">
-    A standard DIA connection provides dedicated, reliable internet service with symmetrical bandwidth.
+### Step 1: Verify Prerequisites
 
-    Verify Prerequisites:
+- **Public IP**: Ensure you have an available Public IP block in the desired location by checking the **Public IPs** tab.
+- **Port Bandwidth**: Go to the **Ports** tab and confirm the port in that same location has enough available bandwidth for the new connection.
 
-    Public IP: Ensure you have an available Public IP block in the desired location by checking the Public IPs tab.
+### Step 2: Create the Connection
 
-    Port Bandwidth: Go to the Ports tab and confirm the port in that location has sufficient bandwidth.
+1. **Start Connection**: Navigate to the **Ports** tab, find the desired port, and click **Add a Connection**. The A-side (your port) will be auto-populated.
+2. **Configure A-Side**: Set up the **VLAN** and select the **bandwidth speed** for the connection.
+3. **Configure Z-Side (Internet)**:
+   - In the Z-side destination search box, select the **Internet** link.
+   - Under **DIA Name**, a dropdown will appear. Pick the **Public IP block** you want to use for this connection.
+4. **Finalize**: Confirm the bandwidth and other details, then click **Add** to activate the DIA connection.
 
-    Start Connection: On the desired port, click Add a Connection. The A-side will be auto-populated.
+---
 
-    Configure A-Side: Set up the VLAN and select the bandwidth speed.
+## How to Create a BGP DIA Connection
 
-    Configure Z-Side (Internet):
+A BGP DIA connection offers advanced routing capabilities, allowing you to announce your own IP addresses (**BYOIP**) or set up multi-homed connections for enhanced resilience.
 
-    Select the Internet link.
+### Step 1: Set Up Your ASN
 
-    Under DIA Name, pick the Public IP block you want to use.
+- Navigate to **Build Your Network \> Public IPs**.
+- If you are bringing your own IP space, find the **ASN** section and click **\+ Set up new**.
+- Enter your **Autonomous System Number** and save it.
 
-    Finalize: Confirm the bandwidth and click Add to activate the DIA connection.
-  </Tab>
-  <Tab title="Create a BGP DIA Connection">
-    A BGP DIA connection offers advanced routing capabilities, allowing you to bring your own IP addresses (BYOIP) or set up multi-homed connections for enhanced resilience.
+### Step 2: Create the BGP Connection
 
-    Set Up ASN:
+1. **Request IP (If Needed)**: If you are not using your own IPs, request a new block by following the steps in the first section.
+2. **Create the Connection**: Follow the same initial steps as a standard DIA connection (select port, configure A-side).
+3. **Configure BGP**: In the Z-side (Internet) configuration, you will see a toggle or checkbox to **Use BGP**.
+   - Enable this option.
+   - Choose the **ASN** you configured in the previous step.
+4. **Finalize**: Complete the connection setup. After activation, you will need to configure your BGP peering details on your edge device.
 
-    Navigate to Build Your Network \> Public IPs.
+---
 
-    If you are bringing your own IP space, click \+ Set up new under the ASN section and enter your Autonomous System Number.
+## How to Modify DIA Connection Speed
 
-    Request IP (if needed): If you are not using your own IPs, request a new block as described above.
+You can easily adjust the bandwidth of an existing DIA connection.
 
-    Create the Connection: Follow the same steps as a standard DIA connection.
-
-    Configure BGP: In the Z-side (Internet) configuration, you will see an option to Use BGP. Select this and choose the ASN you configured.
-
-    Finalize: Complete the connection setup. You will then need to configure your BGP peering details.
-  </Tab>
-  <Tab title="Changing DIA Speed">
-    You can easily adjust the speed of an existing DIA connection.
-
-    Access Connection Settings: Locate your DIA connection in the list and click the Edit icon.
-
-    Verify Port Bandwidth: Ensure the underlying physical port can support the new speed.
-
-    Edit Bandwidth: In the connection settings, change the bandwidth to your desired speed (e.g., from 50 Mbps to 100 Mbps).
-
-    Save Changes: Click Edit to apply the new speed.
-  </Tab>
-</Tabs>
+1. **Access Connection Settings**: Locate your DIA connection in your connection list and click the **Edit icon** (pencil).
+2. **Verify Port Bandwidth**: Before increasing speed, ensure the underlying physical port has enough available capacity to support the change.
+3. **Edit Bandwidth**: In the connection settings, change the **bandwidth** to your desired new speed (e.g., from 50 Mbps to 100 Mbps).
+4. **Save Changes**: Click **Edit** to apply the new speed. The change is typically provisioned within minutes.
