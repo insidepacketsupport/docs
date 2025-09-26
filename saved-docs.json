@@ -21,6 +21,41 @@
             ]
           },
           {
+            "group": "Caitlin Videos",
+            "pages": [
+              "docs/video-resources"
+            ]
+          },
+          {
+            "group": "insideIQ",
+            "pages": [
+              "/insideIQ"
+            ]
+          },
+          {
+            "group": "Use Cases",
+            "pages": [
+              "usecases/intro",
+              "usecases/internet", 
+              "usecases/ClourRouterMCN",
+               "usecases/troubleshot",
+              "usecases/troubleshooting-connectivity-failures"
+            ]
+          },
+          {
+            "group": "Build Your Network",
+            "pages": [
+              "docs/build-your-network/introduction",
+              "docs/build-your-network/ordering-ports",
+              "docs/build-your-network/cloud-links",
+              "docs/build-your-network/public-ips",
+              "docs/build-your-network/my-services",
+              "docs/build-your-network/order-log",
+              "docs/build-your-network/cloud-router",
+              "docs/build-your-network/virtual-circuit"
+            ]
+          },   
+          {
             "group": "Insights",
             "pages": [
               "insights/insightsintro",
