@@ -16,47 +16,7 @@
           {
             "group": "Guides",
             "pages": [
-              "Welcome",
-              "quickstart"
-            ]
-          },
-          {
-            "group": "Insights",
-            "pages": [
-              "insights/insightsintro",
-              "insights/performance",
-              "insights/application-dns-insights",
-              "insights/security-insights",
-              "insights/LookingGlass",     
-              "insights/diagnosing-poor-application"
-            ]
-          },
-          {
-            "group": "Services",
-            "pages": [
-              "/Services/servicesintro",
-              "/Services/fw",
-              "/Services/fwdia",
-              "/Services/NAT",
-              "/Services/ddos",
-              "/Services/webfilter",
-              "/Services/myservices"
-            ]
-          },
-          {
-            "group": "What's new on Dynamiclink",
-            "pages": [
-              "news"
-            ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
-              "api-reference/introduction",
-              {
-                "group": "Endpoints",
-                "openapi": "openapi.json"
-              }
+              "Welcome"
             ]
           }
         ]
@@ -66,7 +26,7 @@
       "anchors": [
         {
           "anchor": "DynamicLink Private Preview",
-        "href": "https://www.zayo.com/info/dynamiclink/#tab-1",
+          "href": "https://www.zayo.com/info/dynamiclink/#tab-1",
           "icon": "newspaper"
         }
       ]
