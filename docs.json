@@ -7,6 +7,9 @@
     "light": "#F48120",
     "dark": "#212121"
   },
+  "seo": {
+    "indexing": "all"
+  },
   "favicon": "/zayo.png",
   "navigation": {
     "tabs": [
