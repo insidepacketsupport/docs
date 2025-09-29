@@ -21,6 +21,12 @@
             "pages": [
               "Welcome"
             ]
+          },
+          {
+            "group": "Videos",
+            "pages": [
+              "docs/video-resources"
+            ]
           }
         ]
       }
