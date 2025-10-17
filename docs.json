@@ -19,7 +19,8 @@
           {
             "group": "Guides",
             "pages": [
-              "Welcome"
+              "Welcome",
+              "docs/build-your-network/public-ips"
             ]
           },
           {
