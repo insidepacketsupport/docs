@@ -20,7 +20,9 @@
             "group": "Guides",
             "pages": [
               "Welcome",
-              "docs/build-your-network/public-ips"
+              "docs/build-your-network/public-ips",
+              "/Services/fwdia",
+              "usecases/internet"
             ]
           },
           {
