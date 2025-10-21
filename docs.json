@@ -16,13 +16,28 @@
       {
         "tab": "Documentation",
         "groups": [
-          {
-            "group": "Guides",
+          { "group": "Welcome",
             "pages": [
-              "Welcome",
-              "docs/build-your-network/public-ips",
-              "/Services/fwdia",
-              "usecases/internet"
+              "Welcome"
+            ]
+          },
+          { "group": "Ports",
+            "pages": [
+              "docs/ports"
+            ]
+          },
+          { "group": "Internet",
+            "pages": [
+              "docs/dia"
+            ]
+          },
+          {
+            "group": "Cloud Links",
+            "pages": [
+              "docs/cloud-links",
+              "docs/aws",
+              "docs/azure",
+              "docs/gcp"
             ]
           },
           {

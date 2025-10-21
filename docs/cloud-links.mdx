@@ -1,0 +1,58 @@
+---
+title: "Cloud Links Overview"
+---
+
+Cloud Links provide private, high-performance connectivity between your physical ports and a public cloud provider. Use them to:
+
+- Establish private, low-latency paths between your network and a public cloud (AWS, Azure, GCP).
+- Build a resilient, scalable foundation for hybrid and multi-cloud architectures.
+- Bypass the internet to provide enhanced security, reliability, and performance.
+
+Cloud Links come through your provisioned ports and leverage the Zayo DynamicLink fabric for reliability, performance, and security.
+
+## Core concepts
+
+- **A-side / Z-side**: A connection links two sides. The A-side is your initiating port; the Z-side is the destination.
+- **Bandwidth**: You allocate bandwidth for the connection. Ensure both ends have sufficient available capacity.
+- **VLANs**: VLANs segment traffic on a port. Each connection uses selected VLANs to isolate and identify the connection.
+- **Status lifecycle**: **Ordering**, **Pending**/**Provisioning** and **Available**/**Active**. Status is visible in the portal and (for clouds) within the provider console.
+- **BGP**: For cloud connections, BGP enables dynamic route exchange once the NNI is established.
+
+## Design guidance
+
+- **Redundancy**: Build dual links on separate ports/locations for high availability
+- **Capacity planning**: Size bandwidth to peak traffic; monitor and adjust as needs evolve
+- **Segmentation**: Use distinct VLANs per environment or application to simplify operations
+- **Observability**: Enable monitoring to track utilization, latency, and loss end-to-end
+
+## Connection types
+
+### Port-to-cloud connectivity
+
+Connect directly to public cloud providers via Network-to-Network Interface (NNI):
+
+- **AWS Direct Connect**: Create the connection in DynamicLink portal, then approve it in the AWS console. 
+- **GCP Cloud Interconnect**: Start in the Google Cloud Console to create the interconnect and obtain a pairing key. You will use this key to create the connection in DynamicLink. 
+- **Azure ExpressRoute**: Create the circuit in Azure to obtain a service key. You will use this key to create the connection in DynamicLink.
+
+#### Bandwidth options
+
+AWS, Azure, and Google Cloud allow the following bandwidths:
+
+- **50 Mbps**: Suitable for small workloads and testing
+- **100 Mbps**: Good for development environments
+- **200 Mbps**: Appropriate for small production workloads
+- **300 Mbps**: Medium-sized applications
+- **400 Mbps**: Larger applications with moderate traffic
+- **500 Mbps**: High-traffic applications
+- **1 Gbps**: Enterprise applications
+- **2 Gbps**: Large enterprise workloads
+- **5 Gbps**: High-bandwidth applications
+- **10 Gbps**: Maximum hosted connection bandwidth
+
+
+### Cloud-to-cloud connectivity
+
+You can create a Layer 2 virtual circuit between two cloud locations or two different cloud providers. This is useful if you need Layer 2 connectivity rather than Layer 3 connectivity (such as with Cloud Routers).
+
+Multi-cloud network fabrics allow AWS, Azure, and GCP resources to communicate as if on the same Layer-2 domain. This unified approach enables true workload portability across providers, removing the need for repeated reconfiguration.

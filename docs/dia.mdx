@@ -1,0 +1,50 @@
+---
+title: "Dedicated Internet Access (DIA)"
+---
+
+Direct Internet Access (DIA) provides a dedicated, uncontended link to the internet for critical applications that need guaranteed bandwidth and performance. Unlike shared internet connections, DIA offers exclusive access to your allocated bandwidth, ensuring consistent performance and reliability.
+
+<iframe src="https://www.veed.io/embed/6801cd66-1537-4c47-8b4b-c7973e97a2ec?watermark=1&color=&sharing=1&title=1" width="744" height="504" frameborder="0" title="Creating an Internet Connection on DynamicLink portal " webkitallowfullscreen mozallowfullscreen allowfullscreen />
+
+## Create a DIA connection
+
+Navigate to **Build Your Network > Ports**. Click **Add a Connection** in the upper right or click **Add connection** next to the port you are using. 
+
+Complete the following fields:
+
+**"A" Port**
+
+Select **Customer Port** and then complete the following fields:
+
+| Field | Description |
+| --- | --- |
+| **Port** | Select your source port. |
+| **VLAN** | Enter an available VLAN or enter "Native" to automatically direct traffic without using a VLAN ID. |
+| **BW** | Select a bandwidth capacity for the connection. You can later edit the connection to increase or decrease bandwidth. |
+
+
+**"Z" Port**
+
+Select **Internet** and then complete the following fields:
+
+| Field | Description |
+| --- | --- |
+| **Public IP** | Select **Request New** or select a public IP you have already requested. You can request public IPs from the public IP tab on the left. |
+| **IPv4 Size** | Select a subnet size. For most situations, a `/30` should be sufficient. |
+| **BW** | This will automatically update to match the bandwidth you selected for your port.  |
+
+Enter a connection name and then click **Add**. 
+
+You can find information about your IP pool under the **Public IPs** tab on the left. 
+
+You should configure your router's WAN interface one step higher than the gateway address. For example, with a gateway address of `80.246.11.101`, you would use `80.246.11.102`. 
+
+
+## Post-provisioning testing
+
+After your DIA connection is provisioned, you should test it to ensure it meets expectations. 
+
+* Test both upload and download speeds to confirm bandwidth allocation.
+* Verify that latency meets your requirements.
+* Configure your allocated IP addresses as needed.
+
