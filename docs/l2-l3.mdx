@@ -1,0 +1,74 @@
+---
+title: "Layer 2 vs. Layer 3"
+---
+
+The DynamicLink cloud router creates Layer 3 connections between data centers, the internet, and cloud environments.
+
+## Layer 2 (L2) vs. Layer 3 (L3) connections
+
+L2 and L3 connections correspond to different layers of the OSI networking model, each with distinct characteristics and use cases.
+
+### Layer 2 (Data Link Layer)
+
+Layer 2 connections operate using MAC (Media Access Control) addresses to forward data frames within the same network segment or VLAN. These connections are ideal for local area networks where devices need to communicate within the same broadcast domain.
+
+**Key characteristics:**
+- Uses MAC addresses for device identification
+- Operates within the same network segment or VLAN
+- Simple configuration with minimal overhead
+- High-speed communication within local networks
+
+**Advantages:**
+- Simplified configuration and management
+- Lower cost due to absence of routing overhead
+- Fast performance for local communication
+- Ideal for small to medium-sized networks
+
+**Limitations:**
+- Limited scalability as networks grow
+- Broadcast domain management becomes complex
+- Cannot route between different network segments
+- Less flexible for complex network topologies
+
+### Layer 3 (Network Layer)
+
+Layer 3 connections use IP addresses to route packets between different network segments or subnets. This layer enables inter-network communication, allowing data to traverse multiple networks and reach remote destinations.
+
+**Key characteristics:**
+- Uses IP addresses for routing decisions
+- Enables communication across different network segments
+- Supports routing protocols and advanced traffic management
+- Provides enhanced security capabilities
+
+**Advantages:**
+- Enhanced scalability for large networks
+- Improved traffic management through routing protocols
+- Ability to implement advanced security measures
+- Supports complex network topologies
+- Enables inter-VLAN communication
+
+**Considerations:**
+- Increased configuration complexity
+- Potentially higher costs due to routing hardware requirements
+- Requires networking expertise for proper implementation
+
+## When to choose L2 vs L3
+
+The choice between L2 and L3 connections depends on your specific network requirements, size, and complexity.
+
+Choose Layer 2 connections when:
+
+- Building small to medium-sized networks with devices in the same subnet
+- Requiring simple, high-speed communication without routing needs
+- Operating within a single broadcast domain
+- Cost is a primary consideration
+- Network management resources are limited
+
+Choose Layer 3 connections when:
+
+- Building larger, more complex networks spanning multiple subnets
+- Requiring inter-VLAN routing capabilities
+- Implementing advanced security measures
+- Needing to connect to remote locations or cloud environments
+- Planning for future network growth and scalability
+- Requiring sophisticated traffic management

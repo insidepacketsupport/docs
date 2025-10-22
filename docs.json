@@ -41,6 +41,13 @@
             ]
           },
           {
+            "group": "Cloud Router",
+            "pages": [
+              "docs/cloud-router",
+              "docs/l2-l3"
+            ]
+          },
+          {
             "group": "Videos",
             "pages": [
               "docs/video-resources"
