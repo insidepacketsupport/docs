@@ -35,9 +35,9 @@
             "group": "Cloud Links",
             "pages": [
               "docs/cloud-links",
-              "docs/cloud-link-aws",
-              "docs/cloud-link-azure",
-              "docs/cloud-link-gcp"
+              "docs/cloud-links-aws",
+              "docs/cloud-links-azure",
+              "docs/cloud-links-gcp"
             ]
           },
           {

@@ -1,0 +1,50 @@
+---
+title: "E-Line"
+---
+
+E-Line services connect exactly two endpoints (A-side and Z-side ports) creating a transparent Layer 2 link between sites:
+
+- **Layer 2**: Operates at the Ethernet/Data Link layer using MAC addresses
+- **Private & Dedicated**: Provides isolated, uncontended bandwidth between your locations
+- **VLAN-Based**: Uses VLANs to segment and identify the connection
+- **Flexible Bandwidth**: Supports various bandwidth options from 50 Mbps to 10 Gbps
+
+
+## Prerequisites
+
+Before creating an E-Line connection, ensure you have:
+
+- Two provisioned ports in DynamicLink (one for A-side, one for Z-side)
+- Sufficient available bandwidth on both ports
+- An understanding of which VLANs are available on each port
+
+## Create an E-Line connection
+
+Navigate to **Build Your Network > Ports** in the DynamicLink portal. Click **Add a Connection** in the upper right or click **Add connection** next to the port you are using. 
+
+Complete the following fields:
+
+**"A" Port**
+
+Select **Customer Port** and then complete the following fields:
+
+| Field | Description |
+| --- | --- |
+| **Port** | Select your source port. |
+| **VLAN** | Enter an available VLAN. |
+| **BW** | Select your desired bandwidth. |
+
+**"Z" Port**
+
+Select **Customer Port** again and then complete the fields as described above. 
+
+Enter a name for the connection and then click **Add**. 
+
+## Best practices
+
+When creating E-Line connections, consider the following:
+
+- **Naming Convention**: Use clear, descriptive names that include location identifiers (e.g., "NYC-DC1-to-CHI-DC2")
+- **Bandwidth**: Size your bandwidth based on expected traffic patterns and peak usage
+- **Redundancy**: For critical connections, consider creating redundant E-Line services on separate ports for high availability
+
