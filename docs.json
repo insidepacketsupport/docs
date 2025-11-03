@@ -35,15 +35,16 @@
             "group": "Cloud Links",
             "pages": [
               "docs/cloud-links",
-              "docs/cloud-links-aws",
-              "docs/cloud-links-azure",
-              "docs/cloud-links-gcp"
+              "docs/cloud-link-aws",
+              "docs/cloud-link-azure",
+              "docs/cloud-link-gcp"
             ]
           },
           {
             "group": "Cloud Router",
             "pages": [
               "docs/cloud-router",
+              "docs/cloud-router-aws",
               "docs/l2-l3"
             ]
           },
