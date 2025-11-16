@@ -16,9 +16,10 @@
       {
         "tab": "Documentation",
         "groups": [
-          { "group": "Welcome",
+          { "group": "Getting Started",
             "pages": [
-              "Welcome"
+              "Welcome",
+              "docs/insideIQ"
             ]
           },
           { "group": "Ports",
@@ -45,6 +46,7 @@
             "pages": [
               "docs/cloud-router",
               "docs/cloud-router-aws",
+              "docs/cloud-router-gcp",
               "docs/l2-l3"
             ]
           },
