@@ -30,7 +30,8 @@
           { "group": "Internet",
             "pages": [
               "docs/public-ips",
-              "docs/dia-create"
+              "docs/dia-create",
+              "docs/dia-update"
             ]
           },
           {
