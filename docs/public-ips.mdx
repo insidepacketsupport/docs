@@ -1,0 +1,36 @@
+---
+title: "Provision Public IPs in DynamicLink"
+sidebarTitle: "Public IPs"
+---
+
+Public IP addresses enable internet connectivity for your DynamicLink services. Request IPv4 or IPv6 blocks to use with Dedicated Internet Access (DIA) connections and other network services.
+
+<Tip> You can request IPs in advance for network planning—you don't need an active port to request IP blocks. </Tip>
+
+<Note>
+You will need a public IP block when provisioning a Dedicated Internet Access (DIA) connection. 
+
+You can request your public IP addresses before provisioning your connection or as part of the [DIA provisioning process](dia-create).
+
+</Note>
+
+## Request a Public IP block
+
+Go to **Build Your Network > Public IPs**. Click **Request IP** and complete the following fields:
+
+| Field | Description |
+| --- | --- |
+| **Name** | Descriptive identifier (e.g., `production-dia-ips-chicago`). |
+| **Location** | Metro location where IPs will be used. |
+| **IPv4 Size** | You can select from the following: <br />`/29` = 8 usable IPs, <br />`/30` = 4 usable IPs<br />`/31` = 2 usable IPs |
+| **IPv6 Size** | This is preselected at `/64` and cannot be changed. <br/><br/> A `/64` block is the standard size for most IPv6 subnets because Stateless Address Autoconfiguration (SLAAC) requires a `/64`, and it gives each interface a 64-bit host identifier (often derived from MAC or randomized). |
+
+Click **Request**. 
+
+## Use Your IP Blocks
+
+View all assigned IP blocks in the **Public IPs** tab. When creating a DIA connection:
+
+- Select an existing IP block from your pool, or
+- Click **Request New** during connection setup to provision a block on the fly
+

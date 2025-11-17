@@ -29,7 +29,8 @@
           },
           { "group": "Internet",
             "pages": [
-              "docs/dia"
+              "docs/public-ips",
+              "docs/dia-create"
             ]
           },
           {
