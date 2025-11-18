@@ -48,6 +48,7 @@
             "pages": [
               "docs/cloud-router",
               "docs/cloud-router-aws",
+              "docs/cloud-router-azure",
               "docs/cloud-router-gcp",
               "docs/l2-l3"
             ]
