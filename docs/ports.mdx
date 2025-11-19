@@ -18,4 +18,26 @@ Once provisioned, you can add connections to the port through DynamicLink.
 The ability to create ports will be available in DynamicLink in 2026.
 </Note>
 
+## Order a port through Tranzact
 
+To order a DynamicLink port through [Tranzact](https://tranzact.zayo.com/), complete the following steps:
+
+1. Select to **Quotes & Orders**. 
+2. Select **Access Port**
+3. Select a port location and contract length, and then complete the following configuration details: 
+    * **Port Speed**: Select the bandwidth for your access port. You will have the chance to commit a lower bandwidth with DynamicLink. 
+    * **LACP on Port**: Enable or disable Link Aggregation Control Protocol. You will need to enable LACP if you are intending to use this port as part of a Link Aggregation Group (LAG), where you combine two or more physical ports into one logical interface. 
+    * **Handoff**: You have the following options:
+        * **2-Fiber SMF**: Single-mode fiber; better for longer distances such as metro fiber, data centers connecting buildings, and backbone links. 
+        * **2-Fiber MMF**: Multi-mode fiber; better for inside data centers, short runs, server-to-switch links. 
+    * **LOA/CFA Provided By**: Select who you want to issue the LOA/CFA. This determines the direction of the cross connect. 
+    
+        If you want an inbound cross connect from Zayo, select **Customer**. You will need to provide us with a LOA/CFA. 
+
+        If you want an outbound cross connect from you to Zayo, we will provide the LOA/CFA. 
+
+4. Click **View Quote**. 
+
+5. Under **Add these additional products to your port**, select **DynamicLink**. 
+
+6. Ensure everything looks correct, and then click **Place Order**. 
