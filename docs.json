@@ -27,6 +27,11 @@
               "docs/ports"
             ]
           },
+          { "group": "Virtual Circuits",
+            "pages": [
+              "docs/eline"
+            ]
+          },
           { "group": "Internet",
             "pages": [
               "docs/public-ips",
