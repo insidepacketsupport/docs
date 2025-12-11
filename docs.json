@@ -27,11 +27,6 @@
               "docs/ports"
             ]
           },
-          { "group": "Virtual Circuits",
-            "pages": [
-              "docs/eline"
-            ]
-          },
           { "group": "Internet",
             "pages": [
               "docs/public-ips",
@@ -64,15 +59,20 @@
               "docs/video-resources"
             ]
           }
-        ],
-        "tab": "API Reference", 
-        "pages": [
-              "api-reference/introduction",
-              {
-                "group": "Endpoints",
-                "openapi": "openapi.json"
-              }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          { "group": "Introduction",
+            "pages": [
+              "api-reference/introduction"
             ]
+          },
+          { "group": "Endpoints",
+            "openapi": "openapi.json"
+          }
+        ]
       }
     ]
   },
