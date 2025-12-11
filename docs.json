@@ -63,18 +63,16 @@
             "pages": [
               "docs/video-resources"
             ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
+          }
+        ],
+        "tab": "API Reference", 
+        "pages": [
               "api-reference/introduction",
               {
                 "group": "Endpoints",
                 "openapi": "openapi.json"
               }
             ]
-          }
-        ]
       }
     ]
   },
