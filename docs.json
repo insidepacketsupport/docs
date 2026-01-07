@@ -19,8 +19,8 @@
           { "group": "Getting Started",
             "pages": [
               "Welcome",
-              "docs/terminology",
               "docs/virtual-circuits",
+              "docs/terminology",
               "docs/insideIQ"
             ]
           },
