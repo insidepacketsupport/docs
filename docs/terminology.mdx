@@ -2,84 +2,86 @@
 title: "Terminology"
 ---
 
-This glossary defines technical terms and acronyms related to networking. You may encounter some of these in this documentation. 
+This glossary defines technical terms and acronyms related to networking. 
 
-| Term/Acronym | Definition |
-|--------------|------------|
-| **ARP** | Address Resolution Protocol - A protocol that maps IP addresses to MAC addresses on a local network segment. |
-| **ASN** | Autonomous System Number - A unique identifier assigned to an autonomous system (a network under single administrative control) for BGP routing. |
-| **AWS** | Amazon Web Services - A cloud computing platform provided by Amazon. |
-| **Azure** | Microsoft Azure - A cloud computing platform provided by Microsoft. |
-| **BGP** | Border Gateway Protocol - A routing protocol used to exchange routing information between different networks on the internet. |
-| **BFD** | Bidirectional Forwarding Detection - A protocol that provides fast failure detection for network links and routing protocols. |
-| **CE-VLAN** | Customer Edge VLAN - A VLAN identifier used on the customer side of a network connection. |
-| **CIDR** | Classless Inter-Domain Routing - A method for allocating IP addresses and routing IP packets, represented with a slash notation (e.g., /30, /24). |
-| **Cloud Router** | A virtual routing and switching core that intelligently directs traffic between connected resources like data center ports, cloud links, and internet connections. |
-| **CPE** | Customer-Provided Equipment - Networking equipment owned and managed by the customer that interfaces with the service provider's network. |
-| **DDoS** | Distributed Denial of Service - A malicious attack that overwhelms a network or service with traffic from multiple sources, making it unavailable to legitimate users. |
-| **DIA** | Dedicated Internet Access - A dedicated, uncontended internet connection that provides exclusive access to allocated bandwidth with guaranteed performance. |
-| **DMZ** | Demilitarized Zone - A network segment that sits between an internal network and the internet, often used to host public-facing services. |
-| **DNS** | Domain Name System - A system that translates human-readable domain names (like example.com) into IP addresses. |
-| **E-Line** | Ethernet Line - A point-to-point Layer 2 connection that connects exactly two endpoints, providing transparent Layer 2 connectivity. |
-| **ELAN** | Ethernet LAN - A multi-point Layer 2 service that connects multiple endpoints in a single network segment, enabling any-to-any communication. |
-| **EVC** | Ethernet Virtual Circuit - A logical connection that carries Ethernet frames between two or more UNIs. |
-| **EVPL** | Ethernet Virtual Private Line - A point-to-multipoint service that supports multiple Ethernet Virtual Circuits per port using VLAN-based multiplexing. |
-| **EVPLAN** | Ethernet Virtual Private LAN - A service that allows customer CE-VLANs to establish discrete broadcast domains with service-multiplexing on UNIs. |
-| **FEC** | Forward Error Correction - A method of error control that adds redundant data to allow the receiver to detect and correct errors without retransmission. |
-| **Firewall** | A network security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules. |
-| **FRR** | Fast Reroute - A technology that provides rapid recovery from network failures, typically in under 50 milliseconds. |
-| **GCP** | Google Cloud Platform - A cloud computing platform provided by Google. |
-| **GigE** | Gigabit Ethernet - A networking standard that supports data transfer rates of 1 gigabit per second. |
-| **HTTP** | Hypertext Transfer Protocol - The protocol used for transmitting web pages and other content over the internet. |
-| **HTTPS** | Hypertext Transfer Protocol Secure - A secure version of HTTP that uses encryption to protect data in transit. |
-| **ICMP** | Internet Control Message Protocol - A network protocol used to send error messages and operational information about network conditions. |
-| **IEEE** | Institute of Electrical and Electronics Engineers - An organization that develops technical standards, including many networking standards. |
-| **IETF** | Internet Engineering Task Force - An organization that develops and promotes internet standards. |
-| **IP** | Internet Protocol - The principal communications protocol for relaying datagrams across network boundaries. |
-| **IPAM** | IP Address Management - A system for planning, tracking, and managing IP address space in a network. |
-| **IPv4** | Internet Protocol version 4 - The fourth version of the Internet Protocol, using 32-bit addresses. |
-| **IPv6** | Internet Protocol version 6 - The most recent version of the Internet Protocol, using 128-bit addresses. |
-| **ISO** | International Organization for Standardization - An international standard-setting body. |
-| **ITU** | International Telecommunication Union - A United Nations agency that coordinates global telecommunications operations and services. |
-| **JSON** | JavaScript Object Notation - A lightweight data-interchange format used for transmitting data between systems. |
-| **L2** | Layer 2 - The Data Link layer of the OSI model, which uses MAC addresses to forward data frames within the same network segment. |
-| **L3** | Layer 3 - The Network layer of the OSI model, which uses IP addresses to route packets between different network segments. |
-| **LAN** | Local Area Network - A network that connects devices within a limited geographic area, such as an office or building. |
-| **Layer 2** | Data Link Layer - A networking layer that uses MAC addresses to forward data frames within the same network segment or VLAN. |
-| **Layer 3** | Network Layer - A networking layer that uses IP addresses to route packets between different network segments or subnets. |
-| **LOA/CFA** | Letter of Authorization/Cross-Connect Facility Assignment - Documentation that authorizes a service provider to establish a physical connection (cross-connect) at a data center or facility. |
-| **MAC** | Media Access Control - A unique identifier assigned to a network interface controller for use as a network address. |
-| **MEF** | Metro Ethernet Forum - An organization that develops technical specifications for carrier Ethernet services. |
-| **MMF** | Multi-Mode Fiber - Optical fiber designed to carry multiple light rays or modes simultaneously, typically used for shorter distances. |
-| **MPLS** | Multiprotocol Label Switching - A routing technique that directs data from one network node to the next based on short path labels rather than long network addresses. |
-| **MPOE** | Minimum Point of Entry - The point where a service provider's network enters a customer's building or facility. |
-| **MTU** | Maximum Transmission Unit - The largest size packet or frame that can be transmitted over a network without fragmentation. |
-| **NaaS** | Network as a Service - A cloud service model where networking capabilities are provided as a service over the internet. |
-| **NANOG** | North American Network Operators' Group - A forum for network operators to share technical information and best practices. |
-| **NAT** | Network Address Translation - A method of remapping one IP address space into another by modifying network address information in IP packet headers. |
-| **NID** | Network Interface Device - Equipment installed at a customer location to support network services, typically owned and maintained by the service provider. |
-| **NNI** | Network-to-Network Interface - The interface between two service provider networks. |
-| **OM** | Optical Multimode - A classification system for multimode fiber (OM1, OM2, OM3, OM4) that indicates fiber performance characteristics. |
-| **OSI** | Open Systems Interconnection - A conceptual model that characterizes and standardizes the communication functions of a network. |
-| **OSPF** | Open Shortest Path First - A routing protocol used to find the best path for packets as they pass through a set of connected networks. |
-| **PBR** | Policy-Based Routing - A routing technique that forwards traffic based on policies rather than the standard routing table. |
-| **PE** | Provider Edge - A router at the edge of a service provider's network that connects to customer networks. |
-| **PoP** | Point of Presence - A physical location where a service provider's network connects to the internet or other networks. |
-| **Port** | A physical connection point that acts as a bridge between an organization's internal network and the service provider's network infrastructure. |
-| **REST** | Representational State Transfer - An architectural style for designing web services that uses standard HTTP methods. |
-| **RJ45** | Registered Jack 45 - A standard type of physical connector used for Ethernet network cables. |
-| **SLAAC** | Stateless Address Autoconfiguration - A method for IPv6 hosts to automatically configure their IP addresses without a DHCP server. |
-| **SMF** | Single-Mode Fiber - Optical fiber designed to carry only a single ray of light, typically used for longer distances. |
-| **SNAT** | Source NAT - A type of Network Address Translation that translates the source IP address of outgoing packets, allowing multiple devices to share a single public IP address. |
-| **SNI** | Server Name Indication - An extension to the TLS protocol that allows a client to specify which hostname it is attempting to connect to. |
-| **SSH** | Secure Shell - A cryptographic network protocol for operating network services securely over an unsecured network. |
-| **TCP** | Transmission Control Protocol - A connection-oriented protocol that ensures reliable, ordered delivery of data between applications. |
-| **TGW** | Transit Gateway - A network transit hub that simplifies network architecture and reduces peering relationships. |
-| **UDP** | User Datagram Protocol - A connectionless protocol that provides a simple, unreliable datagram service. |
-| **UNI** | User Network Interface - The interface between a customer's network and the service provider's network. |
-| **VIF** | Virtual Interface - A logical interface that carries traffic over a physical connection, commonly used in cloud connectivity services. |
-| **VLAN** | Virtual Local Area Network - A logical network segment that groups devices together even if they are not on the same physical network switch. |
-| **VPC** | Virtual Private Cloud - An isolated virtual network within a public cloud environment. |
-| **Virtual Circuit** | A logical connection that enables traffic segmentation and connects various services and destinations over physical ports using VLANs. |
-| **WAN** | Wide Area Network - A network that spans a large geographic area, connecting multiple local area networks. |
-| **Web Filtering** | A service that provides granular control over web traffic by allowing you to define policies to block or permit access to specific URLs or categories of web content. |
+You may encounter some of these as you read through our documentation.
+
+| Term/Acronym        | Definition                                                                                                                                                                                    |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ARP**             | Address Resolution Protocol - A protocol that maps IP addresses to MAC addresses on a local network segment.                                                                                  |
+| **ASN**             | Autonomous System Number - A unique identifier assigned to an autonomous system (a network under single administrative control) for BGP routing.                                              |
+| **AWS**             | Amazon Web Services - A cloud computing platform provided by Amazon.                                                                                                                          |
+| **Azure**           | Microsoft Azure - A cloud computing platform provided by Microsoft.                                                                                                                           |
+| **BGP**             | Border Gateway Protocol - A routing protocol used to exchange routing information between different networks on the internet.                                                                 |
+| **BFD**             | Bidirectional Forwarding Detection - A protocol that provides fast failure detection for network links and routing protocols.                                                                 |
+| **CE-VLAN**         | Customer Edge VLAN - A VLAN identifier used on the customer side of a network connection.                                                                                                     |
+| **CIDR**            | Classless Inter-Domain Routing - A method for allocating IP addresses and routing IP packets, represented with a slash notation (e.g., /30, /24).                                             |
+| **Cloud Router**    | A virtual routing and switching core that intelligently directs traffic between connected resources like data center ports, cloud links, and internet connections.                            |
+| **CPE**             | Customer-Provided Equipment - Networking equipment owned and managed by the customer that interfaces with the service provider's network.                                                     |
+| **DDoS**            | Distributed Denial of Service - A malicious attack that overwhelms a network or service with traffic from multiple sources, making it unavailable to legitimate users.                        |
+| **DIA**             | Dedicated Internet Access - A dedicated, uncontended internet connection that provides exclusive access to allocated bandwidth with guaranteed performance.                                   |
+| **DMZ**             | Demilitarized Zone - A network segment that sits between an internal network and the internet, often used to host public-facing services.                                                     |
+| **DNS**             | Domain Name System - A system that translates human-readable domain names (like example.com) into IP addresses.                                                                               |
+| **E-Line**          | Ethernet Line - A point-to-point Layer 2 connection that connects exactly two endpoints, providing transparent Layer 2 connectivity.                                                          |
+| **ELAN**            | Ethernet LAN - A multi-point Layer 2 service that connects multiple endpoints in a single network segment, enabling any-to-any communication.                                                 |
+| **EVC**             | Ethernet Virtual Circuit - A logical connection that carries Ethernet frames between two or more UNIs.                                                                                        |
+| **EVPL**            | Ethernet Virtual Private Line - A point-to-multipoint service that supports multiple Ethernet Virtual Circuits per port using VLAN-based multiplexing.                                        |
+| **EVPLAN**          | Ethernet Virtual Private LAN - A service that allows customer CE-VLANs to establish discrete broadcast domains with service-multiplexing on UNIs.                                             |
+| **FEC**             | Forward Error Correction - A method of error control that adds redundant data to allow the receiver to detect and correct errors without retransmission.                                      |
+| **Firewall**        | A network security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules.                                                             |
+| **FRR**             | Fast Reroute - A technology that provides rapid recovery from network failures, typically in under 50 milliseconds.                                                                           |
+| **GCP**             | Google Cloud Platform - A cloud computing platform provided by Google.                                                                                                                        |
+| **GigE**            | Gigabit Ethernet - A networking standard that supports data transfer rates of 1 gigabit per second.                                                                                           |
+| **HTTP**            | Hypertext Transfer Protocol - The protocol used for transmitting web pages and other content over the internet.                                                                               |
+| **HTTPS**           | Hypertext Transfer Protocol Secure - A secure version of HTTP that uses encryption to protect data in transit.                                                                                |
+| **ICMP**            | Internet Control Message Protocol - A network protocol used to send error messages and operational information about network conditions.                                                      |
+| **IEEE**            | Institute of Electrical and Electronics Engineers - An organization that develops technical standards, including many networking standards.                                                   |
+| **IETF**            | Internet Engineering Task Force - An organization that develops and promotes internet standards.                                                                                              |
+| **IP**              | Internet Protocol - The principal communications protocol for relaying datagrams across network boundaries.                                                                                   |
+| **IPAM**            | IP Address Management - A system for planning, tracking, and managing IP address space in a network.                                                                                          |
+| **IPv4**            | Internet Protocol version 4 - The fourth version of the Internet Protocol, using 32-bit addresses.                                                                                            |
+| **IPv6**            | Internet Protocol version 6 - The most recent version of the Internet Protocol, using 128-bit addresses.                                                                                      |
+| **ISO**             | International Organization for Standardization - An international standard-setting body.                                                                                                      |
+| **ITU**             | International Telecommunication Union - A United Nations agency that coordinates global telecommunications operations and services.                                                           |
+| **JSON**            | JavaScript Object Notation - A lightweight data-interchange format used for transmitting data between systems.                                                                                |
+| **L2**              | Layer 2 - The Data Link layer of the OSI model, which uses MAC addresses to forward data frames within the same network segment.                                                              |
+| **L3**              | Layer 3 - The Network layer of the OSI model, which uses IP addresses to route packets between different network segments.                                                                    |
+| **LAN**             | Local Area Network - A network that connects devices within a limited geographic area, such as an office or building.                                                                         |
+| **Layer 2**         | Data Link Layer - A networking layer that uses MAC addresses to forward data frames within the same network segment or VLAN.                                                                  |
+| **Layer 3**         | Network Layer - A networking layer that uses IP addresses to route packets between different network segments or subnets.                                                                     |
+| **LOA/CFA**         | Letter of Authorization/Cross-Connect Facility Assignment - Documentation that authorizes a service provider to establish a physical connection (cross-connect) at a data center or facility. |
+| **MAC**             | Media Access Control - A unique identifier assigned to a network interface controller for use as a network address.                                                                           |
+| **MEF**             | Metro Ethernet Forum - An organization that develops technical specifications for carrier Ethernet services.                                                                                  |
+| **MMF**             | Multi-Mode Fiber - Optical fiber designed to carry multiple light rays or modes simultaneously, typically used for shorter distances.                                                         |
+| **MPLS**            | Multiprotocol Label Switching - A routing technique that directs data from one network node to the next based on short path labels rather than long network addresses.                        |
+| **MPOE**            | Minimum Point of Entry - The point where a service provider's network enters a customer's building or facility.                                                                               |
+| **MTU**             | Maximum Transmission Unit - The largest size packet or frame that can be transmitted over a network without fragmentation.                                                                    |
+| **NaaS**            | Network as a Service - A cloud service model where networking capabilities are provided as a service over the internet.                                                                       |
+| **NANOG**           | North American Network Operators' Group - A forum for network operators to share technical information and best practices.                                                                    |
+| **NAT**             | Network Address Translation - A method of remapping one IP address space into another by modifying network address information in IP packet headers.                                          |
+| **NID**             | Network Interface Device - Equipment installed at a customer location to support network services, typically owned and maintained by the service provider.                                    |
+| **NNI**             | Network-to-Network Interface - The interface between two service provider networks.                                                                                                           |
+| **OM**              | Optical Multimode - A classification system for multimode fiber (OM1, OM2, OM3, OM4) that indicates fiber performance characteristics.                                                        |
+| **OSI**             | Open Systems Interconnection - A conceptual model that characterizes and standardizes the communication functions of a network.                                                               |
+| **OSPF**            | Open Shortest Path First - A routing protocol used to find the best path for packets as they pass through a set of connected networks.                                                        |
+| **PBR**             | Policy-Based Routing - A routing technique that forwards traffic based on policies rather than the standard routing table.                                                                    |
+| **PE**              | Provider Edge - A router at the edge of a service provider's network that connects to customer networks.                                                                                      |
+| **PoP**             | Point of Presence - A physical location where a service provider's network connects to the internet or other networks.                                                                        |
+| **Port**            | A physical connection point that acts as a bridge between an organization's internal network and the service provider's network infrastructure.                                               |
+| **REST**            | Representational State Transfer - An architectural style for designing web services that uses standard HTTP methods.                                                                          |
+| **RJ45**            | Registered Jack 45 - A standard type of physical connector used for Ethernet network cables.                                                                                                  |
+| **SLAAC**           | Stateless Address Autoconfiguration - A method for IPv6 hosts to automatically configure their IP addresses without a DHCP server.                                                            |
+| **SMF**             | Single-Mode Fiber - Optical fiber designed to carry only a single ray of light, typically used for longer distances.                                                                          |
+| **SNAT**            | Source NAT - A type of Network Address Translation that translates the source IP address of outgoing packets, allowing multiple devices to share a single public IP address.                  |
+| **SNI**             | Server Name Indication - An extension to the TLS protocol that allows a client to specify which hostname it is attempting to connect to.                                                      |
+| **SSH**             | Secure Shell - A cryptographic network protocol for operating network services securely over an unsecured network.                                                                            |
+| **TCP**             | Transmission Control Protocol - A connection-oriented protocol that ensures reliable, ordered delivery of data between applications.                                                          |
+| **TGW**             | Transit Gateway - A network transit hub that simplifies network architecture and reduces peering relationships.                                                                               |
+| **UDP**             | User Datagram Protocol - A connectionless protocol that provides a simple, unreliable datagram service.                                                                                       |
+| **UNI**             | User Network Interface - The interface between a customer's network and the service provider's network.                                                                                       |
+| **VIF**             | Virtual Interface - A logical interface that carries traffic over a physical connection, commonly used in cloud connectivity services.                                                        |
+| **VLAN**            | Virtual Local Area Network - A logical network segment that groups devices together even if they are not on the same physical network switch.                                                 |
+| **VPC**             | Virtual Private Cloud - An isolated virtual network within a public cloud environment.                                                                                                        |
+| **Virtual Circuit** | A logical connection that enables traffic segmentation and connects various services and destinations over physical ports using VLANs.                                                        |
+| **WAN**             | Wide Area Network - A network that spans a large geographic area, connecting multiple local area networks.                                                                                    |
+| **Web Filtering**   | A service that provides granular control over web traffic by allowing you to define policies to block or permit access to specific URLs or categories of web content.                         |
