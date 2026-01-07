@@ -1,0 +1,24 @@
+---
+title: "Virtual Circuits in DynamicLink"
+---
+
+Virtual circuits are logical connections that enable you to segment traffic and connect various services and destinations over your physical ports in DynamicLink.
+
+## Key concepts
+
+- **A-side / Z-side**: Every virtual circuit connects two endpoints. The A-side is your initiating port; the Z-side is the destination.
+- **VLANs**: VLANs segment traffic on a port. Each virtual circuit uses selected VLANs to isolate and identify the connection.
+- **Bandwidth**: You allocate bandwidth for each circuit. Ensure both ends have sufficient available capacity.
+- **Status lifecycle**: Virtual circuits progress through **Ordering**, **Pending**/**Provisioning**, and **Available**/**Active** states.
+
+## Virtual circuit types
+
+| Type                             | Layer   | Description                                                                                                                                                                                                                                                                                     |
+| -------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **E-Lines**                      | Layer 2 | Private, point-to-point connections between two ports. Provides transparent Layer 2 connectivity for forwarding within the same network segment. Ideal for extending Layer 2 networks across geographic locations and data replication.                                                         |
+| **ELANs**                        | Layer 2 | Multi-point e-line connections.                                                                                                                                                                                                                                                                 |
+| **Cloud Links**                  | Layer 2 | Private connectivity to cloud providers. See [Cloud Links Overview](cloud-links)                                                                                                                                                                                                                |
+| **Cloud Router Connections**     | Layer 3 | Virtual circuits attached to the Cloud Router become part of a Layer 3 routing domain. Enables centralized routing and traffic management between all ports, cloud connections, and services. See [Cloud Router Overview](cloud-router).                                                        |
+| **Direct Internet Access (DIA)** | Layer 3 | Dedicated, uncontended links to the internet with guaranteed bandwidth. Includes integrated firewall, web filtering, and DDoS protection. Requires public IP address allocation. Ideal for critical applications and hosting public-facing services. See [Create a DIA Connection](dia-create). |
+
+For more information on choosing between Layer 2 and Layer 3 connectivity, see [Layer 2 vs. Layer 3](l2-l3).

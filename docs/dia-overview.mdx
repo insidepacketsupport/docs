@@ -1,0 +1,59 @@
+---
+title: "Dedicated Internet Access (DIA) Overview"
+sidebarTitle: "DIA Overview"
+---
+
+Dedicated Internet Access (DIA) provides a dedicated, uncontended link to the internet for critical applications that need guaranteed bandwidth and performance. Unlike shared internet connections, DIA offers exclusive access to your allocated bandwidth, ensuring consistent performance and reliability.
+
+- **Dedicated Bandwidth**: Exclusive access to your allocated bandwidth without contention from other users
+- **Symmetrical Performance**: Equal upload and download speeds for consistent bidirectional performance
+- **Guaranteed Performance**: Predictable latency and throughput for mission-critical applications
+- **Direct Routing**: Traffic is routed directly from your service to the internet via a dedicated circuit
+
+## Key components
+
+### Public IP addresses
+
+DIA connections require public IP addresses, which you can provision in [DynamicLink](public-ips). These are ranges of public IP addresses specifically reserved for dedicated internet access services. You can:
+
+- Request new public IP blocks from the **Public IPs** tab
+- Select existing IP blocks when creating a DIA connection
+- Use IPv4 or IPv6 addresses
+- Configure subnet sizes (typically `/30` for standard connections)
+
+### Ports
+
+A physical port is required to establish a DIA connection. The port must be:
+
+- Deployed in the physical location where you wish to route traffic
+- Have sufficient available bandwidth for your desired connection speed
+- Configured with appropriate VLAN settings
+
+### Virtual interfaces (VLANs)
+
+DIA connections use VLANs to segment traffic on your port. You can:
+
+- Specify a VLAN ID for tagged traffic
+- Use "Native" for untagged connections
+- Configure multiple DIA connections on the same port using different VLANs
+
+
+## Advanced features
+
+## DIA firewall
+
+The DIA Firewall protects your connection by filtering traffic. By default:
+- All outgoing traffic is allowed
+- All incoming traffic is blocked
+
+You can create custom firewall rules to:
+- Allow specific inbound services (e.g., SSH, web servers)
+- Block unwanted outbound traffic
+- Apply web filtering for granular access control
+
+## Network Address Translation (NAT)
+
+NAT allows devices in your private network to access the internet using your DIA connection's public IP address. You can configure:
+- **Source NAT**: Translate private IPs to your DIA's public IP
+- **1:1 NAT**: Map a single private IP to a single public IP
+- **Port Forwarding**: Forward specific ports to internal services

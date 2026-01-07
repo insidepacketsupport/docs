@@ -1,0 +1,109 @@
+---
+title: "Ethernet Services Specifications and Overview"
+sidebarTitle: "Specs and Overview"
+---
+
+Zayo's Ethernet services provide a high level of security through Layer-2 separation of customers' traffic.
+
+The Ethernet services that you can provision through DynamicLink include:
+
+#### Point-to-Multipoint E-Line / Ethernet Virtual Private Line (EVPL)
+
+EVPL offers multiplexing capability with multiple Ethernet Virtual Circuits (EVCs) per port. 
+
+EVPL is VLAN-based and enables one or more VLAN IDs to be mapped to an EVC. Zayo and the customer coordinate the VLAN ID mapping to each EVC. 
+
+With EVPL, a Network-to-Network Interface (NNI) supports aggregating multiple Ethernet virtual connections from multiple UNIs. In the default configuration, with a double-tagged NNI, the customer's CE-VLANs at the UNIs are transparent to Zayo.
+
+#### Full Mesh, Multipoint-to-Multipoint ELAN
+
+Zayo's ELAN service emulates a typical LAN that a customer may extend across the metro or across the globe. 
+
+All ports in an ELAN are considered UNI ports and by default are configured to be port-based to accept tagged and untagged frames (EPLAN). A single multipoint-to-multipoint EVC connects all subscriber UNIs in a single broadcast domain. Customer CE-VLANs may establish more discrete broadcast domains with service-multiplexing on UNIs (EVPLAN). 
+
+MAC address learning is enabled on an ELAN service to facilitate any-to-any connectivity.
+
+## Interfaces and protocol standards
+
+### Ethernet services
+
+| Protocol | Channel Speed and Line Rate | Typical Reach | Standard Handoff Ports |
+|----------|----------------------------|---------------|------------------------|
+| 100BaseT | 100Mbps | 100m Copper | GigE |
+| 1000baseT | 1Gbps | 100m Copper | GigE |
+| 1000baseSX, 1G-SX | 1Gbps | 275m-550m MMF | GigE |
+| 1000baseLX, 1G-LX | 1Gbps | 5km-10km SMF | GigE |
+| 10GbaseSR, 10G-SR | 10Gbps | Varies (OM1-OM4)* | MMF 10GigE |
+| 10GbaseLR, 10G-LR | 10Gbps | 10km SMF | 10GigE |
+| 10GbaseER, 10G-ER | 10Gbps | 30km-40km** | SMF 10GigE |
+| 10GbaseZR, 10G-ZR | 10Gbps | 80km*** | SMF 10GigE |
+| 100GbaseLR4 | 100Gbps | 8km SMF | 100GigE |
+| 100GbaseER4 | 100Gbps | 28km (no FEC)**** | SMF 100GigE |
+
+\* OM = Optical Multimode Fiber
+- OM1 has a core size of 62.5 µm and can support up to 10G at lengths of 33 meters
+- OM2 has a core size of 50 µm and can support up to 10G at lengths of 82 meters
+- OM3 has a core size of 50 µm and can support up to 10G to 300 meters, or 100G to 100 meters
+- OM4 is backwards compatible with OM3 fiber and supports 10G to 550m, or 100G to 150 meters
+
+\*\* ER beyond 30km requires link budget engineering
+
+\*\*\* ZR not defined by IEEE, requires coordination of transceiver specs
+
+\*\*\*\* without Forward Error Correction
+
+## Configuration
+
+### Ethernet technical standards
+
+#### Bandwidth options
+
+- 100Mbps - 900Mbps (Available in increments of 100)
+- 1Gbps - 9Gbps (Available in increments of 1G)
+- 10Gbps - 40Gbps (Available in increments of 10G)
+
+#### Supported client handoffs
+
+100/1000 Copper RJ45, 1GE/10GE/100GE Optical Fiber
+
+#### Equipment installed at customer site
+
+Zayo will install a Network Interface Device (NID) at the customer location to support the Ethernet service. The customer will provide appropriate space, power source, and environment for the equipment. Zayo will own, monitor, and maintain this equipment.
+
+#### Equipment provisioning
+
+Customer-Provided Equipment (CPE) owned and managed by customer, interfacing to Zayo's service must comply with the applicable IEEE 802.3 standards for physical handoff and 802.1 standards for protocol interworking. Configurations for optional features such as protection may require coordination of other technical parameters prior to activation.
+
+#### Diversity options
+
+- **Fiber Diversity**
+  - Dual diverse building entrances or diverse Minimum Points of Entry (MPOEs)
+  - Single entrance with two fiber pairs
+  - Single entrance with collapsed path
+- **Provider Edge (PE) Router Diversity** – one Zayo Point of Presence (PoP)
+- **Card Diversity** - diverse cards within a single chassis
+- **Chassis Diversity** - diverse routers
+- **Zayo PoP Diversity**
+  - Two different Zayo PoPs in the same market
+  - Two different Zayo PoPs in geographically diverse markets
+
+#### Protection
+
+- **Metro Access Protection** - Zayo utilizes Link Aggregation Groups and Link Aggregation Control Protocol (LAG/LACP) as a primary protection methodology at the Layer-2 level for all Layer-2 and Layer-3 (L2/L3) services. LAG/LACP will load-share across multiple links in active/active mode to provide sub 50ms failover in the event of link failure. This solution can be deployed over most of the various diversity models.
+- **Equipment Protection** - Zayo's NID will aggregate the protected service into a single handoff, or the customer may accept a 4 fiber handoff and participate in the LAG/LACP.
+- **Protected, Single Provider Edge router (PE)** - uses protection technology and is deployed using the same chassis. Zayo may use LAGs to aggregate multiple physical circuits from a single PE router, and function as a single logical circuit. Should any LAG member fail, the logical circuit continues to function across the remaining members.
+- **Protected, Dual PE** - dual circuits deployed using different routers and different chassis making a much more robust offering.
+- **MPLS core infrastructure protection** - Zayo's core L2/L3 network is inherently protected and self-healing. The core nodes in the network are at minimum N+1 connected to adjacent core nodes and will reroute automatically when faults are identified. The fault protection is based on MPLS-FRR (MPLS Fast Reroute).
+
+#### Security features
+
+- EVC separation using unique Labels
+- Protected physical access to Zayo sites
+- No Layer-2 protocol exchange with customer network elements
+- No access to customer data
+- No Address Resolution Protocol (ARP) redirection or spoofing
+- No VLAN jumping or trunking attacks
+
+#### Compliance
+
+MEF, IEEE, ITU, IETF, ISO, NANOG

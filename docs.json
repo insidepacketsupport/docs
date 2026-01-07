@@ -19,6 +19,7 @@
           { "group": "Getting Started",
             "pages": [
               "Welcome",
+              "docs/virtual-circuits",
               "docs/insideIQ"
             ]
           },
@@ -29,9 +30,17 @@
           },
           { "group": "Internet",
             "pages": [
+              "docs/dia-overview",
               "docs/public-ips",
               "docs/dia-create",
               "docs/dia-update"
+            ]
+          },
+          { "group": "Ethernet Services",
+            "pages": [
+              "docs/ethernet-specs",
+              "docs/eline", 
+              "docs/elan"
             ]
           },
           {
