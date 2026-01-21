@@ -8,7 +8,10 @@
     "dark": "#212121"
   },
   "seo": {
-    "indexing": "all"
+    "indexing": "all",
+    "metatags": {
+        "canonical": "https://docs.zayo.com"
+    }
   },
   "favicon": "/zayo.png",
   "navigation": {
@@ -61,6 +64,12 @@
               "docs/cloud-router-azure",
               "docs/cloud-router-gcp",
               "docs/l2-l3"
+            ]
+          },
+          {
+            "group": "Administration",
+            "pages": [
+              "docs/users"
             ]
           },
           {
