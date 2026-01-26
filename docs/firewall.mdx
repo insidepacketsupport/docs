@@ -1,0 +1,160 @@
+---
+title: "Create a Firewall Rule"
+sidebarTitle: "Firewall Rules"
+---
+
+The **Firewall** (also called "**Stateful Firewall**") is a separate service from the DIA Firewall.
+
+- **DIA Firewall** - This service is specialized for internet traffic flowing through [DIA](dia-overview) connections.
+- **Firewall** - This service handles internal network traffic.
+
+The Firewall secures traffic between your internal network segments (e.g., untrusted to private). It actively tracks the state of connections, offering robust protection for your network by controlling traffic flow based on a set of security rules.
+
+## Prerequisites
+
+Go to **Services \> My Services** and ensure the **Stateful Firewall** and (optionally) **Web Filtering** services are enabled.
+
+If you want to be able to apply rules to a pre-defined group of IP addresses, you should first create a [Group](groups) to represent those subnets.
+
+## Create a Firewall rule
+
+Select **Services \> Firewall** from the bottom menu:
+
+<img
+  src="../images/services-menu.png"
+  alt="Screenshot"
+  style={{ maxWidth:"300px" }}
+/>
+
+You will see a list of your existing firewall rules. Click **Add** in the upper right to create a new rule.
+
+### General
+
+| Field           | Description                                                                          |
+| --------------- | ------------------------------------------------------------------------------------ |
+| **Name**        | A descriptive name that identifies the rule's purpose                                |
+| **Priority**    | Numerical priority value. Lower numbers have higher priority and are processed first |
+| **Description** | (Optional) Additional details about the rule's purpose                               |
+
+### Rule
+
+| Field                | Description                                                                                                                 | Example                                   |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| **Source**           | Identify where the traffic originates. Enter a source IP prefix, select a [Group](groups) or pre-defined website (optional) | `192.168.1.0/24` or `0.0.0.0/0` (all IPs) |
+| **Destination**      | Identify where the traffic is heading. Enter a source IP prefix, select a [Group](groups) or pre-defined website (optional) | `192.168.1.0/24` or `0.0.0.0/0` (all IPs) |
+| **Protocol**         | Transport layer protocol                                                                                                    | `TCP`, `UDP`, `ICMP`, or `Any`            |
+| **Source Port**      | Source port number or range (optional)                                                                                      | `1024-65535` or `22`                      |
+| **Destination Port** | Destination port number or range (optional)                                                                                 | `443` (HTTPS), `22` (SSH), `80` (HTTP)    |
+| **Action**           | What to do when traffic matches this rule                                                                                   | **Allow** (permit) or **Block** (deny)    |
+
+#### Web filtering
+
+The Firewall supports web filtering as an action type. When you select **Web Filtering** as the action, you can:
+
+- **Content Filtering**: Block types of websites (adult websites, social media, etc)
+- **Web Threats Filtering**: Protect against phishing URLs, spam, malicious websites, and other domains
+- **Custom URL Filtering**: Create custom allow/deny lists using specific URLs
+
+| Field                     | Description                                                                                                                                                                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Default filter action** | The default filter action indicates how you want to handle ALL web traffic except for the specified URLs. <ul> <li> Allow - Allow all web traffic, but block specific URLs</li>  <li> Block - Block all web traffic, but allow specific URLs</li>  </ul> |
+| **URL**                   | Enter the URL for the whitelisted/blacklisted websites                                                                                                                                                                                                   |
+
+**Valid URL Formats:**
+
+- `google.com`: Matches the exact URL.
+- `*.google.com`: Matches any URL ending with `.google.com` (e.g., `mail.google.com`).
+- `*google.com`: Matches any URL containing `google.com` (e.g., `mygoogle.com`).
+- `www.google.*`: Matches any URL starting with `www.google.` (e.g., `www.google.co.uk`).
+
+**Invalid URL Formats:**
+
+- `*.google.*`
+- `www.*.google.com`
+- `www.*google.com`
+
+## Understanding rule processing
+
+It's important to understand how firewall rules are processed:
+
+- **Priority-based execution**: Rules are processed in order of priority, starting with the lowest number. The first rule that matches the traffic is applied
+- **Logical AND condition**: All filters within a single rule (Source, Destination, Port, Protocol, Virtual Interface, etc.) are combined with a logical **AND**. This means all specified conditions must match for the rule to be triggered
+- **First match wins**: Once a rule matches the traffic, its action is applied and no further rules are evaluated for that traffic
+
+## Common use cases
+
+### Allow traffic between network segments
+
+To allow specific traffic between internal network segments:
+
+1. **Name**: "Allow-Web-Traffic-Office-to-Servers"
+2. **Priority**: `100`
+3. **Action**: **Allow**
+4. **Protocol**: `TCP`
+5. **Source**: `192.168.1.0/24` (office network)
+6. **Destination**: `192.168.2.0/24` (server network)
+7. **Destination Port**: `80,443` (HTTP and HTTPS)
+8. **Source VI**: Select the Virtual Interface for the office network
+9. **Destination VI**: Select the Virtual Interface for the server network
+
+### Block traffic from untrusted segment
+
+To prevent traffic from an untrusted network segment to a private segment:
+
+1. **Name**: `Block-Untrusted-to-Private`
+2. **Priority**: `50` (higher priority to ensure it's checked first)
+3. **Action**: **Block**
+4. **Protocol**: `Any`
+5. **Source**: `192.168.100.0/24` (untrusted segment)
+6. **Destination**: `192.168.10.0/24` (private segment)
+
+### Allow SSH access between specific segments
+
+To allow SSH access from a specific network segment to another:
+
+1. **Name**: `Allow-SSH-Management-to-Servers`
+2. **Priority**: `100`
+3. **Action**: **Allow**
+4. **Protocol**: `TCP`
+5. **Source**: `10.0.1.0/24` (management network)
+6. **Destination**: `10.0.2.0/24` (server network)
+7. **Destination Port**: `22` (SSH)
+
+### Restrict database access
+
+To restrict database access to only specific application servers:
+
+1. **Name**: `Allow-DB-Access-From-Apps`
+2. **Priority**: `100`
+3. **Action**: **Allow**
+4. **Protocol**: `TCP`
+5. **Source**: `192.168.50.0/24` (application server network)
+6. **Destination**: `192.168.60.0/24` (database network)
+7. **Destination Port**: `3306` (MySQL) or `5432` (PostgreSQL)
+
+## Best practices
+
+1. **Start with restrictive rules**: Begin with deny-all rules and only permit what you need
+2. **Use descriptive names**: Name your rules clearly so you can understand their purpose later
+3. **Set appropriate priorities**: Use lower priority numbers for more specific rules that should be checked first
+4. **Document with descriptions**: Use the description field to explain why a rule exists
+5. **Test incrementally**: Add rules one at a time and test to ensure they work as expected
+6. **Regular review**: Periodically review your firewall rules to remove unused or outdated configurations
+7. **Use IP Groups**: For frequently referenced IP ranges, create IP Groups to simplify rule management
+
+## Troubleshooting
+
+If your firewall rules aren't working as expected:
+
+1. **Check rule priority**: Ensure your rule has an appropriate priority and isn't being overridden by another rule
+2. **Verify Virtual Interfaces**: Confirm you've selected the correct Source VI and Destination VI for the traffic path
+3. **Review all conditions**: Remember that all conditions in a rule must match (logical AND)
+4. **Check Admin State**: Ensure the rule is enabled
+5. **Verify IP addresses**: Confirm the Source and Destination IP prefixes match your network configuration
+6. **Test with specific IPs**: Start with specific source/destination IPs before using broad ranges
+7. **Check protocol and ports**: Verify that the Protocol and Port settings match the actual traffic you're trying to control
+
+## Related documentation
+
+- [DIA Firewall Rules](dia-firewall) - Configure firewall rules for internet traffic
+- [Groups](groups) - Create IP Groups for firewall rule management

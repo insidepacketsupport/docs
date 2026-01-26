@@ -67,6 +67,14 @@
             ]
           },
           {
+            "group": "Security",
+            "pages": [
+              "docs/groups",
+              "docs/firewall",
+              "docs/dia-firewall"
+            ]
+          },
+          {
             "group": "Administration",
             "pages": [
               "docs/users"
