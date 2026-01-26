@@ -23,8 +23,13 @@
             "pages": [
               "Welcome",
               "docs/virtual-circuits",
-              "docs/terminology",
-              "docs/dash-ai"
+              "docs/terminology"
+            ]
+          },
+          { "group": "AI & Integrations",
+            "pages": [
+              "docs/dash-ai",
+              "docs/ai-summary"
             ]
           },
           { "group": "Ports",
@@ -67,7 +72,7 @@
             ]
           },
           {
-            "group": "Security",
+            "group": "Security Services",
             "pages": [
               "docs/groups",
               "docs/firewall",

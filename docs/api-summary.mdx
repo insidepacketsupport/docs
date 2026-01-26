@@ -1,0 +1,112 @@
+---
+title: "Using the Dynamic API for Integrations"
+sidebarTitle: "API Integrations"
+---
+
+The DynamicLink API is a comprehensive RESTful API that allows you to interact with DynamicLink programmatically to manage your network infrastructure, services, and resources. 
+
+The DynamicLink API exposes the full functionality of the DynamicLink platform, allowing you to:
+
+- **Automate Network Operations**: Provision and manage network resources without manual intervention
+- **Build Custom Integrations**: Connect DynamicLink with your existing tools, workflows, and systems
+- **Create Third-Party Applications**: Develop applications that leverage DynamicLink's network capabilities
+- **Implement Infrastructure as Code**: Manage your network infrastructure through code and version control
+- **Enable CI/CD Pipelines**: Integrate network provisioning into your deployment workflows
+
+## Key capabilities
+
+* **Tenant and user management**
+
+* **Network infrastructure**
+
+* **Cloud connections**
+
+* **Routing and BGP**
+
+* **Security services**
+
+* **Network insights**
+
+* **Monitoring and diagnostics**
+
+
+## Authentication
+
+All API requests require authentication using Bearer tokens. The API uses the `HTTPBearerFromCookie` security scheme, which supports tokens obtained through the authentication flow.
+
+To get a Bearer token, you must request one from Zayo here: [Zayo Developer Portal](https://developer.zayo.com/)
+
+## API Structure
+
+The DynamicLink API follows RESTful conventions:
+
+- **GET** - Retrieve resources and query information
+- **POST** - Create new resources
+- **PUT** - Update existing resources
+- **DELETE** - Remove resources
+
+All responses are returned in JSON format with standard HTTP status codes.
+
+## API reference documentation
+
+For detailed information about specific endpoints, request/response formats, and examples, see the [API Reference](/api-reference/introduction) documentation.
+
+## Examples
+
+The DynamicLink API is designed to make integration straightforward. Here are common integration patterns:
+
+### Automation workflows
+
+Automate repetitive network management tasks:
+
+```bash
+# Example: Automate DIA provisioning
+curl -X POST "https://api.dynamiclink.zayo.com/tenant/{tenant_name}/dia" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "production-dia",
+    "bandwidth": 1000,
+    "public_ip_pool": "dia-pool-1"
+  }'
+```
+
+### Infrastructure as code
+
+Use the API with tools like Terraform, Ansible, or custom scripts to manage your network as code:
+
+```python
+# Example: Python integration for automated provisioning
+import requests
+
+def create_cloud_router(tenant_name, router_config):
+    response = requests.post(
+        f"https://api.dynamiclink.zayo.com/service/{tenant_name}/connection/connections",
+        headers={"Authorization": f"Bearer {token}"},
+        json=router_config
+    )
+    return response.json()
+```
+
+### Event-driven integrations
+
+Build integrations that respond to network events and changes:
+
+```bash
+# Monitor connection status
+curl -X GET "https://api.dynamiclink.zayo.com/service/{tenant_name}/connection/connections" \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+## Best practices
+
+When building integrations with the DynamicLink API:
+
+- **Use Idempotent Operations**: Design your integration to handle retries safely
+- **Implement Proper Error Handling**: Check HTTP status codes and handle errors gracefully
+- **Respect Rate Limits**: Implement exponential backoff and respect API rate limits
+- **Secure Your Credentials**: Never expose API tokens in logs, code repositories, or client-side applications
+- **Version Your Integrations**: Be prepared for API changes and version your integration code
+- **Monitor API Usage**: Track your API usage to optimize performance and costs
+- **Test in Non-Production**: Always test integrations in a non-production environment first
+
