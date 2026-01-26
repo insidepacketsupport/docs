@@ -29,7 +29,7 @@
           { "group": "AI & Integrations",
             "pages": [
               "docs/dash-ai",
-              "docs/ai-summary"
+              "docs/api-summary"
             ]
           },
           { "group": "Ports",
