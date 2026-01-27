@@ -63,7 +63,7 @@ Select **Incoming** to create a rule for a traffic source (where the traffic ori
 | **Destination Port**                            | Destination port number or range (optional)                                                                                                                                  | `443` (HTTPS), `22` (SSH), `80` (HTTP)    |
 | **Source**                                      | Enter a source IP prefix, select a [Group](groups), or select a pre-defined website (optional)                                                                               | `192.168.1.0/24` or `0.0.0.0/0` (all IPs) |
 | **DIA IP Connections** <br />**DIA IP Address** | The DIA connection or connections to which this rule applies                                                                                                                 | -                                         |
-| **Action**                                      | What to do when traffic matches this rule                                                                                                                                    | **Allow** (permit) or **Block** (deny)                    |
+| **Action**                                      | What to do when traffic matches this rule                                                                                                                                    | **Allow** (permit) or **Block** (deny)    |
 
 #### Outgoing rule
 
@@ -77,33 +77,7 @@ Select **Outgoing** to create a rule for a traffic destination (where the traffi
 | **Destination Port**                            | Destination port number or range (optional)                                                                                                                                       | `443` (HTTPS), `22` (SSH), `80` (HTTP)    |
 | **DIA IP Connections** <br />**DIA IP Address** | The DIA connection or connections to which this rule applies                                                                                                                      | -                                         |
 | **Destination**                                 | Enter a destination IP prefix, select a [Group](groups), or select a pre-defined website (optional)                                                                               | `192.168.1.0/24` or `0.0.0.0/0` (all IPs) |
-| **Action**                                      | What to do when traffic matches this rule                                                                                                                                         | **Allow** (permit) or **Block** (deny)                    |
-
-#### Web filtering
-
-The DIA Firewall supports web filtering as an action type. When you select **Web Filtering** as the action, you can:
-
-- **Content Filtering**: Block types of websites (adult websites, social media, etc)
-- **Web Threats Filtering**: Protect against phishing URLs, spam, malicious websites, and other domains
-- **Custom URL Filtering**: Create custom allow/deny lists using specific URLs
-
-| Field                     | Description                                                                                                                                                                                                                                                                                  |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Default filter action** | The default filter action indicates how you want to handle ALL web traffic except for the specified URLs. <ul> <li> **Allow**  - Allow all web traffic, but block specific URLs</li>  <li> **Block**  - Block all web traffic, but allow specific URLs</li>  </ul> |
-| **URL**                   | Enter the URL for the whitelisted/blacklisted websites                                                                                                                                                                                                                                       |
-
-**Valid URL Formats:**
-
-- `google.com`: Matches the exact URL.
-- `*.google.com`: Matches any URL ending with `.google.com` (e.g., `mail.google.com`).
-- `*google.com`: Matches any URL containing `google.com` (e.g., `mygoogle.com`).
-- `www.google.*`: Matches any URL starting with `www.google.` (e.g., `www.google.co.uk`).
-
-**Invalid URL Formats:**
-
-- `*.google.*`
-- `www.*.google.com`
-- `www.*google.com`
+| **Action**                                      | What to do when traffic matches this rule                                                                                                                                         | **Allow** (permit) or **Block** (deny)    |
 
 ## Understanding rule processing
 
@@ -152,19 +126,6 @@ To prevent outbound connections to specific IP ranges:
 5. **Protocol**: `Any`
 6. **Destination**: `192.0.2.0/24` (the IP range to block)
 7. **DIA Connection**: Select your DIA connection
-
-### Enable Web Filtering
-
-To apply web filtering to outbound traffic:
-
-1. **Name**: `Web-Filter-Social-Media`
-2. **Priority**: `100`
-3. **Direction**: `Outgoing`
-4. **Action**: `Web Filtering`
-5. **Protocol**: `TCP`
-6. **Destination Port**: `80,443`
-7. **DIA Connection**: Select your DIA connection
-8. Configure web filtering categories or custom URLs as needed
 
 ## Best Practices
 
