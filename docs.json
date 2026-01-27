@@ -72,9 +72,14 @@
             ]
           },
           {
-            "group": "Security Services",
+            "group": "Network",
             "pages": [
-              "docs/groups",
+              "docs/groups"
+            ]
+          },
+          {
+            "group": "Services",
+            "pages": [
               "docs/firewall",
               "docs/dia-firewall"
             ]
