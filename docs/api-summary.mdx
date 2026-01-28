@@ -3,7 +3,7 @@ title: "Using the Dynamic API for Integrations"
 sidebarTitle: "API Integrations"
 ---
 
-The DynamicLink API is a comprehensive RESTful API that allows you to interact with DynamicLink programmatically to manage your network infrastructure, services, and resources. 
+The DynamicLink API is a comprehensive RESTful API that allows you to interact with DynamicLink programmatically to manage your network infrastructure, services, and resources.
 
 The DynamicLink API exposes the full functionality of the DynamicLink platform, allowing you to:
 
@@ -13,22 +13,19 @@ The DynamicLink API exposes the full functionality of the DynamicLink platform, 
 - **Implement Infrastructure as Code**: Manage your network infrastructure through code and version control
 - **Enable CI/CD Pipelines**: Integrate network provisioning into your deployment workflows
 
+## API reference documentation
+
+For detailed information about specific endpoints, request/response formats, and examples, see the [API Reference](/api-reference/introduction) documentation.
+
 ## Key capabilities
 
-* **Tenant and user management**
-
-* **Network infrastructure**
-
-* **Cloud connections**
-
-* **Routing and BGP**
-
-* **Security services**
-
-* **Network insights**
-
-* **Monitoring and diagnostics**
-
+- **Tenant and user management**
+- **Network infrastructure**
+- **Cloud connections**
+- **Routing and BGP**
+- **Security services**
+- **Network insights**
+- **Monitoring and diagnostics**
 
 ## Authentication
 
@@ -36,7 +33,7 @@ All API requests require authentication using Bearer tokens. The API uses the `H
 
 To get a Bearer token, you must request one from Zayo here: [Zayo Developer Portal](https://developer.zayo.com/)
 
-## API Structure
+## API structure
 
 The DynamicLink API follows RESTful conventions:
 
@@ -46,10 +43,6 @@ The DynamicLink API follows RESTful conventions:
 - **DELETE** - Remove resources
 
 All responses are returned in JSON format with standard HTTP status codes.
-
-## API reference documentation
-
-For detailed information about specific endpoints, request/response formats, and examples, see the [API Reference](/api-reference/introduction) documentation.
 
 ## Examples
 
@@ -109,4 +102,3 @@ When building integrations with the DynamicLink API:
 - **Version Your Integrations**: Be prepared for API changes and version your integration code
 - **Monitor API Usage**: Track your API usage to optimize performance and costs
 - **Test in Non-Production**: Always test integrations in a non-production environment first
-
