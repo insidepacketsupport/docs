@@ -1,0 +1,160 @@
+---
+title: "February 2026 Release Notes"
+sidebarTitle: "Feb 2026"
+---
+
+## New Features
+
+### Cloud-WAN
+
+You can now add off-net devices or networks to Cloud Router using an encrypted tunnel over the internet.
+
+With this feature it is possible to connect any location and any device to DynamicLink in a secure way. Use cases include:
+
+- Off-net locations
+- Clouds without NNI
+- Instant bring-up until fiber is connected
+- Redundant path over the internet
+
+**Key Highlights:**
+
+* **Strong Encryption**: Based on wireguard and using a public-private key infrastructure, where the private key never needs to be communicated, only public keys are exchanged.
+* **Very Fast Tunnel Establishment**: UDP based protocol where the first packet already carries payload.
+* **Roaming support**: Clients can sit behind NAT and even change public IPs while the tunnel is established.
+* **Active and passive mode**: Tunnels can actively be established from DynamicLink to the end point
+* **Small footprint code**: VPN endpoint code is lightweight and performance optimized and can run on any device.
+* **API Control channel**: The control channel is based on DynamicLink APIs and fully integrated with the DynamicLink solution
+
+The first iteration allows establishing tunnels with a generic wireguard end point. Future versions will add support for managed clients with automatic establishment and device posture features.
+
+### MCP and DashAI
+
+There is now a built-in MCP server to use external LLM engines with DynamicLink and new DashAI functionality.
+
+With this feature, DynamicLink customers can integrate the functions into a company wide AI based infrastructure management.
+
+**Key Highlights:**
+
+- **MCP Supported Clients**: Gemini CLI, Claude Code, Claude Desktop
+- **Analyze with DashAI**: Context sensitive buttons in GUI to use AI to analyze screen content
+- **PCAP support**: Allow the AI agent to create and read PCAP from tenant traffic
+
+### Mesh Health Screen
+
+There is a new admin screen to give an overview of the underlay mesh status with all DynamicLink systems mesh BGP status combined. Support teams will now know without needing to deep dive, if customer reported issues are platform issues or specific to a customer.
+
+**Key Highlights:**
+
+- **BGP Mesh Overview**: Show all BGP states to the Route Reflectors for the L2VPN-EVPN address family to create a holistic view of the underlay mesh health
+- **Underlay Traffic**: A combined graph of all underlay traffic to understand inter site traffic usage
+
+### Port Forwarding (DNAT)
+
+You now can use a public IP address (e.g. the Gateway IP from their DIA connection) to make services hosted inside DynamicLink available to the internet.
+
+With this feature it is possible to use the operator's internet service for content/service delivery. Example use cases:
+
+- **CSP hosted**: Allow customers to save massive egress fees on CSP hosted services by leveraging NNIs and DNAT
+- **Fixed IP**: Service can be migrated between different resources anywhere in DynamicLink without changing public IP
+
+**Key Highlights:**
+
+- **UDP and TCP**: Support for both UDP and TCP protocols
+- **Port Translation**: Any combination of Ports for internal and external
+- **High Throughput**: Hardware accelerated
+- **Firewalled and SNI filtered**: Apply firewall rules to incoming traffic
+
+### RPKI Support
+
+You can now use an RPKI validator to check IP prefixes advertised by customers using DIA BGP.
+
+**Key Highlights:**
+
+- **Use existing validators**: Works with any RPKI validator
+- **RTR**: Support raw TCP and RTR over ssh
+- **New BGP DIA templates**: RPKI validation is added to all new DIA BGP neighbors.
+
+### FEC Control
+
+FEC can now be controlled from DynamicLink and can be set to on or off. Previously, FEC was always enabled on 100G Ethernet links.
+
+When upgrading from previous versions, all ports will be by default with FEC enabled. For new devices, the new default is FEC disabled.
+
+### Cloud NNI Connections
+
+In the **Cloud Resources** screen, all connections on all configured NNIs are now shown.
+
+**Supported Cloud Providers:**
+
+- AWS
+- Azure
+- GCP
+
+## Feature Updates
+
+### VI Operational State
+
+The operational state of a VI (Virtual Interface) is now based on connectivity information and not only on the underlying port operational state.
+
+As customer access ports are usually delivered to DynamicLink as VLANs over an NNI, DynamicLink has no data about the physical status of an access port on the access hardware. With this feature, the status of the VI is determined by the actual connectivity state, providing more accurate operational information.
+
+### GUI Improvements
+
+The GUI has received many improved features based on customer feedback.
+
+**Key Improvements and additions:**
+
+- **Systems Page**: Pagination and search was added to make it easier to find a DynamicLink system in the list
+- **Order Ports Screen**: Pagination and search was added/enhanced
+- **Looking Glass**: Improved messaging for network not in table
+- **User creation**: Email format validation added
+- **VRF Screen**: Separating tenant and system/internet VRF and adding detailed data
+- **DIA MAC**: Moved MAC entries for DIA from Cloud Router to the DIA section of the GUI
+- **Tenant list**: Showing count of interfaces and provisioned bandwidth per tenant
+- **Adaptive screen resolution**: Better support for low resolution screens
+- **Change password notification**: Add additional pop-up notification when the password changes
+
+### CLI Improvements
+
+Various CLI improvements have been made to enhance usability and functionality.
+
+### User Management
+
+User management features have been improved for better administration and control.
+
+### DIA BGP
+
+New stateless mode for DIA connections where asymmetric routing is expected (e.g. Dual Homed BGP).
+
+### DashAI
+
+The DashAI functionality received updates to better support customers.
+
+### IPAM
+
+The Public IP Address Management (IPAM) now allows disabling pools from the GUI to exclude them from further address assignment.
+
+## Security Fixes
+
+This release addresses the following security-related issues:
+
+- **Tenant Editor Privilege Escalation**: Fixed an issue where Tenant Editor could elevate rights to Tenant Admin
+
+All 3rd-party libraries and OS packages are up-to-date with all security fixes incorporated as provided by the maintainers of these packages.
+
+## Bug Fixes
+
+- Azure - Mapping connection to a wrong NNI
+- IPv6 no advertised/received/filtered routes in GUI
+- Health display when DynamicLink can't reach DynamicLink system
+- Administrative state for LAG handling
+- No whitespace in VTEP description
+- Objects with / can't be deleted
+- BFD failures occurs every x hours
+- Disabling IPAM pools fails
+- Wrong DynamicLink system in BGP events
+- LAG port management GUI
+- Tenant Users become invisible for Operator Admin in GUI
+- Don't show MCP token when logged in as admin
+- Cloud Router on Packages Visibility issue
+- Traffic disruption due to a possible memory leak
