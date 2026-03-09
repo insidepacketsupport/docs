@@ -70,10 +70,10 @@
               "docs/cloud-router-gcp",
               "docs/l2-l3",
               {
-                "group": "Network",
+                "group": "Routing",
                 "expanded": false,
-                "root": "cloud-router-network",
                 "pages": [
+                    "cloud-router-network",
                     "cloud-router-routes",
                     "cloud-router-bgp"
                 ]
