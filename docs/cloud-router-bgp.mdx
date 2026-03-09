@@ -1,0 +1,191 @@
+---
+title: "Configure BGP for a Cloud Router"
+sidebarTitle: "BGP"
+---
+
+Border Gateway Protocol (BGP) lets your Cloud Router learn and advertise routes dynamically to external networks such as data centers, DIA edges, and cloud provider gateways. Use BGP when you need scalable, policy-driven routing instead of manually maintaining static routes.
+
+Use Cloud Router BGP routing when:
+
+- You connect to **cloud gateways** (AWS, Azure, GCP) and want prefixes to be exchanged automatically.
+- You connect to **data center routers or on‑premises WANs** and need dynamic failover between multiple paths.
+- You provide **DIA with BGP** and want customer prefixes to be advertised from the Cloud Router.
+- Your prefixes change frequently and you want the routing table to adapt automatically.
+
+If you only have a few stable prefixes and a simple topology, [static routes](cloud-router-routes) may be sufficient.
+
+## Set the Cloud Router ASN
+
+Each Cloud Router uses its own ASN for BGP sessions. You must set this before adding neighbors.
+
+Under the **BGP** tab, click the **pencil** icon next to the ASN field to open the configuration dialog.
+
+Enter the **ASN** for the Cloud Router. And, optionally, set the keepalive and hold timers (available in the advanced options).
+
+* Keepalive timer: The time interval between keepalive messages sent to the neighbor.
+* Hold timer: The time interval to wait for a BGP session to be established before declaring it down.
+
+Click **Save** to apply the changes. 
+
+## Add BGP neighbors
+
+Once the ASN is set, you can add BGP neighbors that will exchange routes with the Cloud Router.
+
+Click **Add Neighbor** to open the configuration dialog.
+
+Complete the fields:
+
+| Field | Description |
+|-------|-------------|
+| **Neighbor IP** | IP address of the BGP neighbor (for example, a cloud gateway or data center router). |
+| **Remote ASN** | Autonomous System Number of the neighbor. |
+| **Description** | Optional label to identify this peer (for example, `AWS-us-east-1` or `DC-Core-1`). |
+| **Password** | Optional BGP/MD5 authentication password, if required by the peer. |
+| **Address Family** | Address family to use (for example, IPv4 Unicast). Must match what the peer supports. |
+| **Route Filter** | Route filter policy attached to this neighbor (see **Route filters** below). Default is typically an **allow-all** policy. |
+| **Maximum Prefixes In** | Maximum number of prefixes to receive from the neighbor. |
+| **Maximum Prefixes Out** | Maximum number of prefixes to advertise to the neighbor. |
+
+### BFD
+
+[Bidirectional Forwarding Detection](https://en.wikipedia.org/wiki/Bidirectional_Forwarding_Detection) (BFD) allows for faster failure detection. 
+
+BFD is a protocol that allows you to detect failures faster than the default BGP keepalive and hold timers.
+ 
+| Field | Description |
+|-------|-------------|
+| **Enable BFD** | Enable BFD. |
+| **Transmit Interval** | The time interval between BFD control packets sent to the neighbor. |
+| **Receive Interval** | The time interval to wait for a BFD packet from the neighbor. |
+| **Detect Multiplier** | The number of consecutive missed control packets before declaring the session down. |
+| **Passive Mode** | If the remote side should start the BFD session. |
+
+
+
+### Advanced options
+
+| Field | Description |
+|-------|-------------|
+| **Multihop TTL** | The time-to-live value for BGP packets sent to the neighbor. |
+| **Passive Mode** | If the remote side should start the BGP session. |
+| **Hold timer** | The time interval between keepalive and hold messages sent to the neighbor. |
+| **Open Delay** | The time interval to wait for the BGP session to be established before declaring it down. |
+
+Click **Save** to create the neighbor.
+
+After the configuration is pushed, the neighbor appears in the list on the BGP tab.
+
+When the session state is **Established**, the Cloud Router will start learning and advertising routes according to your route filters and policies.
+
+## Add route filters
+
+Route filters control which prefixes are accepted from a neighbor and which prefixes are advertised to it.
+
+To add a route filter, click **Route Filters** in the upper right under the **BGP** tab.
+
+Click **Add** and then complete the fields:
+
+| Field | Description |
+|-------|-------------|
+| **Name** | The name of the route filter. |
+| **Description** | The description of the route filter. |
+| **IP Prefix** | The prefixes to filter.  |
+| **Subnet Mask Range** | The subnet mask range of the prefix.<br /><br />**Exact**: The prefix must match both the network and the mask exactly.<br /><br />**Max**: Allow the specified network and any more-specific subnet up to the maximum mask length. |
+| **Action** | The action to take when the prefix matches the filter. |
+
+### Subnet mask range
+
+#### Exact
+
+**Exact** means the prefix must match both the network and the mask exactly.
+
+This is useful when you want to ensure that only the aggregate route is advertised to the neighbor, not any more-specific networks.
+
+Example filter:
+
+```
+10.10.0.0/16 exact
+```
+
+Allowed:
+
+```
+10.10.0.0/16
+```
+
+Denied:
+
+```
+10.10.1.0/24
+10.10.0.0/17
+10.10.10.0/24
+```
+
+#### Max
+
+**Max** means allow the specified network and any more-specific subnet up to the maximum mask length.
+
+Example:
+
+```
+10.10.0.0/16 max /24
+```
+
+Allowed:
+
+```
+10.10.0.0/16
+10.10.0.0/17
+10.10.10.0/24
+10.10.20.0/23
+```
+
+Denied:
+
+```
+10.10.5.0/25
+10.10.1.128/25
+```
+
+Because those are longer than /24.
+
+### Common route filter use cases
+
+Some typical patterns when designing route filters for Cloud Router BGP:
+
+- **Allow only tenant prefixes outbound**
+  - Goal: Ensure that only prefixes belonging to your tenant VRF are advertised to external peers.
+  - Behavior: Outbound route filter permits the tenant prefix list and denies everything else.
+
+- **Block default route inbound**
+  - Goal: Prevent a neighbor from accidentally sending a `0.0.0.0/0` route that would override your intended internet path.
+  - Behavior: Inbound filter denies `0.0.0.0/0` (and optionally other broad aggregates) and permits the specific prefixes you expect.
+
+- **Limit inbound route scale**
+  - Goal: Avoid pulling a large number of specific prefixes into the Cloud Router.
+  - Behavior: Inbound filter accepts only routes within a defined prefix-length range (for example, `/8`–`/24`) or only specific aggregates provided by the peer.
+
+When you attach a stricter route filter to an existing neighbor, any routes that no longer match become **Filtered Routes** and are not installed in the Cloud Router routing table.
+
+## Verify BGP sessions and dynamic routes
+
+After configuring neighbors and route filters, verify that dynamic routing behaves as expected.
+
+1. In the **BGP** tab:
+   - Check that each neighbor shows a healthy **Status** (for example, Established).
+   - Expand a neighbor to see:
+     - **Sent Routes** – prefixes the Cloud Router is advertising.
+     - **Received Routes** – prefixes learned and accepted.
+     - **Filtered Routes** – prefixes dropped because of route filters or policy.
+2. In the [**Routes**](cloud-router-routes) (routing table) view for the Cloud Router:
+   - Confirm that expected dynamic routes appear with **Type** `BGP`.
+   - Check the **Destination**, **Gateway**, and **Distance/metric**.
+   - Use the search and export options if you need to audit large tables.
+
+If expected routes are missing:
+
+- Confirm the **BGP session** is up.
+- Confirm the neighbor is **advertising** the prefixes you expect on its side.
+- Review the **Route Filter** attached to the neighbor to ensure it permits the routes in the correct direction.
+- Check for more advanced policies in your underlay (for example, route aggregation or RPKI validation) as described in the NaaS User Guide.
+

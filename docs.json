@@ -68,7 +68,16 @@
               "docs/cloud-router-aws",
               "docs/cloud-router-azure",
               "docs/cloud-router-gcp",
-              "docs/l2-l3"
+              "docs/l2-l3",
+              {
+                "group": "Network",
+                "expanded": false,
+                "root": "cloud-router-network",
+                "pages": [
+                    "cloud-router-routes",
+                    "cloud-router-bgp"
+                ]
+              }
             ]
           },
           {
