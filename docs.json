@@ -19,25 +19,29 @@
       {
         "tab": "Documentation",
         "groups": [
-          { "group": "Getting Started",
+          {
+            "group": "Getting Started",
             "pages": [
               "Welcome",
               "docs/virtual-circuits",
               "docs/terminology"
             ]
           },
-          { "group": "AI & Integrations",
+          {
+            "group": "AI & Integrations",
             "pages": [
               "docs/dash-ai",
               "docs/api-summary"
             ]
           },
-          { "group": "Ports",
+          {
+            "group": "Ports",
             "pages": [
               "docs/ports"
             ]
           },
-          { "group": "Internet",
+          {
+            "group": "Internet",
             "pages": [
               "docs/dia-overview",
               "docs/public-ips",
@@ -45,10 +49,11 @@
               "docs/dia-update"
             ]
           },
-          { "group": "Ethernet Services",
+          {
+            "group": "Ethernet Services",
             "pages": [
               "docs/ethernet-specs",
-              "docs/eline", 
+              "docs/eline",
               "docs/elan"
             ]
           },
@@ -73,9 +78,9 @@
                 "group": "Routing",
                 "expanded": false,
                 "pages": [
-                    "cloud-router-network",
-                    "cloud-router-routes",
-                    "cloud-router-bgp"
+                  "docs/cloud-router-network",
+                  "docs/cloud-router-routes",
+                  "docs/cloud-router-bgp"
                 ]
               }
             ]
@@ -110,12 +115,14 @@
       {
         "tab": "API Reference",
         "groups": [
-          { "group": "Introduction",
+          {
+            "group": "Introduction",
             "pages": [
               "api-reference/introduction"
             ]
           },
-          { "group": "Endpoints",
+          {
+            "group": "Endpoints",
             "openapi": "openapi.json"
           }
         ]
