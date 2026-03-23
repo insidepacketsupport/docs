@@ -1,0 +1,113 @@
+---
+title: "Configure NAT Rules"
+sidebarTitle: "NAT"
+---
+
+Network Address Translation (NAT) allows devices on your private network to communicate with the internet using your public IP addresses. NAT is commonly used alongside [DIA](dia-overview) connections to enable internet access for multiple internal devices without requiring a unique public IP for each one.
+
+DynamicLink supports three types of NAT:
+
+- **Source NAT** — Translates multiple private IP addresses to a single public IP, allowing many devices to share one public address for outbound internet access
+- **1:1 NAT** — Maps a single private IP address directly to a single public IP address, passing all ports through without translation
+- **Port Forwarding** — Redirects inbound traffic on specific ports to designated internal IP addresses and ports
+
+## Prerequisites
+
+Before configuring NAT, ensure you have:
+
+- An active [DIA connection](dia-create) with a provisioned [public IP block](public-ips)
+- A private IP address range assigned to your internal network
+- (Optional) A [Cloud Router](cloud-router) configured, if you plan to use 1:1 NAT with cloud router connections
+
+## Source NAT
+
+Source NAT enables multiple devices on a private network to access the internet through a single public IP address. Each device's private IP is translated to the public IP on the way out, and responses are routed back to the correct internal device based on port mappings.
+
+For example, you could have an entire `/24` block (up to 254 devices) behind a single public IP address. Each device connects to the internet using a different source port, and the NAT service tracks which internal address initiated each connection.
+
+### Configure a Source NAT Rule
+
+Navigate to **Services > NAT**. Click **Add** and select **Source NAT**.
+
+| Field | Description |
+| --- | --- |
+| **Name** | A descriptive name for the NAT rule (e.g., `ashburn-office-snat`). |
+| **Location** | The metro location for this NAT rule. This maps to your IPAM locations. |
+| **Inside IP** | The private IP block used by your internal network (e.g., `192.168.1.0/24`). |
+| **Outside IP** | Select a public IP pool. Only public IP pools are available for Source NAT. |
+| **Description** | A description of the NAT rule. (Optional) |
+
+<Note>
+When configuring Source NAT, you can only select **public IP pools** as the outside address. Cloud Router connections are not available as a destination for Source NAT.
+</Note>
+
+#### Filters
+
+Under **Filters**, you can add additional filters to the NAT rule.
+
+Source NAT is a many-to-one translation (multiple private IPs share a single public IP). 
+
+To make this work, the NAT service has to rewrite source ports to keep track of which internal device initiated which connection (this is sometimes called Port Address Translation, or PAT). Because port manipulation is already inherent to how Source NAT functions, you can configure filters for source port, destination port, and protocol. 
+
+These filters give you granular control over which traffic gets translated — for example, you could NAT only TCP traffic on port 443, or exclude UDP entirely.
+
+| Field | Description |
+| --- | --- |
+| **Source Port** | The source port to filter on. |
+| **Destination Port** | The destination port to filter on. |
+| **Protocol** | The protocol to filter on. |
+| **Description** | A description of the NAT rule. (Optional) |
+
+
+## 1:1 NAT
+
+1:1 NAT creates a direct, one-to-one mapping between a private IP address and a public IP address. 
+
+Unlike Source NAT, all ports are passed through without translation — every port on the private address maps directly to the same port on the public address (meaning you cannot configure port filters for 1:1 NAT).
+
+1:1 NAT is ideal when you need a dedicated public IP for a specific device or service, such as a server that must be reachable on well-known ports.
+
+### Configure a 1:1 NAT Rule
+
+Navigate to **Services > NAT**. Click **Add** and select **1:1 NAT**.
+
+| Field | Description |
+| --- | --- |
+| **Name** | A descriptive name for the NAT rule. |
+| **Inside IP** | The private IP address of the internal device. |
+| **Outside IP** | Select a public IP pool or a Cloud Router connection. Both options are available for 1:1 NAT. |
+
+<Note>
+1:1 NAT supports both **public IP pools** and **Cloud Router connections** as outside addresses. If you select a Cloud Router connection, the NAT rule applies to a port directly connected to the Cloud Router.
+</Note>
+
+## Port Forwarding
+
+Port Forwarding allows you to direct inbound traffic arriving on a specific port to an internal IP address and port. This is useful for hosting services (such as web or mail servers) behind a NAT without exposing the entire internal network.
+
+With Port Forwarding, external users connect to your public IP on a designated port, and the NAT service translates that traffic to the appropriate internal destination.
+
+### Configure Port Forwarding
+
+Navigate to **Services > NAT**. Click **Add** and select **Port Forwarding**.
+
+| Field | Description |
+| --- | --- |
+| **Name** | A descriptive name for the rule. |
+| **Inside IP** | The private IP address of the internal device that should receive the traffic. |
+| **Inside Port** | The port on the internal device to forward traffic to. This can differ from the outside port. |
+| **Location** | The metro location for this NAT rule. This maps to your IPAM locations. |
+| **Outside IP** | The public IP address that will receive inbound traffic. |
+| **Outside Port** | The port on the public IP that external traffic will connect to. |
+| **Protocol** | The protocol to filter on. |
+| **Description** | A description of the NAT rule. (Optional) |
+
+
+
+## Best practices
+
+- **Use separate private IP ranges per location.** If you are routing traffic through a [Cloud Router](cloud-router), keep your private IP blocks unique across locations. Overlapping private ranges between sites can cause routing conflicts when traffic traverses the Cloud Router.
+- **Plan your public IP allocation.** Decide in advance which public IP blocks you will use for NAT and which you will use for [DIA](dia-overview) connections. While you can use the same IPAM pool for both, separating them makes it easier to track usage and avoid conflicts.
+- **Use Source NAT for general internet access.** When you need to provide internet connectivity to many internal devices, Source NAT is the most efficient option since it conserves public IP addresses.
+- **Use 1:1 NAT for services that require a dedicated public IP.** Servers that must be reachable on specific well-known ports benefit from 1:1 NAT, where every port maps directly through.
+- **Combine NAT with firewall rules.** NAT controls which traffic gets translated, but it does not block or allow traffic on its own — unmatched traffic simply isn't translated, not dropped. Use [DIA Firewall rules](dia-firewall) alongside NAT to control which traffic is permitted in and out of your network.
