@@ -5,7 +5,7 @@ sidebarTitle: "Network Observability"
 
 The **Network Observability** dashboard gives you real-time visibility into traffic patterns, latency, geolocation, and connection flows across your DynamicLink network. It is the primary tool for understanding the health and performance of your underlying network infrastructure.
 
-Access it from **Insights > Network Observability** in the DynamicLink portal.
+Access it from **Insights \> Network Observability** in the DynamicLink portal.
 
 ![Network Observability dashboard](/images/network.png)
 
@@ -19,8 +19,7 @@ In the upper right, you can filter by the following:
 
 ## Traffic filters
 
-Under the tab name, there is a **Filters** option that allows you to narrow the dashboard data by a variety of filters, including locations, IPs, firewall rules, and source/destination criteria.  
-
+Under the tab name, there is a **Filters** option that allows you to narrow the dashboard data by a variety of filters, including locations, IPs, firewall rules, and source/destination criteria.
 
 ## Overview tab
 
@@ -48,9 +47,9 @@ The **Trends** tab displays time-series graphs that show how traffic volume chan
 
 | Widget | Description |
 | --- | --- |
-| **Location** | Traffic volume over time broken down by physical location (e.g., Lab_Network_NJ) |
+| **Location** | Traffic volume over time broken down by physical location (e.g., Lab\_Network\_NJ) |
 | **Segments** | Traffic volume over time broken down by network segment type (e.g., Internal) |
-| **Source Connection** | Traffic volume over time broken down by source connection name (e.g., Lab_AWS_Connection, Lab_VPN_Connection) |
+| **Source Connection** | Traffic volume over time broken down by source connection name (e.g., Lab\_AWS\_Connection, Lab\_VPN\_Connection) |
 | **Destination Connection** | Traffic volume over time broken down by destination connection name |
 | **Destination ASN** | Traffic volume over time broken down by destination Autonomous System Name |
 | **Destination APPs** | Traffic volume over time broken down by destination application or service |
@@ -59,7 +58,7 @@ The **Trends** tab displays time-series graphs that show how traffic volume chan
 
 ![Flows tab](/images/network-obs-flows.png)
 
-The **Flows** tab lets you explore traffic flows from multiple angles. 
+The **Flows** tab lets you explore traffic flows from multiple angles.
 
 A "flow" is a single network session or conversation between two endpoints. Each flow represents a discrete exchange of packets between a source IP/port and a destination IP/port using a specific protocol.
 
@@ -70,8 +69,7 @@ It is divided into two sections:
 At the top, two donut charts provide a quick visual breakdown of flow volume:
 
 - **Source IPs**: Shows the top source IP addresses contributing to traffic.
-- **Destination IPs**: Shows the top destination IP addresses receiving traffic.
-Below the charts, a table displays individual flow records. You can switch between views using the sub-tabs:
+- **Destination IPs**: Shows the top destination IP addresses receiving traffic. Below the charts, a table displays individual flow records. You can switch between views using the sub-tabs:
 
 | Sub-tab | Description |
 | --- | --- |
@@ -79,7 +77,6 @@ Below the charts, a table displays individual flow records. You can switch betwe
 | **Source IPs** | Groups flows by source IP address |
 | **Source IPs** | Groups flows by destination IP address |
 | **Connections** | Groups flows by named connection |
-
 
 ## Latency tab
 
@@ -98,9 +95,9 @@ The bottom of the tab displays three bar charts that highlight where the highest
 
 | Widget | Description |
 | --- | --- |
-| **TOP Latency By AS** | Ranks destination Autonomous Systems by average latency  |
+| **TOP Latency By AS** | Ranks destination Autonomous Systems by average latency |
 | **TOP Latency By Connection** | Ranks your named connections by average latency |
-| **TOP Latency By Location** | Ranks your physical locations by average latency  |
+| **TOP Latency By Location** | Ranks your physical locations by average latency |
 
 ### Interpreting latency data
 
@@ -128,21 +125,18 @@ The **Detailed Records** tab provides access to the raw Session Detail Records (
 
 ## Common use cases
 
-#### Capacity planning
+**Capacity planning**
 
 Use the traffic-over-time graphs to identify peak utilization windows. If traffic on a connection consistently approaches its allocated bandwidth, consider upgrading the link before saturation causes packet drops.
 
-#### Troubleshooting slow applications
+**Troubleshooting slow applications**
 
 Start with the latency graphs to determine whether the issue is network-related or server-related. If network latency is elevated, use the Looking Glass traceroute tool to identify the specific hop where degradation occurs.
 
-#### Validating network changes
+**Validating network changes**
 
 After making a routing change, adding a new connection, or modifying firewall rules, use the dashboard to confirm that traffic flows are behaving as expected. The connection flows view and traffic analytics will show whether the change had the intended effect.
 
-#### Identifying anomalous traffic
+**Identifying anomalous traffic**
 
 Unexpected spikes in traffic volume, connections to unusual geographic regions, or traffic on unexpected ports can all indicate a misconfiguration or potential security incident. Use the geolocation and protocol distribution views to flag these anomalies, then investigate further with the [Cyber Threats](docs/firewall) dashboard if needed.
-
-
-
