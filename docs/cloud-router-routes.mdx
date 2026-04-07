@@ -3,35 +3,33 @@ title: "Configure Static and Dynamic Routes for a Cloud Router"
 sidebarTitle: "Routes"
 ---
 
-The DynamicLink Cloud Router supports both static and dynamic routing so you can control how traffic is forwarded across your network. 
+The DynamicLink Cloud Router supports both static and dynamic routing so you can control how traffic is forwarded across your network.
 
-* Static routes are manually defined.
-    * Ideal for small, secure networks.
-    * Predictable and efficient with resources.
-    * Requires manual updates.
-* Dynamic routes are learned automatically from routing protocols (in DynamicLink, we use BGP).
-    * Ideal for large, changing networks.
-    * Scalable and automatic failover.
-    * Higher bandwidth usage and complexity.
-
+- Static routes are manually defined.
+  - Ideal for small, secure networks.
+  - Predictable and efficient with resources.
+  - Requires manual updates.
+- Dynamic routes are learned automatically from routing protocols (in DynamicLink, we use BGP).
+  - Ideal for large, changing networks.
+  - Scalable and automatic failover.
+  - Higher bandwidth usage and complexity.
 
 ## Add static routes
 
 Static routes define a fixed path to a destination network. Use them when you need a specific next-hop or interface (for example, for Cloud WAN or site-to-site routing).
 
-Next to **Routes > Static Routes**, click **Add**.
+Next to **Routes \> Static Routes**, click **Add**.
 
 Complete the following fields:
 
 | Field | Description |
-|-------|-------------|
+| --- | --- |
 | **Destination** | IP prefix to reach (IPv4 or IPv6), e.g. `192.168.1.0/24` or `10.0.0.0/8` |
-| **Type** | **IP Address** for a normal next-hop route. <br /> <br /> **Interface** for a route to an interface. This is only supported for **IPSec** interfaces. |
-| **Distance** | Route distance (priority) for the route. By default, this is `1`. <br /> <br /> Set a higher distance to make the route less desirable, for example to make it a backup route. |
+| **Type** | **IP Address** for a normal next-hop route. <br /><br />**Interface** for a route to an interface. This is only supported for **IPSec** interfaces. |
+| **Distance** | Route distance (priority) for the route. By default, this is `1`. <br /><br /> Set a higher distance to make the route less desirable, for example to make it a backup route. |
 | **Description** | Optional note for this route. |
 
 Click **Add** to save.
-
 
 ## Dynamic routes (BGP)
 
@@ -39,11 +37,13 @@ Dynamic routes are learned from BGP neighbors (e.g. cloud gateways, data centers
 
 For more information, see [Configure BGP for the Cloud Router](cloud-router-bgp).
 
-### If dynamic routes are missing
+<Note>
+  If dynamic routes are missing:
 
-- Confirm the **BGP session** is up (neighbor status in the BGP tab).
-- Confirm the neighbor is **advertising** the expected prefixes (check Sent/Received in AWS, Azure, or your peer).
-- Review **route filters** and policies that might block or filter advertisements.
+  - Confirm the **BGP session** is up (neighbor status in the BGP tab).
+  - Confirm the neighbor is **advertising** the expected prefixes (check Sent/Received in AWS, Azure, or your peer).
+  - Review **route filters** and policies that might block or filter advertisements.
+</Note>
 
 ## Route selection and precedence
 
@@ -52,6 +52,3 @@ When several routes exist to the same destination, the Cloud Router typically:
 1. Prefers **static** over **dynamic** routes.
 2. Uses **longest prefix match** (more specific prefix wins).
 3. Uses **distance/metric** to choose among same-type routes.
-
-
-
