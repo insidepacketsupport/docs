@@ -1,0 +1,51 @@
+---
+title: "Cloud Router ARP Table"
+sidebarTitle: "ARP"
+---
+
+The Address Resolution Protocol (ARP) table on the Cloud Router maps Layer 3 IP addresses to Layer 2 [MAC addresses](cloud-router-arp).
+
+Every device that communicates through the Cloud Router must have a corresponding ARP entry so that the router can encapsulate IP packets into the correct Ethernet frames and forward them to the right physical or virtual interface.
+
+Use the ARP table to verify that adjacent devices (BGP neighbors, cloud gateways, data center routers) are reachable at Layer 2 before troubleshooting higher-layer issues.
+
+## View the ARP table
+
+You can view the ARP table from **Network > Cloud Router > ARPs**. 
+
+The tab title shows the total number of active ARP entries.
+
+Each row in the table represents a resolved mapping between an IP address and a MAC address on a specific Cloud Router interface.
+
+| Column | Description |
+| --- | --- |
+| **IP Address** | The IPv4 address of the remote device (e.g., `192.168.49.5`). |
+| **MAC Address** | The corresponding MAC address (e.g., `2c:6b:f5:ab:fb:df`). |
+| **Virtual Interface** | The Cloud Router interface on which the entry was learned (e.g., the name of your port connection, cloud link, or DIA). |
+| **Age** | How long ago (in seconds) the entry was last refreshed. A high or increasing age may indicate that the remote device is no longer reachable. |
+| **Type** | Whether the entry is **Dynamic** (learned automatically through ARP requests and replies) or **Static** (manually configured or set by the platform, for example for Type-5 routes in the underlay). |
+
+## Dynamic vs. static entries
+
+- **Dynamic entries** are created automatically when the Cloud Router sends an ARP request and receives a reply from a neighboring device. \
+  \
+  These entries age out if the neighbor stops responding, and are refreshed periodically while traffic flows.
+- **Static entries** are [configured manually](/docs/cloud-router-routes). Static entries do not age out and persist until they are removed.
+
+## When to use the ARP table
+
+#### Verify Layer 2 reachability
+
+If you cannot reach a next-hop gateway, cloud gateway, or BGP peer, check whether an ARP entry exists for that IP address. A missing entry indicates a Layer 2 problem — verify physical connectivity, VLAN tagging, and interface configuration before investigating routing or BGP.
+
+#### Confirm device connectivity
+
+After provisioning a new Cloud Router connection, check the ARP table to confirm that the remote device has been learned on the expected virtual interface. A valid ARP entry confirms that the link is up and Layer 2 frames are being exchanged.
+
+#### Troubleshoot BGP peering failures
+
+A valid ARP entry for a BGP neighbor's IP address is a definitive confirmation that Layer 2 connectivity is working. If BGP will not establish but the ARP entry exists, the issue is almost certainly a Layer 3 BGP configuration problem — for example, an incorrect ASN, a mismatched MD5 password, or a route filter policy. This lets you skip physical and VLAN debugging and focus on [BGP configuration](cloud-router-bgp) directly.
+
+#### Identify stale or missing entries
+
+If the **Age** value for an entry is unusually high, the remote device may have become unreachable. If an expected entry is missing entirely, there is likely a Layer 2 issue between the Cloud Router and the neighbor — check the physical link, VLAN assignment, and interface status.

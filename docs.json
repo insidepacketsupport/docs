@@ -80,7 +80,10 @@
                 "pages": [
                   "docs/cloud-router-network",
                   "docs/cloud-router-routes",
-                  "docs/cloud-router-bgp"
+                  "docs/cloud-router-bgp",
+                  "docs/cloud-router-arp",
+                  "docs/cloud-router-mac",
+                  "docs/cloud-router-pbr"
                 ]
               }
             ]

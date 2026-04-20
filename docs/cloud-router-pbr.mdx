@@ -1,0 +1,165 @@
+---
+title: "Configure Policy-Based Routing for a Cloud Router"
+sidebarTitle: "PBR"
+---
+
+A Policy-Based Route (PBR) lets you make routing decisions based on source IP, destination IP, protocol, and ports. Connections that match the policy are directed to a configured gateway independently from the regular routing table.
+
+Use PBR when you need to:
+
+- **Implement source-based routing** (also called source routing), where traffic from different source subnets exits through different gateways.
+- **Steer specific traffic through a particular path**, such as sending all traffic from a guest network through a dedicated internet link or firewall.
+- **Route by protocol or port**, for example directing all UDP traffic to a specific next-hop.
+- **Create failover policies** where traffic matching a rule is skipped if the preferred gateway becomes unavailable, allowing a backup rule to take over.
+- **Exempt specific traffic from other PBR rules** by setting the gateway to "None," which forces matching connections back to the standard routing table.
+
+If your routing needs can be met with destination-based forwarding alone, [static routes](cloud-router-routes) or [BGP](cloud-router-bgp) may be simpler options.
+
+## PBR rule evaluation
+
+PBR rules are evaluated by priority (lowest priority value first), not by longest prefix match and distance like regular routes.
+
+The Cloud Router checks each connection against the PBR rules in order. The first rule where **all filters match** (logical `AND`) determines the gateway for that connection.
+
+If no PBR rule matches, the connection is routed according to the standard routing table.
+
+Each PBR rule consists of:
+
+- **Priority** — The order in which the rule is evaluated relative to other PBR rules.
+- **Policy** — The filter conditions a connection must match (source IP, destination IP, protocol, ports, ingress interface). All filters in a rule are combined with logical `AND`.
+- **Action** — Direct matched connections to the next-hop IP address or (if you select **None**) route them via the standard routing table.
+
+## Add a PBR rule
+
+You can configure policy-based routing from **Network \> Cloud Router \> PBR**.
+
+Click **Add** in the upper right and complete the following fields:
+
+### General
+
+| Field | Description |
+| --- | --- |
+| **Name** | A descriptive name for the rule (e.g., `Guest-to-Internet` or `Source-Route-Branch-A`). |
+| **Priority** | Numerical priority. Lower values are evaluated first. |
+| **Description** | Optional note explaining the purpose of the rule. |
+
+### Policy
+
+Define the filters to determine which traffic the rule applies to.
+
+All specified filters must match for the rule to take effect.
+
+| Filter | Description |
+| --- | --- |
+| **IP Protocol** | The IP version to match. Must match the version used in the source and destination fields (IPv4 or IPv6). |
+| **Protocol** | Transport protocol to match (e.g., TCP, UDP, ICMP, or Any). |
+| **Source** | Source IP prefix or [Group](groups) to match (e.g., `192.168.10.0/24`). Leave empty to match all sources. |
+| **Destination** | Destination IP prefix or [Group](groups) to match. Leave empty to match all destinations. |
+| **Source Port** | Source port or port range (optional). |
+| **Destination Port** | Destination port or port range (optional). |
+| **Source Interface** | Ingress virtual interface to match. Use this to route all traffic entering through a specific connection to a designated gateway. |
+
+### Route Action
+
+| Field | Description |
+| --- | --- |
+| **Gateway** | Enter the next-hop IP address to direct matched connections to (e.g., `192.168.49.1`), or select **None** from the dropdown. <br /><br />**IP address** — Matched connections are forwarded to this gateway, independent from the standard routing table. <br /><br />**None** — Matched connections are routed according to the standard routing table. This is useful for creating exceptions — connections that match this rule are routed normally even if a lower-priority PBR rule with a gateway would otherwise capture them. |
+| **Track Gateway** | When selected, traffic matching this rule will be skipped if the gateway is unavailable. <br />This lets you create redundant rules, e.g. a second rule with the same filters but a different gateway and a higher priority value (lower precedence) takes over automatically. See [Understanding rule processing](#understanding-rule-processing) below. |
+
+## Understanding rule processing
+
+- **Priority-based evaluation**: Rules are processed in order of their priority value, starting with the lowest number. The first matching rule determines where the connection is sent.
+- \*\*Logical \*\*`AND`: All filters in a single rule must match for the rule to apply. For example, a rule with both a source prefix and a destination port will only match connections that satisfy both conditions.
+- **Fallthrough to routing table**: If no PBR rule matches a connection, the Cloud Router forwards it using the standard [routing table](cloud-router-routes) (static and dynamic routes).
+- **"None" gateway stops PBR evaluation**: When a rule's gateway is set to **None**, matching connections are routed via the standard routing table and no further PBR rules are evaluated for that connection. Use this to create exceptions that exempt specific traffic from broader PBR rules defined at lower priorities.
+- **Gateway tracking**: When **Track Gateway** is selected and the configured gateway becomes unavailable, traffic matching that rule is skipped. This lets you create a second PBR rule with the same filters, a different gateway, and a higher priority value (lower precedence) as an automatic failover path.
+
+## Common use cases
+
+### Route a guest network through a dedicated internet link
+
+Steer all traffic from a guest subnet through a specific DIA connection rather than the default route.
+
+1. **Name**: `Guest-Internet-DIA2`
+2. **Priority**: `10`
+3. **Source**: `10.100.0.0/24` (guest network)
+4. **Gateway**: The next-hop IP of the dedicated DIA connection
+5. **Track Gateway**: Checked (traffic is skipped to default routing if DIA2 is down)
+
+### Source-based routing for multi-homed sites
+
+Send traffic from different branch subnets out through different gateways for load distribution or compliance.
+
+1. **Rule 1** — Branch A traffic through Gateway 1:
+   - **Name**: `Branch-A-GW1`
+   - **Priority**: `10`
+   - **Source**: `172.16.1.0/24`
+   - **Gateway**: `192.168.49.1`
+2. **Rule 2** — Branch B traffic through Gateway 2:
+   - **Name**: `Branch-B-GW2`
+   - **Priority**: `20`
+   - **Source**: `172.16.2.0/24`
+   - **Gateway**: `192.168.49.2`
+
+### Force traffic from a specific interface through a firewall
+
+Route all traffic arriving on a particular port connection through an inline firewall appliance before it reaches the rest of the network.
+
+1. **Name**: `Untrusted-Port-to-FW`
+2. **Priority**: `5`
+3. **Source Interface**: Select the untrusted port's virtual interface
+4. **Gateway**: The firewall appliance's IP address
+
+### Exempt specific traffic from a PBR rule
+
+You have a broad PBR rule that sends all traffic from `10.0.0.0/8` through a specific gateway, but you want management traffic to `10.0.99.0/24` to use the standard routing table instead. Create a higher-priority rule with the gateway set to **None**.
+
+1. **Rule 1** (exception — evaluated first):
+   - **Name**: `Mgmt-Use-Routing-Table`
+   - **Priority**: `5`
+   - **Source**: `10.0.0.0/8`
+   - **Destination**: `10.0.99.0/24`
+   - **Gateway**: **None**
+2. **Rule 2** (broad policy):
+   - **Name**: `All-Internal-to-FW`
+   - **Priority**: `10`
+   - **Source**: `10.0.0.0/8`
+   - **Gateway**: `192.168.50.1` (firewall)
+
+Management traffic matches Rule 1 first and is routed normally. All other traffic from `10.0.0.0/8` falls through to Rule 2 and is directed to the firewall.
+
+### Failover between two gateways
+
+Create two PBR rules with the same filters but different priorities and gateways. Check **Track Gateway** on both so that when the primary gateway becomes unavailable, traffic matching that rule is skipped and automatically shifts to the secondary.
+
+1. **Rule 1** (primary):
+   - **Name**: `Primary-GW`
+   - **Priority**: `10`
+   - **Source**: `10.0.0.0/8`
+   - **Gateway**: `192.168.1.1`
+   - **Track Gateway**: Checked
+2. **Rule 2** (secondary):
+   - **Name**: `Secondary-GW`
+   - **Priority**: `20`
+   - **Source**: `10.0.0.0/8`
+   - **Gateway**: `192.168.2.1`
+   - **Track Gateway**: Checked
+
+## Troubleshooting
+
+### Traffic is not being redirected
+
+1. **Check rule priority**: A higher-priority rule (lower number) may be matching the traffic first. Review the full PBR rule list sorted by priority.
+2. **Verify all filters match**: Remember that all filters are combined with AND. If any single filter doesn't match, the entire rule is skipped.
+3. **Confirm IP version**: The **IP Protocol** filter must match the IP version of the source and destination prefixes. An IPv4 source with an IPv6 protocol setting will never match.
+4. **Check that the rule is enabled**: Ensure the rule's admin state is active.
+
+### Gateway is unreachable
+
+1. Verify that the gateway IP has a valid [ARP entry](cloud-router-arp) in the Cloud Router. A missing ARP entry indicates a Layer 2 issue.
+2. Confirm that a route to the gateway exists in the [routing table](cloud-router-routes) (either via a connected route, a static route, or BGP).
+3. If **Track Gateway** is checked and the gateway is down, traffic matching this rule will be skipped — check whether connections are falling through to the next rule or the routing table as expected.
+
+### Unexpected traffic hitting the PBR rule
+
+If traffic you didn't intend to redirect is matching a PBR rule, narrow the filters. Add a more specific source prefix, destination prefix, protocol, or port to reduce the scope of the match.

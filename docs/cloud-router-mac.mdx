@@ -1,0 +1,60 @@
+---
+title: "Cloud Router MAC Address Table"
+sidebarTitle: "MACs"
+---
+
+The MAC address table shows which Layer 2 MAC addresses have been learned on which virtual interfaces.
+
+While the [ARP table](cloud-router-arp) maps IP addresses to MAC addresses, the MAC table provides a pure Layer 2 view — confirming that Ethernet frames from remote devices are actually arriving at the Cloud Router and on the correct interface.
+
+Use the MAC table to verify physical connectivity, diagnose VLAN or cabling issues, and confirm that devices are reachable at the data link layer.
+
+## View the MAC address table
+
+You can view the MAC address table from **Network > Cloud Router > MACs**.
+
+Each row represents a MAC address that the Cloud Router has learned on a specific interface.
+
+| Column | Description |
+| --- | --- |
+| **MAC Address** | The learned or configured MAC address of the remote device (e.g., `2c:6b:f5:ab:fb:df`). |
+| **Virtual Interface** | The Cloud Router interface on which the MAC address was learned (e.g., the name of your port connection, cloud link, or DIA). |
+| **Port** | The underlying physical port associated with the entry, when applicable. |
+| **Age** | How long ago (in minutes) the entry was last seen. An increasing age may indicate that the device has stopped sending traffic. |
+| **Type** | Whether the entry is **Dynamic** (learned from incoming Ethernet frames) or **Static** (manually configured or pinned by the platform). |
+
+## Dynamic vs. static entries
+
+- **Dynamic entries** are created automatically when the Cloud Router receives an Ethernet frame from a device. \
+  \
+  The Cloud Router records the source MAC address and the interface the frame arrived on. Dynamic entries age out after a period of inactivity — if the device stops sending traffic, the entry will eventually be removed.
+- **Static entries** are [configured manually](/docs/cloud-router-routes). Static entries do not age out and persist until they are removed.
+
+## When to use the MAC address table
+
+#### Verify device connectivity
+
+After connecting a new device, provisioning a Cloud Router connection, or making cabling changes, check the MAC table to confirm that the remote device's MAC address appears on the expected virtual interface. A valid MAC entry confirms that the physical link is up and Layer 2 frames are being received.
+
+#### Diagnose Layer 2 issues
+
+If a device's MAC address is missing from the table, the device is either:
+
+- Not sending traffic (powered off, interface down, or no active sessions).
+- Not connected to the correct port or VLAN.
+- Experiencing a physical link issue (bad cable, incorrect SFP, or port mismatch).
+
+A missing MAC entry points to a problem below Layer 3 — resolve it before investigating routing or BGP.
+
+#### Identify unexpected devices
+
+Review the MAC table periodically to ensure that only expected devices are connected to your Cloud Router interfaces. An unfamiliar MAC address may indicate a misconfiguration, a cabling error, or an unauthorized device on the network.
+
+#### Correlate with the ARP table
+
+The MAC and ARP tables complement each other:
+
+- A **MAC entry without a corresponding ARP entry** means the device is sending Layer 2 frames but has not yet participated in an ARP exchange. This can happen if the device is in a different subnet or has not yet sent IP traffic.
+- An **ARP entry without a corresponding MAC entry** is unusual and may indicate a stale ARP cache. Refreshing the view or waiting for the next ARP cycle typically resolves this.
+- **Both entries present** confirms full Layer 2 reachability — the device is physically connected and IP-to-MAC resolution is working.
+
