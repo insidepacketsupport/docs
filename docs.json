@@ -46,7 +46,17 @@
               "docs/dia-overview",
               "docs/public-ips",
               "docs/dia-create",
-              "docs/dia-update"
+              "docs/dia-update",
+              {
+                "group": "DIA BGP",
+                "hidden": true,
+                "pages": [
+                  "docs/asn",
+                  "docs/dia-bgp",
+                  "docs/dia-bgp-delete",
+                  "docs/dia-bgp-router"
+                ]
+              }
             ]
           },
           {

@@ -1,0 +1,41 @@
+---
+title: "Delete a Dedicated Internet Access (DIA) Connection with BGP"
+sidebarTitle: "Delete a DIA BGP Connection"
+---
+
+Deleting a DIA BGP connection is a 3-step process:
+
+1. Delete the actual DIA connection.
+2. Delete the public IP pool that was imported with your ASN (optional)
+3. Delete your ASN (optional)
+
+## Delete the connection
+
+Navigate to **Build Your Network \> Virtual Circuit**. Locate the DIA BGP connection you want to remove and click the trash icon on the right side of the row. Confirm the deletion.
+
+## Remove the public IP pool (optional)
+
+After the connection is deleted, the public IP pool that was associated with it remains in DynamicLink in case you want to use it for another connection. If you no longer need the pool, remove it.
+
+Go to **Public IPs**. Locate the pool under the port that the connection was built on — it has the same name you gave the connection. Click the trash can icon and confirm.
+
+## Delete the ASN (optional)
+
+Your approved ASN remains available for use with other DIA BGP connections. In most cases, you should leave it in place.
+
+<Note>
+  Only delete your ASN if you no longer plan to use it for any DynamicLink service. If you delete it and need it again later, you must [submit it again](asn) and wait for re-approval.
+</Note>
+
+To delete an ASN, go to **Public IPs \> ASN**, locate the ASN, and click the trash can icon.
+
+## Decommission your router
+
+After deleting the connection in DynamicLink, remove the corresponding configuration from your router. At a minimum, confirm the following:
+
+- The BGP neighbor for the deleted connection is removed or disabled.
+- The service VLAN or subinterface is removed if no longer in use.
+- The service IP addresses are removed if no longer in use.
+- Outbound prefix advertisements for the deleted service are removed.
+- Service-specific route policies are removed if no longer in use.
+- No traffic is being routed toward the deleted service.
