@@ -14,7 +14,7 @@ Zayo provides the following information for each DIA BGP connection. You'll need
 | **Zayo BGP peer address** | The IPv4 and/or IPv6 address your router will peer with. |
 | **Zayo remote ASN** | `6461`. |
 | **Customer-side IP** | The IPv4 and/or IPv6 address assigned to the customer side of the connection. |
-| **BGP authentication password** | If authentication is required for your service. The session will not establish if this does not match on your router. |
+| **BGP authentication password** | This is required, and is automatically generated. The session will not establish if this does not match on your router. |
 | **Maximum prefix limit** | The maximum number of prefixes you are permitted to advertise on this session. |
 
 ## Router configuration requirements
@@ -27,7 +27,7 @@ Your router must be configured with:
 | **IP addressing** | The IPv4 and/or IPv6 customer-side address assigned by Zayo for this connection. |
 | **Local ASN** | Your approved customer ASN. |
 | **BGP neighbor** | The Zayo BGP peer IP address, with remote ASN set to `6461`. |
-| **Authentication password** | The BGP authentication password provided by Zayo, if applicable. |
+| **Authentication password** | The BGP authentication password provided by Zayo. You can find this by clicking the information icon next to the DIA BGP connection under **Build Your Network \> Public IPs**. |
 | **Address family activation** | IPv4 unicast if IPv4 is used, IPv6 unicast if IPv6 is used. For dual-stack service, configure and validate IPv4 and IPv6 separately. |
 | **Outbound route filter** | A filter that allows only the approved customer prefixes to be advertised. |
 

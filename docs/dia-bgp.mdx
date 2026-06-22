@@ -17,11 +17,11 @@ To create a DIA BGP connection, you need:
 - An [approved ASN](asn) in DynamicLink.
 - Public IP prefixes registered to your ASN that you intend to advertise.
 
-You'll also need the following information from Zayo, which is provided during provisioning:
+You'll also need the following information from Zayo, which is provided during or after provisioning:
 
 - Zayo BGP peer IP address (IPv4 and/or IPv6)
 - Zayo remote ASN (`6461`)
-- BGP authentication password, if required
+- BGP authentication password
 - Maximum prefix limit for the service
 
 ## Create a DIA BGP connection
@@ -52,6 +52,18 @@ Select **Internet** and then complete the following fields:
 Enter a connection name and then click **Add**.
 
 The connection will appear in your virtual circuit list in a pending state. It will remain pending until your router is configured and the BGP session establishes between your network and Zayo's.
+
+## Configuration details
+
+You can find configuration details, such as the MD5 password, under **Build Your Network \> Public IPs**.
+
+Click the information icon next to your BGP connection.
+
+<img
+  src="/images/dia-bgp-info.png"
+  alt="screenshot"
+  style={{ width:"56%" }}
+/>
 
 ## Configure your router
 
