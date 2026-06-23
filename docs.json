@@ -49,7 +49,6 @@
               "docs/dia-update",
               {
                 "group": "DIA BGP",
-                "hidden": true,
                 "pages": [
                   "docs/asn",
                   "docs/dia-bgp",
