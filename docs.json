@@ -22,6 +22,7 @@
           {
             "group": "Getting Started",
             "pages": [
+              "Home",
               "Welcome",
               "docs/virtual-circuits",
               "docs/terminology"
