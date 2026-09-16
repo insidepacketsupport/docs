@@ -1,0 +1,188 @@
+---
+title: "DynamicLink 2.16 Release Notes"
+description: "What's new, what's changed, and what's fixed in DynamicLink 2.16"
+hidden: true
+noindex: true
+---
+
+## Release highlights
+
+- Securely connect two tenants directly with **Meet-Me-Room**, or open your Ports to other tenants in the new public Meet-Me marketplace.
+
+- The Observability search bar was rebuilt for faster investigation, with smarter suggestions and one-click drill-down.
+- DashAI can now manage BGP configuration, check reachability and connectivity, decode packet captures, and manage Azure Express Route connections.
+
+<Warning>
+  **Breaking changes in this release:** Login now happens in two steps, and the API and MCP paths have changed. If you have automation or integrations, see [Breaking Changes](#breaking-changes) before upgrading.
+</Warning>
+
+## New Features
+
+### Management
+
+<AccordionGroup>
+  <Accordion title="Meet-Me-Room">
+    You can now securely connect two tenants directly in a virtual Meet-Me-Room. The initiator of the connection provides a secure token to the second party. Supported connection types:
+
+    - **EVPL** — Both sides choose a Port from their inventory and define the VLAN to use. DynamicLink creates an EVPL between the two Ports and VLANs.
+    - **Ethernet to Cloud Router** — The initiator lets the second party connect to their Cloud Router instance with a Port and VLAN of their choice, and defines the IP and routing information.
+
+    The connection is secured by default — a firewall rule ensures only explicitly allowed traffic passes through.
+  </Accordion>
+
+  <Accordion title="Events">
+    You can now subscribe to receive events as webhooks, including:
+
+    - Connection status
+    - BGP status
+    - DDoS floods
+  </Accordion>
+
+  <Accordion title="Partners">
+    You can now create Partners in DynamicLink that create and manage their own tenants. This supports use cases such as:
+
+    - Letting a business unit manage its own customers (e.g., Managed Services)
+    - Wholesale partners managing their own customers
+    - Customers who need multiple tenants for their own internal business and networking needs
+  </Accordion>
+
+  <Accordion title="Marketplace">
+    Building on private Meet-Me, you can now offer network-based services on your Ports to other tenants in an automated marketplace — making it easier to connect with regional or niche CSPs, GPUaaS operators, SaaS providers, other NaaS operators, and more.
+
+    Once public Meet-Me is enabled for your account, you can control:
+
+    - The services you create, including icon, description, and Ports from your inventory
+    - VLAN ranges
+    - Bandwidth available
+    - Connected customers
+  </Accordion>
+
+  <Accordion title="BGP Underlay — Restore Points">
+    When you change BGP configuration for internet or underlay VRFs, a restore point is now automatically saved — so you can roll back BGP changes and compare differences between restore points.
+  </Accordion>
+
+  <Accordion title="GUI: Filter by connection type">
+    You can now filter the Connections screen and the "Build-Your-Network" dashboard by type — Cloud Operator, Meet-Me, Marketplace, DC, DIA, and more — for quicker navigation when you have many active connections.
+  </Accordion>
+
+  <Accordion title="System events webhook - remove">
+    On top of existing SNMP trap support, you can now add webhook receivers for:
+
+    - Physical Port
+    - Network node status
+    - Network node health changes
+    - L2 interface operational changes
+    - Connection (L2 and L3) operational state changes
+    - BGP status
+    - DDoS floods
+  </Accordion>
+</AccordionGroup>
+
+### Observability
+
+<AccordionGroup>
+  <Accordion title="Threat Intelligence enrichment">
+    You now have access to the DynamicLink Threat Intelligence feed, which enriches your insights data across Network insights, DNS monitoring, and Applications reporting.
+  </Accordion>
+
+  <Accordion title="Intelligent Observability">
+    The Observability search bar was rebuilt to help you investigate faster:
+
+    - **Type anything** — The search bar auto-detects what you've entered and reshapes the page around it: IP address, CIDR range, hostname/FQDN, destination port, ASN, country, or firewall rule.
+    - **Smart search suggestions** — The list narrows live as you type, with recent searches remembered per tenant.
+    - **Four investigation tabs**:
+      - _Overview_ — KPIs, top sources/destinations, top hostnames, firewall and NAT hits at a glance.
+      - _Network Observability_ — six donut tiles covering source/destination IPs, ports, protocols, ASNs, countries, and firewall rules, with a Client/Server traffic toggle.
+      - _Application Observability_ — FQDN ALLOW/DENY split, hostname distribution, AS Name breakdown, firewall × FQDN cross-table, Is-DIA indicators, source/destination IPs.
+      - _DNS_ — query-type distribution, top DNS sources, top DNS servers, top hostnames, and a suspicious-name heuristic table based on entropy and length analysis.
+    - **Identity card** — A persistent side panel shows public/private classification, ASN, country, Is-DIA, first-seen/last-seen timestamps, and event volume.
+    - **No blank screens** — When a tab has no data in your selected window, Search checks nine other time windows (5 minutes to 7 days) and recommends the right one with a one-click chip.
+    - **One-click context** — Every tile has an "Open" link straight to the corresponding dashboard, with the entity already filtered.
+    - **Investigate with InsideIQ** — A page-level button hands the entity and current findings to the InsideIQ chatbot. Per-row "connectivity check" buttons launch focused diagnostics on top sources/destinations.
+  </Accordion>
+
+  <Accordion title="Domain and IP categories">
+    Domains and IP addresses across observability tools are now matched against categories:
+
+    - **Domains** — content categories, including cyber-related categories like phishing and malware.
+    - **IPs** — enriched with GeoIP, the services they provide (e.g., Office 365, Zoom, Public DNS, AI platforms), and cyber categories.
+
+    You'll see these categories throughout the observability panels.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Feature Updates
+
+### Management
+
+<Accordion title="Authentication update">
+  Authentication was updated to support:
+
+  - Connecting to MCP from more LLM services, including OpenAI
+  - Longer sessions, thanks to secure auto-renewal of auth tokens
+  - Broader identity provider (IDP) integration going forward
+
+  <Warning>
+    Because of this change, you'll now enter your tenant name on one screen, then your username and password on a second screen. If you have automation that authenticates to the API, see [Breaking Changes](#breaking-changes).
+  </Warning>
+</Accordion>
+
+### Observability
+
+<AccordionGroup>
+  <Accordion title="More accurate traffic sampling">
+    DynamicLink now distributes sampling capacity across the network on a per-tenant basis, so you get more accurate traffic insights with no bottlenecks during sudden spikes in traffic.
+  </Accordion>
+
+  <Accordion title="DashAI updates">
+    DashAI can now:
+
+    - **Manage your BGP tenant configuration** — Set up a connection to a remote network over BGP, which is especially useful for connecting to major cloud providers.
+    - **Check reachability** — Find out whether a remote IP is reachable.
+    - **Check connectivity** — Debug why a connection can't be established between two IPs, across OSI layers 1–4.
+    - **Connect to Azure Express Route** — This is in addition to AWS and GCP, already supported.
+    - **Decode packet captures** — Trigger a packet capture on a connection and get a plain-language explanation of the result, on its own or as part of a connectivity check.
+  </Accordion>
+</AccordionGroup>
+
+## Breaking Changes
+
+<Warning>
+  Review these before upgrading — some require you to update automation or integrations.
+</Warning>
+
+- **Login now happens in two steps.** You'll enter your tenant name on one screen, then your username and password on a second screen.
+- **The OAuth login method changed.** If you have automation that calls the API, update it to use the new authentication method — scripts using the old method will fail without changes.
+- **API paths have moved.** APIs are now available at `/api/v1/`. The previous `/broker/` path will keep working until version 2.17, after which it will be retired. New functionality will only be available at the new path.
+- **The MCP path changed** from `/broker/mcp/` to `/mcp/`.
+- **Blackhole static routes need to be recreated.** If you use blackhole static routes — for example, for BGP RTBH communities on your internet VRF — these are removed during the upgrade and need to be recreated afterward with the new blackhole target.
+
+## Security Updates
+
+<Accordion title="Firewall reporting - before and after SCREENSHOTS needed">
+  You'll see the following improvements to NaaS Firewall and DIA Firewall reporting:
+
+  - A new statistics layout that's easier to navigate and filter
+  - A filter to show only Allow, Block, or Web filtering rules
+  - A "last changed" column showing when a rule was last updated
+</Accordion>
+
+## Bug Fixes
+
+- Port interfaces were displaying the wrong title.
+- Enabling or disabling users for a tenant didn't always work.
+- NAT services sometimes stayed marked as active after being removed.
+- Exporting dynamic routes to CSV produced an empty file.
+- Creating a static route to a non-existent gateway showed an incorrect error message.
+- Password requirements weren't shown when creating a new user during tenant setup.
+- Custom bandwidth couldn't be set for Cloud NNI connections.
+- A customer port wasn't shown as down when the underlying network connection went down.
+- NAT statistics were sometimes incorrect in traffic reports.
+- The BGP hard/soft reset option had no effect.
+- AWS connections created an extra port even when reusing the same key.
+- The reset password screen displayed the wrong notification text.
+- The Cloud NNI list sometimes timed out while loading.
+- Deleting a DIA connection didn't always remove it from the network.
+- Some connections experienced brief, intermittent interface flapping.
