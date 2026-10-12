@@ -19,6 +19,10 @@ Both connection types provide the same dedicated, uncontended internet access. T
 - A standard DIA connection uses public IP addresses assigned by Zayo, with routing handled entirely by Zayo's network. Standard DIA is simpler to provision and requires no router configuration on your side.
 - A DIA BGP connection uses your own public IP addresses and ASN, advertised to Zayo's network over a BGP session between your router and ours. DIA BGP requires more setup, including ASN approval and BGP configuration on your router, but gives you control over your public IP space and how your traffic is identified on the internet.
 
+<Note>
+  DIA BGP self-service is only supported when using a single `/31` to establish the peering session. If you want to use a `/29`, you will need to contact [Zayo support](https://www.zayo.com/support/).
+</Note>
+
 ## Key components
 
 ### Public IP addresses
